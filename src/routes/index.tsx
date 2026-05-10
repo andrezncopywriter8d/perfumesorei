@@ -17,6 +17,15 @@ import vulcanImg from "@/assets/vulcan.png";
 import durratImg from "@/assets/durrat.png";
 import amberImg from "@/assets/amber.png";
 import fakharImg from "@/assets/fakhar.png";
+import elFursonImg from "@/assets/el-furson.png";
+import alNobleWazeerImg from "@/assets/al-noble-wazeer.png";
+import meitreImg from "@/assets/meitre.png";
+import fakarGoldImg from "@/assets/fakar-gold.png";
+import fakharBlackImg from "@/assets/fakhar-black.png";
+import fakarRoseImg from "@/assets/fakar-rose.png";
+import attarAlWesalImg from "@/assets/attar-al-wesal.png";
+import khamrahImg from "@/assets/khamrah.png";
+import voujePartyImg from "@/assets/vouje-party.png";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
@@ -69,7 +78,6 @@ function Reveal({
   );
 }
 
-
 function SectionDivider({ label }: { label: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -120,7 +128,14 @@ function Logo() {
   );
 }
 
-const perfumes: { name: string; brand: string; notes: string; price: string; gradient: string; image?: string }[] = [
+const perfumes: {
+  name: string;
+  brand: string;
+  notes: string;
+  price: string;
+  gradient: string;
+  image?: string;
+}[] = [
   {
     name: "Asad",
     brand: "Lattafa",
@@ -142,6 +157,7 @@ const perfumes: { name: string; brand: string; notes: string; price: string; gra
     notes: "Canela · Tâmara · Praliné",
     price: "R$ 329",
     gradient: "from-orange-900 via-amber-950 to-[#0a0506]",
+    image: khamrahImg,
   },
   {
     name: "Oud Mood",
@@ -156,6 +172,7 @@ const perfumes: { name: string; brand: string; notes: string; price: string; gra
     notes: "Maçã · Damasco · Couro",
     price: "R$ 279",
     gradient: "from-yellow-900 via-amber-900 to-[#1a0f0a]",
+    image: fakharBlackImg,
   },
   {
     name: "Bade'e Al Oud",
@@ -181,6 +198,15 @@ const productImages: Record<string, string> = {
   DURRAT: durratImg,
   AMBER: amberImg,
   "FAKAR PLATINUM": fakharImg,
+  "FAKAR GOLD": fakarGoldImg,
+  "FAKHAR BLACK": fakharBlackImg,
+  "FAKAR ROSE": fakarRoseImg,
+  "ATTAR AL WESAL": attarAlWesalImg,
+  KHAMRAH: khamrahImg,
+  "VOUJE PARTY": voujePartyImg,
+  "EL FURSON": elFursonImg,
+  "AL NOBLE WAZEER": alNobleWazeerImg,
+  MEITE: meitreImg,
 };
 
 const catalogProducts: { name: string; price: string }[] = [
@@ -223,9 +249,7 @@ function Index() {
 
   return (
     <div className="relative bg-[#070403] text-white">
-      {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden bg-[#070403] text-white">
-        {/* soft golden atmosphere on the right */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-[1]"
@@ -243,7 +267,6 @@ function Index() {
           }}
         />
 
-        {/* lion — subtle background texture, fully faded into black */}
         <img
           src="/lion.png"
           alt=""
@@ -260,7 +283,6 @@ function Index() {
           }}
         />
 
-        {/* darken left + bottom to anchor text and merge lion + seamless fade into next section */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-[3]"
@@ -270,7 +292,6 @@ function Index() {
           }}
         />
 
-        {/* product video — hero protagonist */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[54%] md:-translate-y-1/2 z-[4] pointer-events-none h-[44vh] md:h-[80vh] max-h-[840px] aspect-square">
           <video
             autoPlay
@@ -288,7 +309,6 @@ function Index() {
           </video>
         </div>
 
-        {/* content — bottom-left, refined hierarchy */}
         <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[7vw] md:right-auto md:bottom-[10vh] md:max-w-[480px]">
           <span className="block text-[11px] md:text-[12px] font-medium text-amber-400/90 mb-4 md:mb-5 tracking-[0.18em] uppercase">
             Coleção exclusiva 2026
@@ -305,7 +325,9 @@ function Index() {
             <br />
             que contam histórias
             <br />
-            <em className="italic font-normal bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">eternas.</em>
+            <em className="italic font-normal bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
+              eternas.
+            </em>
           </h1>
           <p className="text-white/55 text-[14px] md:text-[15px] leading-[1.6] mb-8 max-w-[360px] tracking-wide">
             Descubra a essência do oriente.
@@ -320,9 +342,6 @@ function Index() {
         </div>
       </section>
 
-      
-
-      {/* CATALOG with parallax */}
       <section
         id="catalog"
         ref={catalogRef}
@@ -354,7 +373,7 @@ function Index() {
                   <img
                     src={p.image}
                     alt={p.name}
-                    className="absolute inset-0 w-full h-full object-cover -z-10 opacity-95 group-hover:scale-105 transition-transform duration-700"
+                    className="absolute inset-0 w-full h-full object-contain p-4 -z-10 opacity-95 group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
                 )}
@@ -370,9 +389,7 @@ function Index() {
                     <span className="text-lg font-medium">{p.price}</span>
                     <span className="inline-flex items-center gap-1 text-[12px] font-medium border border-white/40 rounded-full px-3 py-1.5 group-hover:bg-white group-hover:text-black transition-all">
                       Comprar
-                      <span className="group-hover:translate-x-0.5 transition-transform">
-                        →
-                      </span>
+                      <span className="group-hover:translate-x-0.5 transition-transform">→</span>
                     </span>
                   </div>
                 </div>
@@ -416,9 +433,6 @@ function Index() {
           </ContainerScroll>
         </Reveal>
 
-        
-
-        {/* FULL CATALOG GRID */}
         <div className="max-w-6xl mx-auto mt-12">
           <Reveal className="mb-10 text-center">
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
@@ -427,9 +441,7 @@ function Index() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-3">
               O Rei do Importado Perfumes
             </h2>
-            <p className="text-white/60 text-[14px]">
-              Perfumes importados disponíveis
-            </p>
+            <p className="text-white/60 text-[14px]">Perfumes importados disponíveis</p>
           </Reveal>
 
           <div className="max-w-md mx-auto mb-10">
@@ -472,9 +484,7 @@ function Index() {
                     {p.name}
                   </h3>
                   <div className="mt-auto">
-                    <p className="text-[18px] font-bold text-amber-400 mb-3">
-                      {p.price}
-                    </p>
+                    <p className="text-[18px] font-bold text-amber-400 mb-3">{p.price}</p>
                     <a
                       href={INSTAGRAM_URL}
                       target="_blank"
@@ -547,7 +557,6 @@ function Index() {
       </section>
 
       <CinematicFooter />
-
     </div>
   );
 }
