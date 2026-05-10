@@ -357,9 +357,11 @@ function Index() {
           </div>
         </ContainerScroll>
 
+        <SectionDivider label="Coleção" />
+
         {/* FULL CATALOG GRID */}
-        <div className="max-w-6xl mx-auto mt-32">
-          <div className="mb-10 text-center">
+        <div className="max-w-6xl mx-auto mt-12">
+          <Reveal className="mb-10 text-center">
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
               Catálogo
             </p>
@@ -369,7 +371,7 @@ function Index() {
             <p className="text-white/60 text-[14px]">
               Perfumes importados disponíveis
             </p>
-          </div>
+          </Reveal>
 
           <div className="max-w-md mx-auto mb-10">
             <input
