@@ -255,8 +255,32 @@ function Index() {
             </a>
           </div>
 
+          <div className="flex flex-wrap gap-3 mb-8">
+            {([
+              { key: "todos", label: "Todos" },
+              { key: "masculino", label: "Masculinos" },
+              { key: "feminino", label: "Femininos" },
+            ] as const).map((opt) => {
+              const active = genderFilter === opt.key;
+              return (
+                <button
+                  key={opt.key}
+                  type="button"
+                  onClick={() => setGenderFilter(opt.key)}
+                  className={`text-[12px] font-semibold tracking-wider uppercase rounded-full px-5 py-2.5 border transition-all duration-200 ${
+                    active
+                      ? "bg-amber-500 text-black border-amber-500 shadow-lg shadow-amber-500/20"
+                      : "text-amber-300 border-amber-400/40 hover:bg-amber-400/10 hover:border-amber-400"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {catalogProducts.map((p) => (
+            {filteredProducts.map((p) => (
               <article
                 key={p.name}
                 className="group relative flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/40 transition-all duration-300 overflow-hidden"
