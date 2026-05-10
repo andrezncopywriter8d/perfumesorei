@@ -88,7 +88,7 @@ function Index() {
           preload="auto"
           className="hero-product-video animate-[fadeIn_1.2s_ease-in-out]"
         >
-          <source src="/perfume.mp4" type="video/mp4" />
+          <source src="/perfume.webm" type="video/webm" />
         </video>
 
         <div className="relative z-10 flex flex-col h-full">
