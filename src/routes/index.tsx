@@ -343,7 +343,7 @@ function Index() {
               </GlowCard>
             ))}
           </div>
-        </div>
+        </Reveal>
 
         <ContainerScroll
           titleComponent={
