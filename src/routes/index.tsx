@@ -380,7 +380,7 @@ function Index() {
           </ContainerScroll>
         </Reveal>
 
-        <SectionDivider label="Coleção" />
+        
 
         {/* FULL CATALOG GRID */}
         <div className="max-w-6xl mx-auto mt-12">
