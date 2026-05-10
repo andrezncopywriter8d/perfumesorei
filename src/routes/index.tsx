@@ -115,7 +115,7 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative bg-gradient-to-br from-[#1a0f0a] via-[#2a1810] to-[#0a0506] text-white">
+    <div className="relative bg-[#070403] text-white">
       {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden bg-[#020202] text-white">
         {/* soft golden atmosphere on the right */}
