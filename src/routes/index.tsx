@@ -159,18 +159,11 @@ const catalogProducts: { name: string; price: string }[] = [
 ];
 
 function Index() {
-  const [scrollY, setScrollY] = useState(0);
   const [search, setSearch] = useState("");
   const catalogRef = useRef<HTMLDivElement>(null);
   const filteredProducts = catalogProducts.filter((p) =>
     p.name.toLowerCase().includes(search.trim().toLowerCase())
   );
-
-  useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <div className="relative bg-[#070403] text-white">
