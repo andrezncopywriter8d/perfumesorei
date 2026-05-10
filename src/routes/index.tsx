@@ -73,15 +73,15 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative bg-[#f0f0ee]">
+    <div className="relative bg-gradient-to-br from-[#1a0f0a] via-[#2a1810] to-[#0a0506] text-white">
       {/* HERO */}
-      <section className="relative h-screen overflow-hidden">
+      <section className="relative h-screen overflow-hidden bg-gradient-to-br from-[#3a2418] via-[#1a0f0a] to-black">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out]"
+          className="absolute inset-0 w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out] mix-blend-screen"
           src="/perfume.mp4"
         />
 
