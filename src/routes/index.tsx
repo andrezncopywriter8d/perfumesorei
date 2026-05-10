@@ -5,7 +5,13 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
-import asadImg from "@/assets/asad.png";
+import asadImg from "@/assets/asad-new.png";
+import asadBourbonImg from "@/assets/asad-bourbon.png";
+import asadElixirImg from "@/assets/asad-elixir.png";
+import yaraRoseImg from "@/assets/yara-rose.png";
+import yaraTousImg from "@/assets/yara-tous.png";
+import yaraElixirImg from "@/assets/yara-elixir.png";
+import liquidBrunImg from "@/assets/liquid-brun.png";
 import aneesaImg from "@/assets/aneesa.png";
 import raveImg from "@/assets/rave.png";
 import clubIntenseImg from "@/assets/club-intense.png";
@@ -150,6 +156,7 @@ const perfumes: {
     notes: "Tangerina · Orquídea · Almíscar",
     price: "R$ 249",
     gradient: "from-amber-800 via-orange-950 to-[#1a0f0a]",
+    image: yaraRoseImg,
   },
   {
     name: "Khamrah",
@@ -187,6 +194,12 @@ const INSTAGRAM_URL = "https://www.instagram.com/oreidoimportadoperfumes/";
 
 const productImages: Record<string, string> = {
   ASAD: asadImg,
+  "ASA BURBON": asadBourbonImg,
+  "ASAD ELIXIR": asadElixirImg,
+  "YARA ROSE": yaraRoseImg,
+  "YARA TOUS": yaraTousImg,
+  "YARA ELIXIR": yaraElixirImg,
+  "LIQUID BRUN": liquidBrunImg,
   ANEESA: aneesaImg,
   "RAVE AU SOLEIL": raveImg,
   "CLUB DE NOIRL INTENSE": clubIntenseImg,
