@@ -73,15 +73,15 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative bg-[#f0f0ee]">
+    <div className="relative bg-gradient-to-br from-[#1a0f0a] via-[#2a1810] to-[#0a0506] text-white">
       {/* HERO */}
-      <section className="relative h-screen overflow-hidden">
+      <section className="relative h-screen overflow-hidden bg-gradient-to-br from-[#e8c89a] via-[#a87a4f] to-[#3a2418]">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out]"
+          className="absolute inset-0 w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out] mix-blend-multiply"
           src="/perfume.mp4"
         />
 
@@ -120,10 +120,10 @@ function Index() {
                   →
                 </span>
               </a>
-              <h1 className="text-[1.5rem] sm:text-[1.75rem] leading-[1.15] font-medium text-gray-900 tracking-tight mb-3">
+              <h1 className="text-[1.5rem] sm:text-[1.75rem] leading-[1.15] font-medium text-white tracking-tight mb-3 drop-shadow-lg">
                 Fragrâncias árabes que contam histórias eternas.
               </h1>
-              <p className="text-[13px] text-gray-400 font-normal mb-3">
+              <p className="text-[13px] text-white/70 font-normal mb-3">
                 Descubra a essência do oriente.
               </p>
               <a
@@ -149,7 +149,7 @@ function Index() {
       <section
         id="catalog"
         ref={catalogRef}
-        className="relative py-24 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#f0f0ee]"
+        className="relative py-24 px-6 sm:px-12 md:px-20 lg:px-28 bg-gradient-to-b from-[#3a2418] via-[#1a0f0a] to-black"
       >
         <div
           className="max-w-6xl mx-auto mb-16"
@@ -157,10 +157,10 @@ function Index() {
             transform: `translateY(${Math.max(0, (scrollY - 400) * -0.15)}px)`,
           }}
         >
-          <p className="text-[11.5px] font-medium text-blue-500 uppercase tracking-widest mb-3">
+          <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
             Catálogo
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-gray-900 tracking-tight max-w-3xl">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight max-w-3xl">
             Uma fragrância para cada momento da sua vida.
           </h2>
         </div>
@@ -201,14 +201,14 @@ function Index() {
           </div>
         </div>
 
-        <footer className="max-w-6xl mx-auto mt-32 pt-10 border-t border-gray-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="text-[12px] text-gray-500">
+        <footer className="max-w-6xl mx-auto mt-32 pt-10 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p className="text-[12px] text-white/50">
             © 2026 Lattafa Perfumes. Todos os direitos reservados.
           </p>
-          <div className="flex gap-6 text-[12px] text-gray-700">
-            <a href="#" className="hover:text-gray-900">Instagram</a>
-            <a href="#" className="hover:text-gray-900">TikTok</a>
-            <a href="#" className="hover:text-gray-900">Contato</a>
+          <div className="flex gap-6 text-[12px] text-white/70">
+            <a href="#" className="hover:text-white">Instagram</a>
+            <a href="#" className="hover:text-white">TikTok</a>
+            <a href="#" className="hover:text-white">Contato</a>
           </div>
         </footer>
       </section>
