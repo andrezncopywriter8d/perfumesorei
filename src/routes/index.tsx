@@ -165,12 +165,12 @@ function Index() {
           </h2>
         </div>
 
-        <div className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28">
-          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-6 sm:px-12 md:px-20 lg:px-28 pb-6 scrollbar-hide">
-            {perfumes.map((p) => (
+        <div className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee">
+          <div className="flex gap-6 w-max animate-[marquee_40s_linear_infinite] group-hover/marquee:[animation-play-state:paused] px-6">
+            {[...perfumes, ...perfumes].map((p, idx) => (
               <article
-                key={p.name}
-                className="group relative shrink-0 snap-start overflow-hidden rounded-2xl w-[280px] sm:w-[320px] md:w-[360px] aspect-[3/4] cursor-pointer"
+                key={`${p.name}-${idx}`}
+                className="group relative shrink-0 overflow-hidden rounded-2xl w-[280px] sm:w-[320px] md:w-[360px] aspect-[3/4] cursor-pointer"
               >
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${p.gradient} group-hover:scale-105 transition-transform duration-700`}
