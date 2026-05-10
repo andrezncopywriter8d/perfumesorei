@@ -271,25 +271,22 @@ function Index() {
         </div>
       </section>
 
+      <SectionDivider label="Catálogo" />
+
       {/* CATALOG with parallax */}
       <section
         id="catalog"
         ref={catalogRef}
         className="relative py-24 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#070403]"
       >
-        <div
-          className="max-w-6xl mx-auto mb-16"
-          style={{
-            transform: `translateY(${Math.max(0, (scrollY - 400) * -0.15)}px)`,
-          }}
-        >
+        <Reveal className="max-w-6xl mx-auto mb-16">
           <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
             Catálogo
           </p>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight max-w-3xl">
             Uma fragrância para cada momento da sua vida.
           </h2>
-        </div>
+        </Reveal>
 
         <div className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee">
           <div className="flex gap-6 w-max animate-[marquee_40s_linear_infinite] group-hover/marquee:[animation-play-state:paused] px-6">
