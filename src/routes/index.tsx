@@ -66,25 +66,28 @@ const perfumes = [
   },
 ];
 
-const catalogProducts = [
-  { name: "Armaf Club de Nuit Intense Man", brand: "Armaf", price: "R$ 299,00", oldPrice: "R$ 349,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80&auto=format&fit=crop" },
-  { name: "Lattafa Raghba Black", brand: "Lattafa", price: "R$ 279,00", image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80&auto=format&fit=crop" },
-  { name: "Lattafa Khamrah Gold", brand: "Lattafa", price: "R$ 329,00", oldPrice: "R$ 389,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80&auto=format&fit=crop" },
-  { name: "Fragrance World Erotica Amor", brand: "Fragrance World", price: "R$ 329,00", image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80&auto=format&fit=crop" },
-  { name: "Stella Dustin Tycoon Intense Man", brand: "Stella Dustin", price: "R$ 269,00", oldPrice: "R$ 319,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80&auto=format&fit=crop" },
-  { name: "Lattafa Tagheer Khanjar", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1610461888750-10bfc601b874?w=600&q=80&auto=format&fit=crop" },
-  { name: "Al Wataniah Yara Vivid", brand: "Al Wataniah", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59d75?w=600&q=80&auto=format&fit=crop" },
-  { name: "Afnan 9 PM Pure", brand: "Afnan", price: "R$ 289,00", image: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=600&q=80&auto=format&fit=crop" },
-  { name: "Lattafa The Kingdom Men", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&q=80&auto=format&fit=crop" },
-  { name: "Al Wataniah Sheikh Oud", brand: "Al Wataniah", price: "R$ 229,00", image: "https://images.unsplash.com/photo-1605651531144-51381895e23d?w=600&q=80&auto=format&fit=crop" },
-  { name: "Lattafa Bade'e Al Oud Amethyst", brand: "Lattafa", price: "R$ 339,00", oldPrice: "R$ 389,00", discount: "13% OFF", image: "https://images.unsplash.com/photo-1592914610354-fd354ea45e48?w=600&q=80&auto=format&fit=crop" },
-  { name: "Afnan Supremacy Not Only Intense", brand: "Afnan", price: "R$ 419,00", oldPrice: "R$ 489,00", discount: "14% OFF", image: "https://images.unsplash.com/photo-1557170334-a9086d21c1f4?w=600&q=80&auto=format&fit=crop" },
+type Gender = "masculino" | "feminino";
+const catalogProducts: { name: string; brand: string; price: string; oldPrice?: string; discount?: string; image: string; gender: Gender }[] = [
+  { name: "Armaf Club de Nuit Intense Man", brand: "Armaf", price: "R$ 299,00", oldPrice: "R$ 349,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
+  { name: "Lattafa Raghba Black", brand: "Lattafa", price: "R$ 279,00", image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
+  { name: "Lattafa Khamrah Gold", brand: "Lattafa", price: "R$ 329,00", oldPrice: "R$ 389,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
+  { name: "Fragrance World Erotica Amor", brand: "Fragrance World", price: "R$ 329,00", image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
+  { name: "Stella Dustin Tycoon Intense Man", brand: "Stella Dustin", price: "R$ 269,00", oldPrice: "R$ 319,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
+  { name: "Lattafa Tagheer Khanjar", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1610461888750-10bfc601b874?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
+  { name: "Al Wataniah Yara Vivid", brand: "Al Wataniah", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59d75?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
+  { name: "Afnan 9 PM Pure", brand: "Afnan", price: "R$ 289,00", image: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
+  { name: "Lattafa The Kingdom Men", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
+  { name: "Al Wataniah Sheikh Oud", brand: "Al Wataniah", price: "R$ 229,00", image: "https://images.unsplash.com/photo-1605651531144-51381895e23d?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
+  { name: "Lattafa Bade'e Al Oud Amethyst", brand: "Lattafa", price: "R$ 339,00", oldPrice: "R$ 389,00", discount: "13% OFF", image: "https://images.unsplash.com/photo-1592914610354-fd354ea45e48?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
+  { name: "Afnan Supremacy Not Only Intense", brand: "Afnan", price: "R$ 419,00", oldPrice: "R$ 489,00", discount: "14% OFF", image: "https://images.unsplash.com/photo-1557170334-a9086d21c1f4?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
 ];
 
 function Index() {
   const navLinks = ["Story", "Products", "Help", "Support"];
   const [scrollY, setScrollY] = useState(0);
+  const [genderFilter, setGenderFilter] = useState<"todos" | Gender>("todos");
   const catalogRef = useRef<HTMLDivElement>(null);
+  const filteredProducts = genderFilter === "todos" ? catalogProducts : catalogProducts.filter((p) => p.gender === genderFilter);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -252,8 +255,32 @@ function Index() {
             </a>
           </div>
 
+          <div className="flex flex-wrap gap-3 mb-8">
+            {([
+              { key: "todos", label: "Todos" },
+              { key: "masculino", label: "Masculinos" },
+              { key: "feminino", label: "Femininos" },
+            ] as const).map((opt) => {
+              const active = genderFilter === opt.key;
+              return (
+                <button
+                  key={opt.key}
+                  type="button"
+                  onClick={() => setGenderFilter(opt.key)}
+                  className={`text-[12px] font-semibold tracking-wider uppercase rounded-full px-5 py-2.5 border transition-all duration-200 ${
+                    active
+                      ? "bg-amber-500 text-black border-amber-500 shadow-lg shadow-amber-500/20"
+                      : "text-amber-300 border-amber-400/40 hover:bg-amber-400/10 hover:border-amber-400"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {catalogProducts.map((p) => (
+            {filteredProducts.map((p) => (
               <article
                 key={p.name}
                 className="group relative flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/40 transition-all duration-300 overflow-hidden"
