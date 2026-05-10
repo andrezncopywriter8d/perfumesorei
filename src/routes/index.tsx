@@ -345,38 +345,40 @@ function Index() {
           </div>
         </Reveal>
 
-        <ContainerScroll
-          titleComponent={
-            <div className="mb-4">
-              <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
-                Em movimento
-              </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight max-w-2xl mx-auto">
-                Veja as fragrâncias por dentro.
-              </h2>
-            </div>
-          }
-        >
-          <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 h-full">
-            {["/catalog-1.mp4", "/catalog-2.mp4", "/catalog-3.mp4"].map((src) => (
-              <div
-                key={src}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 aspect-[9/16] shadow-xl"
-              >
-                <video
-                  src={src}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <Reveal y={70}>
+          <ContainerScroll
+            titleComponent={
+              <div className="mb-4">
+                <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+                  Em movimento
+                </p>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight max-w-2xl mx-auto">
+                  Veja as fragrâncias por dentro.
+                </h2>
               </div>
-            ))}
-          </div>
-        </ContainerScroll>
+            }
+          >
+            <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 h-full">
+              {["/catalog-1.mp4", "/catalog-2.mp4", "/catalog-3.mp4"].map((src) => (
+                <div
+                  key={src}
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 aspect-[9/16] shadow-xl"
+                >
+                  <video
+                    src={src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                </div>
+              ))}
+            </div>
+          </ContainerScroll>
+        </Reveal>
 
         <SectionDivider label="Coleção" />
 
