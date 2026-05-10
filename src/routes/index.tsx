@@ -117,7 +117,7 @@ function Index() {
   return (
     <div className="relative bg-[#070403] text-white">
       {/* HERO */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#020202] text-white">
+      <section className="relative min-h-screen w-full overflow-hidden bg-[#070403] text-white">
         {/* soft golden atmosphere on the right */}
         <div
           aria-hidden="true"
