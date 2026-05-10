@@ -432,7 +432,7 @@ function Index() {
                       src={productImages[p.name]}
                       alt={p.name}
                       loading="lazy"
-                      className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <>
