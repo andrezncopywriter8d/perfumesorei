@@ -201,14 +201,14 @@ function Index() {
           </div>
         </div>
 
-        <footer className="max-w-6xl mx-auto mt-32 pt-10 border-t border-gray-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="text-[12px] text-gray-500">
+        <footer className="max-w-6xl mx-auto mt-32 pt-10 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p className="text-[12px] text-white/50">
             © 2026 Lattafa Perfumes. Todos os direitos reservados.
           </p>
-          <div className="flex gap-6 text-[12px] text-gray-700">
-            <a href="#" className="hover:text-gray-900">Instagram</a>
-            <a href="#" className="hover:text-gray-900">TikTok</a>
-            <a href="#" className="hover:text-gray-900">Contato</a>
+          <div className="flex gap-6 text-[12px] text-white/70">
+            <a href="#" className="hover:text-white">Instagram</a>
+            <a href="#" className="hover:text-white">TikTok</a>
+            <a href="#" className="hover:text-white">Contato</a>
           </div>
         </footer>
       </section>
