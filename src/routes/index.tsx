@@ -120,18 +120,18 @@ function Index() {
           src="/lion.png"
           alt=""
           aria-hidden="true"
-          className="absolute right-0 top-0 h-full w-[75%] md:w-[65%] lg:w-[60%] object-cover object-left z-[2] pointer-events-none"
+          className="absolute right-0 top-0 h-full w-[85%] sm:w-[75%] md:w-[65%] object-cover object-left z-[2] pointer-events-none"
           style={{
-            opacity: 0.95,
+            opacity: 1,
             maskImage:
-              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 18%, #000 45%, #000 100%)",
+              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 12%, #000 30%, #000 100%)",
             WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 18%, #000 45%, #000 100%)",
+              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 12%, #000 30%, #000 100%)",
           }}
         />
 
         {/* product video */}
-        <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[50%] md:-translate-x-[40%] z-[4] pointer-events-none h-[60vh] sm:h-[70vh] md:h-[80vh] max-h-[820px] aspect-square">
+        <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[50%] md:-translate-x-[40%] z-[4] pointer-events-none h-[55vh] sm:h-[65vh] md:h-[72vh] max-h-[720px] aspect-square">
           <video
             autoPlay
             muted
@@ -144,6 +144,16 @@ function Index() {
             <source src="/perfume.webm" type="video/webm" />
           </video>
         </div>
+
+        {/* bottom fade to hide product base */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[35%] z-[3]"
+          style={{
+            background:
+              "linear-gradient(to top, #020202 0%, rgba(2,2,2,0.85) 35%, transparent 100%)",
+          }}
+        />
 
         {/* content */}
         <div className="relative z-[5] w-full px-6 sm:px-12 md:px-20 lg:px-28">
