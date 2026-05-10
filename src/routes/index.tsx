@@ -165,17 +165,12 @@ function Index() {
           </h2>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {perfumes.map((p, i) => {
-            const offset = (scrollY - 600) * (i % 2 === 0 ? -0.08 : -0.04);
-            return (
+        <div className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28">
+          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-6 sm:px-12 md:px-20 lg:px-28 pb-6 scrollbar-hide">
+            {perfumes.map((p) => (
               <article
                 key={p.name}
-                className="group relative overflow-hidden rounded-2xl aspect-[3/4] cursor-pointer"
-                style={{
-                  transform: `translateY(${Math.max(-120, Math.min(0, offset))}px)`,
-                  transition: "transform 0.1s linear",
-                }}
+                className="group relative shrink-0 snap-start overflow-hidden rounded-2xl w-[280px] sm:w-[320px] md:w-[360px] aspect-[3/4] cursor-pointer"
               >
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${p.gradient} group-hover:scale-105 transition-transform duration-700`}
@@ -202,8 +197,8 @@ function Index() {
                   </div>
                 </div>
               </article>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
         <footer className="max-w-6xl mx-auto mt-32 pt-10 border-t border-gray-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
