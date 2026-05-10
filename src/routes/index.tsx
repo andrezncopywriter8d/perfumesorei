@@ -1,9 +1,68 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+
+function Reveal({
+  children,
+  delay = 0,
+  y = 40,
+  className,
+}: {
+  children: ReactNode;
+  delay?: number;
+  y?: number;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function SectionDivider({ label }: { label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0, 1, 1, 0]);
+  const lineScale = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 1]);
+
+  return (
+    <div
+      ref={ref}
+      className="relative h-[40vh] overflow-hidden bg-[#070403] flex items-center"
+    >
+      <motion.div
+        style={{ x, opacity }}
+        className="whitespace-nowrap text-[14vw] md:text-[10vw] font-light tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200/20 via-amber-400/40 to-amber-700/10 select-none pointer-events-none"
+        style={{
+          x,
+          opacity,
+          fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
+        }}
+      >
+        {label} — {label} — {label}
+      </motion.div>
+      <motion.div
+        style={{ scaleX: lineScale }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[60%] h-px origin-left bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"
+      />
+    </div>
+  );
+}
 
 const glowColors = ["orange", "orange", "red", "orange", "orange", "red"] as const;
 
