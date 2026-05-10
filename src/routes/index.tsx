@@ -292,7 +292,7 @@ function Index() {
         </div>
       </section>
 
-      <SectionDivider label="Catálogo" />
+      
 
       {/* CATALOG with parallax */}
       <section
