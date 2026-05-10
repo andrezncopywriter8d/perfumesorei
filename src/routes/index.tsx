@@ -591,7 +591,7 @@ function Index() {
                         src={productImages[p.name]}
                         alt={p.name}
                         loading="lazy"
-                        className="relative z-10 h-[94%] w-[94%] object-contain p-1 drop-shadow-[0_26px_24px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.09]"
+                        className="relative z-10 h-[108%] w-[108%] object-contain p-0 drop-shadow-[0_26px_24px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.08]"
                       />
                     ) : (
                       <>
