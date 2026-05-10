@@ -75,7 +75,7 @@ function Index() {
   return (
     <div className="relative bg-gradient-to-br from-[#1a0f0a] via-[#2a1810] to-[#0a0506] text-white">
       {/* HERO */}
-      <section className="relative h-screen overflow-hidden bg-gradient-to-br from-[#e8c89a] via-[#a87a4f] to-[#3a2418]">
+      <section className="relative h-screen overflow-hidden bg-gradient-to-br from-[#3a2418] via-[#1a0f0a] to-black">
         <video
           autoPlay
           muted
