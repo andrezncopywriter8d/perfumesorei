@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.jpg";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 
 const glowColors = ["orange", "orange", "red", "orange", "orange", "red"] as const;
 
@@ -250,18 +251,10 @@ function Index() {
             </a>
           </div>
         </div>
-
-        <footer className="max-w-6xl mx-auto mt-32 pt-10 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="text-[12px] text-white/50">
-            © 2026 O Rei Importados. Todos os direitos reservados.
-          </p>
-          <div className="flex gap-6 text-[12px] text-white/70">
-            <a href="#" className="hover:text-white">Instagram</a>
-            <a href="#" className="hover:text-white">TikTok</a>
-            <a href="https://share.google/OkcIQzpngPsggMKWr" target="_blank" rel="noopener noreferrer" className="hover:text-white">Localização</a>
-          </div>
-        </footer>
       </section>
+
+      <CinematicFooter />
+
     </div>
   );
 }
