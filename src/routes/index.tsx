@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.jpg";
 import { CinematicFooter } from "@/components/ui/motion-footer";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 const glowColors = ["orange", "orange", "red", "orange", "orange", "red"] as const;
 
@@ -231,15 +232,19 @@ function Index() {
           </div>
         </div>
 
-        {/* VIDEO CATALOG */}
-        <div className="max-w-6xl mx-auto mt-32">
-          <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
-            Em movimento
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-10 max-w-2xl">
-            Veja as fragrâncias por dentro.
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <ContainerScroll
+          titleComponent={
+            <div className="mb-4">
+              <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+                Em movimento
+              </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight max-w-2xl mx-auto">
+                Veja as fragrâncias por dentro.
+              </h2>
+            </div>
+          }
+        >
+          <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 h-full">
             {["/catalog-1.mp4", "/catalog-2.mp4", "/catalog-3.mp4"].map((src) => (
               <div
                 key={src}
@@ -258,88 +263,92 @@ function Index() {
               </div>
             ))}
           </div>
-        </div>
+        </ContainerScroll>
 
         {/* FULL CATALOG GRID */}
-        <div className="max-w-6xl mx-auto mt-32">
-          <div className="mb-10 text-center">
-            <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
-              Catálogo
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-3">
-              O Rei do Importado Perfumes
-            </h2>
-            <p className="text-white/60 text-[14px]">
-              Perfumes importados disponíveis
-            </p>
-          </div>
+        <ContainerScroll
+          titleComponent={
+            <div className="mb-4">
+              <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+                Catálogo
+              </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-3">
+                O Rei do Importado Perfumes
+              </h2>
+              <p className="text-white/60 text-[14px]">
+                Perfumes importados disponíveis
+              </p>
+            </div>
+          }
+        >
+          <div className="p-4 md:p-8">
+            <div className="max-w-md mx-auto mb-8">
+              <input
+                type="search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Buscar perfume..."
+                className="w-full bg-white/[0.04] border border-amber-400/30 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 rounded-full px-5 py-3 text-[14px] text-white placeholder:text-white/40 transition-all"
+              />
+            </div>
 
-          <div className="max-w-md mx-auto mb-10">
-            <input
-              type="search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Buscar perfume..."
-              className="w-full bg-white/[0.04] border border-amber-400/30 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 rounded-full px-5 py-3 text-[14px] text-white placeholder:text-white/40 transition-all"
-            />
-          </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
+              {filteredProducts.map((p) => (
+                <article
+                  key={p.name}
+                  className="group relative flex flex-col rounded-2xl border border-amber-400/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 overflow-hidden"
+                >
+                  <div className="relative aspect-square bg-gradient-to-br from-[#1a0f0a] via-[#0f0805] to-[#0a0506] flex flex-col items-center justify-center overflow-hidden border-b border-amber-400/10">
+                    <div className="w-12 h-12 rounded-full border border-amber-400/40 flex items-center justify-center mb-3">
+                      <span className="text-amber-400 text-lg">✦</span>
+                    </div>
+                    <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400/70">
+                      Imagem em breve
+                    </span>
+                  </div>
+                  <div className="p-4 sm:p-5 flex flex-col flex-1">
+                    <h3 className="text-[14px] sm:text-[15px] font-semibold text-white leading-tight mb-3 min-h-[2.5em]">
+                      {p.name}
+                    </h3>
+                    <div className="mt-auto">
+                      <p className="text-[18px] font-bold text-amber-400 mb-3">
+                        {p.price}
+                      </p>
+                      <a
+                        href={INSTAGRAM_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-center w-full text-[11px] font-semibold tracking-wider uppercase bg-gradient-to-r from-amber-500 to-amber-400 text-black rounded-md py-2.5 hover:from-amber-400 hover:to-amber-300 transition-all"
+                      >
+                        Comprar pelo Instagram
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
-            {filteredProducts.map((p) => (
-              <article
-                key={p.name}
-                className="group relative flex flex-col rounded-2xl border border-amber-400/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 overflow-hidden"
+            {filteredProducts.length === 0 && (
+              <p className="text-center text-white/50 mt-10 text-[14px]">
+                Nenhum perfume encontrado.
+              </p>
+            )}
+
+            <p className="text-center text-white/50 text-[12px] mt-12">
+              Consulte disponibilidade antes de finalizar o pedido.
+              <br />
+              Instagram:{" "}
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-400 hover:text-amber-300"
               >
-                <div className="relative aspect-square bg-gradient-to-br from-[#1a0f0a] via-[#0f0805] to-[#0a0506] flex flex-col items-center justify-center overflow-hidden border-b border-amber-400/10">
-                  <div className="w-12 h-12 rounded-full border border-amber-400/40 flex items-center justify-center mb-3">
-                    <span className="text-amber-400 text-lg">✦</span>
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400/70">
-                    Imagem em breve
-                  </span>
-                </div>
-                <div className="p-4 sm:p-5 flex flex-col flex-1">
-                  <h3 className="text-[14px] sm:text-[15px] font-semibold text-white leading-tight mb-3 min-h-[2.5em]">
-                    {p.name}
-                  </h3>
-                  <div className="mt-auto">
-                    <p className="text-[18px] font-bold text-amber-400 mb-3">
-                      {p.price}
-                    </p>
-                    <a
-                      href={INSTAGRAM_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center w-full text-[11px] font-semibold tracking-wider uppercase bg-gradient-to-r from-amber-500 to-amber-400 text-black rounded-md py-2.5 hover:from-amber-400 hover:to-amber-300 transition-all"
-                    >
-                      Comprar pelo Instagram
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          {filteredProducts.length === 0 && (
-            <p className="text-center text-white/50 mt-10 text-[14px]">
-              Nenhum perfume encontrado.
+                @oreidoimportadoperfumes
+              </a>
             </p>
-          )}
-
-          <p className="text-center text-white/50 text-[12px] mt-12">
-            Consulte disponibilidade antes de finalizar o pedido.
-            <br />
-            Instagram:{" "}
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-amber-400 hover:text-amber-300"
-            >
-              @oreidoimportadoperfumes
-            </a>
-          </p>
-        </div>
+          </div>
+        </ContainerScroll>
 
         <div className="max-w-6xl mx-auto mt-32 grid md:grid-cols-2 gap-10 items-center">
           <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
