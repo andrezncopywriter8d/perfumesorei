@@ -6,6 +6,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
 import asadImg from "@/assets/asad.png";
+import aneesaImg from "@/assets/aneesa.png";
+import raveImg from "@/assets/rave.png";
+import clubIntenseImg from "@/assets/club-intense.png";
+import clubWomanImg from "@/assets/club-woman.png";
+import avantImg from "@/assets/avant.png";
+import toroImg from "@/assets/toro.png";
+import sabahImg from "@/assets/sabah.png";
+import vulcanImg from "@/assets/vulcan.png";
+import durratImg from "@/assets/durrat.png";
+import amberImg from "@/assets/amber.png";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
@@ -159,6 +169,16 @@ const INSTAGRAM_URL = "https://www.instagram.com/oreidoimportadoperfumes/";
 
 const productImages: Record<string, string> = {
   ASAD: asadImg,
+  ANEESA: aneesaImg,
+  "RAVE AU SOLEIL": raveImg,
+  "CLUB DE NOIRL INTENSE": clubIntenseImg,
+  "CLUB DE NOIRL WOMEN": clubWomanImg,
+  "AVANT PERFUME": avantImg,
+  TORO: toroImg,
+  "SABAH AL": sabahImg,
+  "VULCAN FEU": vulcanImg,
+  DURRAT: durratImg,
+  AMBER: amberImg,
 };
 
 const catalogProducts: { name: string; price: string }[] = [
