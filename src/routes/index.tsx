@@ -470,7 +470,7 @@ function Index() {
               loading="lazy"
             />
           </Reveal>
-          <Reveal y={60} delay={0.15}>
+          <Reveal y={60}>
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
               Visite nossa loja
             </p>
