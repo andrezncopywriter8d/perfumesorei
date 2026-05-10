@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="O Rei do Importado Perfumes">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="68%">
+      <stop offset="0%" stop-color="#19130b"/>
+      <stop offset="62%" stop-color="#080604"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="18%" y1="0%" x2="82%" y2="100%">
+      <stop offset="0%" stop-color="#fff2b4"/>
+      <stop offset="22%" stop-color="#d6a64a"/>
+      <stop offset="48%" stop-color="#8b5a1d"/>
+      <stop offset="72%" stop-color="#f5d06a"/>
+      <stop offset="100%" stop-color="#b57a24"/>
+    </linearGradient>
+    <linearGradient id="gold-soft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe9a0"/>
+      <stop offset="50%" stop-color="#c99134"/>
+      <stop offset="100%" stop-color="#7b4b17"/>
+    </linearGradient>
+    <filter id="glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.94 0 1 0 0 0.62 0 0 1 0 0.17 0 0 0 0.5 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <circle cx="512" cy="390" r="314" fill="none" stroke="url(#gold-soft)" stroke-width="3" opacity="0.18"/>
+  <circle cx="512" cy="390" r="248" fill="none" stroke="url(#gold-soft)" stroke-width="2" opacity="0.14"/>
+
+  <g filter="url(#glow)" fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M512 134c-20 30-16 61 0 86 16-25 20-56 0-86z" stroke-width="15" fill="url(#gold)"/>
+    <path d="M452 217c32-38 88-38 120 0" stroke-width="15"/>
+    <path d="M421 242h182l-24 48H445z" stroke-width="14" fill="rgba(214,166,74,0.12)"/>
+    <path d="M455 242l-32-78 69 45 20-86 20 86 69-45-32 78" stroke-width="13"/>
+    <path d="M429 308c42-32 124-32 166 0" stroke-width="13"/>
+
+    <path d="M390 342c13 126 51 189 122 228 71-39 109-102 122-228-70-26-174-26-244 0z" stroke-width="18" fill="rgba(14,10,5,0.74)"/>
+    <path d="M512 375c-30 0-55 24-55 54 0 53 55 93 55 93s55-40 55-93c0-30-25-54-55-54z" stroke-width="10" fill="rgba(214,166,74,0.08)"/>
+    <path d="M512 399v88" stroke-width="10"/>
+    <path d="M476 433h72" stroke-width="10"/>
+
+    <path d="M327 541c-79-26-111-89-68-150 22-31 62-43 99-32-49 12-72 50-61 90 8 30 35 49 69 54" stroke-width="15"/>
+    <path d="M697 541c79-26 111-89 68-150-22-31-62-43-99-32 49 12 72 50 61 90-8 30-35 49-69 54" stroke-width="15"/>
+    <path d="M345 590c-67-1-128 27-173 80 63-24 120-22 171 9" stroke-width="14"/>
+    <path d="M679 590c67-1 128 27 173 80-63-24-120-22-171 9" stroke-width="14"/>
+    <path d="M394 613c-61 26-99 65-115 119 48-31 97-42 149-30" stroke-width="13"/>
+    <path d="M630 613c61 26 99 65 115 119-48-31-97-42-149-30" stroke-width="13"/>
+  </g>
+
+  <g fill="url(#gold)" text-anchor="middle">
+    <text x="512" y="736" font-family="Georgia, 'Times New Roman', serif" font-size="122" font-weight="700" letter-spacing="5">O REI</text>
+    <text x="512" y="822" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700" letter-spacing="4">DO IMPORTADO</text>
+    <text x="512" y="884" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="15">PERFUMES</text>
+  </g>
+</svg>

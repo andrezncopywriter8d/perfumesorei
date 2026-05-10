@@ -88,12 +88,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       {
         rel: "icon",
-        type: "image/webp",
-        href: "/lion.webp",
+        type: "image/svg+xml",
+        href: "/favicon.svg",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32.png",
       },
       {
         rel: "apple-touch-icon",
-        href: "/lion.webp",
+        sizes: "180x180",
+        href: "/apple-touch-icon.png",
       },
       {
         rel: "preconnect",
