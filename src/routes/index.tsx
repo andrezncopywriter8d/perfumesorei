@@ -157,6 +157,10 @@ const perfumes: { name: string; brand: string; notes: string; price: string; gra
 
 const INSTAGRAM_URL = "https://www.instagram.com/oreidoimportadoperfumes/";
 
+const productImages: Record<string, string> = {
+  ASAD: asadImg,
+};
+
 const catalogProducts: { name: string; price: string }[] = [
   { name: "ASAD", price: "R$ 200,00" },
   { name: "ASA BURBON", price: "R$ 320,00" },
