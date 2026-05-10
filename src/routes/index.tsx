@@ -117,7 +117,7 @@ function Index() {
   return (
     <div className="relative bg-[#070403] text-white">
       {/* HERO */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#020202] text-white">
+      <section className="relative min-h-screen w-full overflow-hidden bg-[#070403] text-white">
         {/* soft golden atmosphere on the right */}
         <div
           aria-hidden="true"
@@ -153,13 +153,13 @@ function Index() {
           }}
         />
 
-        {/* darken left + bottom to anchor text and merge lion */}
+        {/* darken left + bottom to anchor text and merge lion + seamless fade into next section */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-[3]"
           style={{
             background:
-              "linear-gradient(to right, #020202 0%, rgba(2,2,2,0.85) 25%, rgba(2,2,2,0.25) 50%, transparent 70%), linear-gradient(to top, #020202 0%, rgba(2,2,2,0.4) 18%, transparent 35%)",
+              "linear-gradient(to right, #070403 0%, rgba(7,4,3,0.85) 25%, rgba(7,4,3,0.25) 50%, transparent 70%), linear-gradient(to top, #070403 0%, rgba(7,4,3,0.6) 12%, transparent 28%)",
           }}
         />
 
@@ -217,7 +217,7 @@ function Index() {
       <section
         id="catalog"
         ref={catalogRef}
-        className="relative py-24 px-6 sm:px-12 md:px-20 lg:px-28 bg-gradient-to-b from-[#070403] via-[#0c0705] to-[#070403]"
+        className="relative py-24 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#070403]"
       >
         <div
           className="max-w-6xl mx-auto mb-16"
