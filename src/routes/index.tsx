@@ -1,8 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
 import asadImg from "@/assets/asad-new.webp";
@@ -32,12 +29,17 @@ import fakarRoseImg from "@/assets/fakar-rose.webp";
 import attarAlWesalImg from "@/assets/attar-al-wesal.webp";
 import khamrahImg from "@/assets/khamrah.webp";
 import voujePartyImg from "@/assets/vouje-party.webp";
-import { CinematicFooter } from "@/components/ui/motion-footer";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+const CinematicFooter = lazy(() =>
+  import("@/components/ui/motion-footer").then((module) => ({
+    default: module.CinematicFooter,
+  })),
+);
+const ContainerScroll = lazy(() =>
+  import("@/components/ui/container-scroll-animation").then((module) => ({
+    default: module.ContainerScroll,
+  })),
+);
 
 function Reveal({
   children,
@@ -55,26 +57,39 @@ function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { y, opacity: 0, scale, filter: "blur(8px)" },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          filter: "blur(0px)",
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 90%",
-            end: "top 45%",
-            scrub: 1.2,
-          },
-        },
-      );
-    }, el);
-    return () => ctx.revert();
+    let ctx: { revert: () => void } | undefined;
+    let cancelled = false;
+
+    Promise.all([import("gsap"), import("gsap/ScrollTrigger")]).then(
+      ([{ gsap }, { ScrollTrigger }]) => {
+        if (cancelled) return;
+        gsap.registerPlugin(ScrollTrigger);
+        ctx = gsap.context(() => {
+          gsap.fromTo(
+            el,
+            { y, opacity: 0, scale, filter: "blur(8px)" },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              filter: "blur(0px)",
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 90%",
+                end: "top 45%",
+                scrub: 1.2,
+              },
+            },
+          );
+        }, el);
+      },
+    );
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, [y, scale]);
 
   return (
@@ -84,52 +99,11 @@ function Reveal({
   );
 }
 
-function SectionDivider({ label }: { label: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0, 1, 1, 0]);
-  const lineScale = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 1]);
-
-  return (
-    <div ref={ref} className="relative h-[40vh] overflow-hidden bg-[#070403] flex items-center">
-      <motion.div
-        className="whitespace-nowrap text-[14vw] md:text-[10vw] font-light tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200/20 via-amber-400/40 to-amber-700/10 select-none pointer-events-none"
-        style={{
-          x,
-          opacity,
-          fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-        }}
-      >
-        {label} — {label} — {label}
-      </motion.div>
-      <motion.div
-        style={{ scaleX: lineScale }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[60%] h-px origin-left bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"
-      />
-    </div>
-  );
-}
-
 const glowColors = ["orange", "orange", "red", "orange", "orange", "red"] as const;
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
-
-function Logo() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 256 256" fill="none">
-      <path
-        fill="rgb(84, 84, 84)"
-        d="M 160 88 L 194 34 L 216 0 L 256 0 L 256 40 L 221.5 93.5 L 200 128 L 256 128 L 256 256 L 96 256 L 96 168 L 64.246 220 L 40 256 L 0 256 L 0 216 L 34 162 L 56 128 L 0 128 L 0 0 L 160 0 Z"
-      />
-    </svg>
-  );
-}
 
 const perfumes: {
   name: string;
@@ -331,6 +305,8 @@ function Index() {
           src="/lion.webp"
           alt=""
           aria-hidden="true"
+          decoding="async"
+          fetchPriority="low"
           className="absolute right-[-4%] top-1/2 -translate-y-1/2 h-[55vh] md:h-[78vh] w-auto max-w-none z-[2] pointer-events-none select-none"
           style={{
             opacity: 0.32,
@@ -358,7 +334,8 @@ function Index() {
             muted
             loop
             playsInline
-            preload="auto"
+            poster="/perfume.webp"
+            preload="metadata"
             className="w-full h-full object-contain animate-[fadeIn_1.4s_ease-in-out]"
             style={{
               filter:
@@ -438,6 +415,7 @@ function Index() {
                     alt={p.name}
                     className="absolute inset-0 w-full h-full object-contain p-1 -z-10 opacity-95 scale-[1.16] group-hover:scale-[1.2] transition-transform duration-700"
                     loading="lazy"
+                    decoding="async"
                   />
                 )}
                 <div className="relative z-10 text-white">
@@ -460,7 +438,8 @@ function Index() {
         </Reveal>
 
         <Reveal y={70}>
-          <ContainerScroll
+          <Suspense fallback={null}>
+            <ContainerScroll
             titleComponent={
               <div className="mb-4">
                 <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
@@ -491,7 +470,8 @@ function Index() {
                 </div>
               ))}
             </div>
-          </ContainerScroll>
+            </ContainerScroll>
+          </Suspense>
         </Reveal>
 
         <div className="relative mx-auto mt-20 max-w-7xl overflow-hidden rounded-[2rem] border border-amber-300/15 bg-[linear-gradient(135deg,rgba(255,255,255,0.075),rgba(255,255,255,0.018)_42%,rgba(251,146,60,0.08))] px-4 py-8 shadow-[0_40px_120px_rgba(0,0,0,0.55)] sm:px-7 md:px-10">
@@ -581,6 +561,7 @@ function Index() {
                         src={productImages[p.name]}
                         alt={p.name}
                         loading="lazy"
+                        decoding="async"
                         className="relative z-10 h-[138%] w-[138%] object-contain p-0 drop-shadow-[0_28px_26px_rgba(0,0,0,0.58)] transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                     ) : (
@@ -662,6 +643,7 @@ function Index() {
               alt="O Rei Importados — fachada da loja"
               className="w-full h-full object-cover aspect-[4/3]"
               loading="lazy"
+              decoding="async"
             />
           </Reveal>
           <Reveal y={60}>
@@ -691,7 +673,9 @@ function Index() {
         </div>
       </section>
 
-      <CinematicFooter />
+      <Suspense fallback={null}>
+        <CinematicFooter />
+      </Suspense>
     </div>
   );
 }
