@@ -423,12 +423,23 @@ function Index() {
                 className="group relative flex flex-col rounded-2xl border border-amber-400/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 overflow-hidden"
               >
                 <div className="relative aspect-square bg-gradient-to-br from-[#1a0f0a] via-[#0f0805] to-[#0a0506] flex flex-col items-center justify-center overflow-hidden border-b border-amber-400/10">
-                  <div className="w-12 h-12 rounded-full border border-amber-400/40 flex items-center justify-center mb-3">
-                    <span className="text-amber-400 text-lg">✦</span>
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400/70">
-                    Imagem em breve
-                  </span>
+                  {productImages[p.name] ? (
+                    <img
+                      src={productImages[p.name]}
+                      alt={p.name}
+                      loading="lazy"
+                      className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <>
+                      <div className="w-12 h-12 rounded-full border border-amber-400/40 flex items-center justify-center mb-3">
+                        <span className="text-amber-400 text-lg">✦</span>
+                      </div>
+                      <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400/70">
+                        Imagem em breve
+                      </span>
+                    </>
+                  )}
                 </div>
                 <div className="p-4 sm:p-5 flex flex-col flex-1">
                   <h3 className="text-[14px] sm:text-[15px] font-semibold text-white leading-tight mb-3 min-h-[2.5em]">
