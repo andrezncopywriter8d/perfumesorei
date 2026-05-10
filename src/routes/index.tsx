@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
+import lojaImg from "@/assets/loja.jpg";
 
 const glowColors = ["orange", "orange", "red", "orange", "orange", "red"] as const;
 
