@@ -46,7 +46,6 @@ function SectionDivider({ label }: { label: string }) {
       className="relative h-[40vh] overflow-hidden bg-[#070403] flex items-center"
     >
       <motion.div
-        style={{ x, opacity }}
         className="whitespace-nowrap text-[14vw] md:text-[10vw] font-light tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200/20 via-amber-400/40 to-amber-700/10 select-none pointer-events-none"
         style={{
           x,
