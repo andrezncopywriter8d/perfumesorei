@@ -157,10 +157,10 @@ function Index() {
             transform: `translateY(${Math.max(0, (scrollY - 400) * -0.15)}px)`,
           }}
         >
-          <p className="text-[11.5px] font-medium text-blue-500 uppercase tracking-widest mb-3">
+          <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
             Catálogo
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-gray-900 tracking-tight max-w-3xl">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight max-w-3xl">
             Uma fragrância para cada momento da sua vida.
           </h2>
         </div>
