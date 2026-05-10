@@ -100,11 +100,12 @@ const catalogProducts: { name: string; price: string }[] = [
 ];
 
 function Index() {
-  const navLinks = ["Story", "Products", "Help", "Support"];
   const [scrollY, setScrollY] = useState(0);
-  const [genderFilter, setGenderFilter] = useState<"todos" | Gender>("todos");
+  const [search, setSearch] = useState("");
   const catalogRef = useRef<HTMLDivElement>(null);
-  const filteredProducts = genderFilter === "todos" ? catalogProducts : catalogProducts.filter((p) => p.gender === genderFilter);
+  const filteredProducts = catalogProducts.filter((p) =>
+    p.name.toLowerCase().includes(search.trim().toLowerCase())
+  );
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
