@@ -164,11 +164,12 @@ const perfumes: {
     image: khamrahImg,
   },
   {
-    name: "Oud Mood",
+    name: "Asad Bourbon",
     brand: "Lattafa",
-    notes: "Oud · Açafrão · Patchouli",
-    price: "R$ 369",
-    gradient: "from-[#3a2418] via-[#1a0f0a] to-black",
+    price: "R$ 320",
+    notes: "Baunilha / especiarias / ambar",
+    gradient: "from-orange-950 via-[#3a1608] to-black",
+    image: asadBourbonImg,
   },
   {
     name: "Fakhar",
@@ -179,11 +180,20 @@ const perfumes: {
     image: fakharBlackImg,
   },
   {
-    name: "Bade'e Al Oud",
-    brand: "Lattafa",
-    notes: "Açafrão · Rosa · Oud",
-    price: "R$ 419",
-    gradient: "from-amber-950 via-[#2a1810] to-black",
+    name: "Liquid Brun",
+    brand: "French Avenue",
+    notes: "Canela / cardamomo / baunilha",
+    price: "R$ 370",
+    gradient: "from-[#4a2118] via-[#27100d] to-black",
+    image: liquidBrunImg,
+  },
+  {
+    name: "Sabah AL",
+    brand: "Al Wataniah",
+    notes: "Ambar / frutas / madeiras",
+    price: "R$ 190",
+    gradient: "from-amber-950 via-[#2b170b] to-black",
+    image: sabahImg,
   },
 ];
 
