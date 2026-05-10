@@ -66,6 +66,21 @@ const perfumes = [
   },
 ];
 
+const catalogProducts = [
+  { name: "Armaf Club de Nuit Intense Man", brand: "Armaf", price: "R$ 299,00", oldPrice: "R$ 349,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa Raghba Black", brand: "Lattafa", price: "R$ 279,00", image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa Khamrah Gold", brand: "Lattafa", price: "R$ 329,00", oldPrice: "R$ 389,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80&auto=format&fit=crop" },
+  { name: "Fragrance World Erotica Amor", brand: "Fragrance World", price: "R$ 329,00", image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80&auto=format&fit=crop" },
+  { name: "Stella Dustin Tycoon Intense Man", brand: "Stella Dustin", price: "R$ 269,00", oldPrice: "R$ 319,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa Tagheer Khanjar", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1610461888750-10bfc601b874?w=600&q=80&auto=format&fit=crop" },
+  { name: "Al Wataniah Yara Vivid", brand: "Al Wataniah", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59d75?w=600&q=80&auto=format&fit=crop" },
+  { name: "Afnan 9 PM Pure", brand: "Afnan", price: "R$ 289,00", image: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa The Kingdom Men", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&q=80&auto=format&fit=crop" },
+  { name: "Al Wataniah Sheikh Oud", brand: "Al Wataniah", price: "R$ 229,00", image: "https://images.unsplash.com/photo-1605651531144-51381895e23d?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa Bade'e Al Oud Amethyst", brand: "Lattafa", price: "R$ 339,00", oldPrice: "R$ 389,00", discount: "13% OFF", image: "https://images.unsplash.com/photo-1592914610354-fd354ea45e48?w=600&q=80&auto=format&fit=crop" },
+  { name: "Afnan Supremacy Not Only Intense", brand: "Afnan", price: "R$ 419,00", oldPrice: "R$ 489,00", discount: "14% OFF", image: "https://images.unsplash.com/photo-1557170334-a9086d21c1f4?w=600&q=80&auto=format&fit=crop" },
+];
+
 function Index() {
   const navLinks = ["Story", "Products", "Help", "Support"];
   const [scrollY, setScrollY] = useState(0);
