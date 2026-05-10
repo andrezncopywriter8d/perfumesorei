@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { GlowCard } from "@/components/ui/spotlight-card";
+
+const glowColors = ["orange", "purple", "red", "blue", "orange", "purple"] as const;
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -174,35 +177,35 @@ function Index() {
         <div className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee">
           <div className="flex gap-6 w-max animate-[marquee_40s_linear_infinite] group-hover/marquee:[animation-play-state:paused] px-6">
             {[...perfumes, ...perfumes].map((p, idx) => (
-              <article
+              <GlowCard
                 key={`${p.name}-${idx}`}
-                className="group relative shrink-0 overflow-hidden rounded-2xl w-[280px] sm:w-[320px] md:w-[360px] aspect-[3/4] cursor-pointer"
+                customSize
+                glowColor={glowColors[idx % glowColors.length]}
+                className="group shrink-0 w-[280px] sm:w-[320px] md:w-[360px] aspect-[3/4] cursor-pointer overflow-hidden"
               >
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${p.gradient} group-hover:scale-105 transition-transform duration-700`}
+                  className={`absolute inset-0 -z-10 bg-gradient-to-br ${p.gradient} rounded-2xl group-hover:scale-105 transition-transform duration-700`}
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
-                <div className="relative z-10 h-full flex flex-col justify-between p-6 text-white">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] opacity-70">
-                      {p.brand}
-                    </p>
-                    <h3 className="text-3xl font-semibold mt-1">{p.name}</h3>
-                  </div>
-                  <div>
-                    <p className="text-[12px] opacity-80 mb-2">{p.notes}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-lg font-medium">{p.price}</span>
-                      <span className="inline-flex items-center gap-1 text-[12px] font-medium border border-white/40 rounded-full px-3 py-1.5 group-hover:bg-white group-hover:text-black transition-all">
-                        Comprar
-                        <span className="group-hover:translate-x-0.5 transition-transform">
-                          →
-                        </span>
+                <div className="absolute inset-0 -z-10 bg-black/20 rounded-2xl group-hover:bg-black/10 transition-colors duration-500" />
+                <div className="relative z-10 text-white">
+                  <p className="text-[10px] uppercase tracking-[0.2em] opacity-70">
+                    {p.brand}
+                  </p>
+                  <h3 className="text-3xl font-semibold mt-1">{p.name}</h3>
+                </div>
+                <div className="relative z-10 text-white">
+                  <p className="text-[12px] opacity-80 mb-2">{p.notes}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-medium">{p.price}</span>
+                    <span className="inline-flex items-center gap-1 text-[12px] font-medium border border-white/40 rounded-full px-3 py-1.5 group-hover:bg-white group-hover:text-black transition-all">
+                      Comprar
+                      <span className="group-hover:translate-x-0.5 transition-transform">
+                        →
                       </span>
-                    </div>
+                    </span>
                   </div>
                 </div>
-              </article>
+              </GlowCard>
             ))}
           </div>
         </div>
