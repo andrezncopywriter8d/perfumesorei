@@ -120,18 +120,29 @@ function Index() {
           src="/lion.png"
           alt=""
           aria-hidden="true"
-          className="absolute right-0 top-0 h-full w-[70%] md:w-[60%] object-cover object-left opacity-60 md:opacity-70 z-[2] pointer-events-none"
-          style={{ mixBlendMode: "screen", filter: "contrast(1.08) saturate(0.95)" }}
+          className="absolute right-0 top-0 h-full w-[75%] md:w-[65%] lg:w-[60%] object-cover object-left z-[2] pointer-events-none"
+          style={{
+            opacity: 0.95,
+            maskImage:
+              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 18%, #000 45%, #000 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 18%, #000 45%, #000 100%)",
+          }}
         />
 
-        {/* product */}
-        <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[50%] md:-translate-x-[35%] z-[4] pointer-events-none">
-          <img
-            src="/perfume.png"
-            alt="Perfume árabe premium preto e dourado"
-            className="h-[50vh] sm:h-[60vh] md:h-[68vh] max-h-[720px] w-auto object-contain"
+        {/* product video */}
+        <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[50%] md:-translate-x-[40%] z-[4] pointer-events-none h-[60vh] sm:h-[70vh] md:h-[80vh] max-h-[820px] aspect-square">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out]"
             style={{ filter: "drop-shadow(0 40px 55px rgba(0,0,0,0.75))" }}
-          />
+          >
+            <source src="/perfume.webm" type="video/webm" />
+          </video>
         </div>
 
         {/* content */}
