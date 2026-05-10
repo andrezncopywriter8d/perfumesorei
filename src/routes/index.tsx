@@ -78,21 +78,19 @@ function Index() {
   return (
     <div className="relative bg-gradient-to-br from-[#1a0f0a] via-[#2a1810] to-[#0a0506] text-white">
       {/* HERO */}
-      <section className="relative h-screen overflow-hidden bg-black">
+      <section className="hero-section relative h-screen min-h-[680px] overflow-hidden">
+        <div className="hero-product-glow" aria-hidden="true" />
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out]"
-          style={{
-            WebkitMaskImage:
-              "radial-gradient(ellipse 28% 55% at center, black 60%, transparent 100%)",
-            maskImage:
-              "radial-gradient(ellipse 28% 55% at center, black 60%, transparent 100%)",
-          }}
-          src="/perfume.mp4"
-        />
+          preload="auto"
+          className="hero-product-video animate-[fadeIn_1.2s_ease-in-out]"
+        >
+          <source src="/perfume-spin-transparent.webm" type="video/webm" />
+          <source src="/perfume-spin-transparent.mov" type="video/quicktime" />
+        </video>
 
         <div className="relative z-10 flex flex-col h-full">
           <nav className="flex items-center justify-center pt-4 sm:pt-6 px-4 sm:px-8 gap-2 sm:gap-3">
