@@ -25,8 +25,8 @@ function Index() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
+        className="absolute inset-0 w-full h-full object-cover animate-[fadeIn_1.2s_ease-in-out]"
+        src="/perfume.mp4"
       />
 
       <div className="relative z-10 flex flex-col min-h-screen">
