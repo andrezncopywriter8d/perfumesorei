@@ -120,10 +120,10 @@ function Index() {
                   →
                 </span>
               </a>
-              <h1 className="text-[1.5rem] sm:text-[1.75rem] leading-[1.15] font-medium text-gray-900 tracking-tight mb-3">
+              <h1 className="text-[1.5rem] sm:text-[1.75rem] leading-[1.15] font-medium text-white tracking-tight mb-3 drop-shadow-lg">
                 Fragrâncias árabes que contam histórias eternas.
               </h1>
-              <p className="text-[13px] text-gray-400 font-normal mb-3">
+              <p className="text-[13px] text-white/70 font-normal mb-3">
                 Descubra a essência do oriente.
               </p>
               <a
