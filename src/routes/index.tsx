@@ -183,7 +183,7 @@ function Index() {
 
         {/* content — bottom-left, refined hierarchy */}
         <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[7vw] md:right-auto md:bottom-[10vh] md:max-w-[480px]">
-          <span className="block text-[11px] md:text-[12px] font-medium text-blue-400/90 mb-4 md:mb-5 tracking-[0.18em] uppercase">
+          <span className="block text-[11px] md:text-[12px] font-medium text-amber-400/90 mb-4 md:mb-5 tracking-[0.18em] uppercase">
             Coleção exclusiva 2026
           </span>
           <h1
@@ -198,14 +198,14 @@ function Index() {
             <br />
             que contam histórias
             <br />
-            <em className="italic font-normal text-white/95">eternas.</em>
+            <em className="italic font-normal bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">eternas.</em>
           </h1>
           <p className="text-white/55 text-[14px] md:text-[15px] leading-[1.6] mb-8 max-w-[360px] tracking-wide">
             Descubra a essência do oriente.
           </p>
           <a
             href="#catalog"
-            className="inline-flex items-center gap-3 text-[13px] font-medium text-blue-400 border border-blue-400/60 rounded-full px-7 py-3 backdrop-blur-sm hover:bg-blue-400/10 hover:border-blue-400 hover:text-blue-300 transition-all duration-500 tracking-wide"
+            className="inline-flex items-center gap-3 text-[13px] font-medium text-amber-300 border border-amber-400/60 rounded-full px-7 py-3 backdrop-blur-sm hover:bg-amber-400/10 hover:border-amber-300 hover:text-amber-200 transition-all duration-500 tracking-wide"
           >
             Ver catálogo
             <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
