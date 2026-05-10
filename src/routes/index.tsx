@@ -229,6 +229,9 @@ const productImages: Record<string, string> = {
   MEITE: meitreImg,
 };
 
+type GenderFilter = "todos" | "masculino" | "feminino";
+type ProductGender = "masculino" | "feminino" | "unissex";
+
 const catalogProducts: { name: string; price: string }[] = [
   { name: "ASAD", price: "R$ 200,00" },
   { name: "ASA BURBON", price: "R$ 320,00" },
@@ -260,6 +263,37 @@ const catalogProducts: { name: string; price: string }[] = [
   { name: "AMBER", price: "R$ 570,00" },
 ];
 
+const productGenders: Record<string, ProductGender> = {
+  ASAD: "masculino",
+  "ASA BURBON": "masculino",
+  "ASAD ELIXIR": "masculino",
+  "YARA ROSE": "feminino",
+  "YARA TOUS": "feminino",
+  "YARA ELIXIR": "feminino",
+  "LIQUID BRUN": "masculino",
+  "FAKAR GOLD": "feminino",
+  "FAKHAR BLACK": "masculino",
+  "FAKAR ROSE": "feminino",
+  "FAKAR PLATINUM": "masculino",
+  "ATTAR AL WESAL": "unissex",
+  KHAMRAH: "unissex",
+  "VOUJE PARTY": "feminino",
+  "EL FURSON": "masculino",
+  "AL NOBLE WAZEER": "masculino",
+  MEITE: "masculino",
+  ANEESA: "feminino",
+  "RAVE AU SOLEIL": "masculino",
+  "CLUB DE NOIRL INTENSE": "masculino",
+  "CLUB DE NOIRL WOMEN": "feminino",
+  "APELT DIL": "feminino",
+  "AVANT PERFUME": "masculino",
+  TORO: "masculino",
+  "SABAH AL": "feminino",
+  "VULCAN FEU": "masculino",
+  DURRAT: "feminino",
+  AMBER: "unissex",
+};
+
 const catalogAccents = [
   "from-amber-300 via-orange-500 to-yellow-600",
   "from-rose-200 via-pink-400 to-amber-400",
@@ -271,10 +305,16 @@ const catalogAccents = [
 
 function Index() {
   const [search, setSearch] = useState("");
+  const [genderFilter, setGenderFilter] = useState<GenderFilter>("todos");
   const catalogRef = useRef<HTMLDivElement>(null);
-  const filteredProducts = catalogProducts.filter((p) =>
-    p.name.toLowerCase().includes(search.trim().toLowerCase()),
-  );
+  const filteredProducts = catalogProducts.filter((p) => {
+    const gender = productGenders[p.name] ?? "unissex";
+    const matchesSearch = p.name.toLowerCase().includes(search.trim().toLowerCase());
+    const matchesGender =
+      genderFilter === "todos" || gender === genderFilter || gender === "unissex";
+
+    return matchesSearch && matchesGender;
+  });
 
   return (
     <div className="relative bg-[#070403] text-white">
@@ -490,11 +530,44 @@ function Index() {
               placeholder="Buscar perfume..."
               className="h-13 w-full rounded-2xl border border-white/12 bg-black/35 px-5 text-[15px] text-white shadow-inner shadow-black/30 outline-none transition-all placeholder:text-white/38 focus:border-amber-300/70 focus:ring-4 focus:ring-amber-300/15"
             />
+            <div className="mt-4 grid grid-cols-3 gap-2 rounded-2xl border border-white/10 bg-black/25 p-1.5 backdrop-blur-md">
+              {[
+                { id: "todos", label: "Todos" },
+                { id: "masculino", label: "Masculino" },
+                { id: "feminino", label: "Feminino" },
+              ].map((option) => {
+                const isActive = genderFilter === option.id;
+
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => setGenderFilter(option.id as GenderFilter)}
+                    className={`min-h-11 rounded-xl px-3 text-[11px] font-bold uppercase tracking-[0.13em] transition-all focus:outline-none focus:ring-4 focus:ring-amber-300/20 ${
+                      isActive
+                        ? "bg-gradient-to-r from-amber-300 via-orange-400 to-amber-500 text-black shadow-[0_12px_26px_rgba(245,158,11,0.22)]"
+                        : "text-white/58 hover:bg-white/[0.06] hover:text-white"
+                    }`}
+                    aria-pressed={isActive}
+                  >
+                    {option.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <div className="relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredProducts.map((p, index) => {
               const accent = catalogAccents[index % catalogAccents.length];
+              const gender = productGenders[p.name] ?? "unissex";
+              const genderLabel =
+                gender === "masculino"
+                  ? "Masculino"
+                  : gender === "feminino"
+                    ? "Feminino"
+                    : "Unissex";
+
               return (
                 <article
                   key={p.name}
@@ -535,7 +608,7 @@ function Index() {
                     <div className="mb-4 flex items-start justify-between gap-3">
                       <div>
                         <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-200/62">
-                          Perfume importado
+                          {genderLabel}
                         </p>
                         <h3 className="text-[19px] sm:text-[20px] font-semibold text-white leading-tight">
                           {p.name}
