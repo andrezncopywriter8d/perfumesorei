@@ -1,9 +1,67 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+
+function Reveal({
+  children,
+  delay = 0,
+  y = 40,
+  className,
+}: {
+  children: ReactNode;
+  delay?: number;
+  y?: number;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function SectionDivider({ label }: { label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0, 1, 1, 0]);
+  const lineScale = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 1]);
+
+  return (
+    <div
+      ref={ref}
+      className="relative h-[40vh] overflow-hidden bg-[#070403] flex items-center"
+    >
+      <motion.div
+        className="whitespace-nowrap text-[14vw] md:text-[10vw] font-light tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200/20 via-amber-400/40 to-amber-700/10 select-none pointer-events-none"
+        style={{
+          x,
+          opacity,
+          fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
+        }}
+      >
+        {label} — {label} — {label}
+      </motion.div>
+      <motion.div
+        style={{ scaleX: lineScale }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[60%] h-px origin-left bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"
+      />
+    </div>
+  );
+}
 
 const glowColors = ["orange", "orange", "red", "orange", "orange", "red"] as const;
 
@@ -101,18 +159,11 @@ const catalogProducts: { name: string; price: string }[] = [
 ];
 
 function Index() {
-  const [scrollY, setScrollY] = useState(0);
   const [search, setSearch] = useState("");
   const catalogRef = useRef<HTMLDivElement>(null);
   const filteredProducts = catalogProducts.filter((p) =>
     p.name.toLowerCase().includes(search.trim().toLowerCase())
   );
-
-  useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <div className="relative bg-[#070403] text-white">
@@ -213,25 +264,22 @@ function Index() {
         </div>
       </section>
 
+      <SectionDivider label="Catálogo" />
+
       {/* CATALOG with parallax */}
       <section
         id="catalog"
         ref={catalogRef}
         className="relative py-24 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#070403]"
       >
-        <div
-          className="max-w-6xl mx-auto mb-16"
-          style={{
-            transform: `translateY(${Math.max(0, (scrollY - 400) * -0.15)}px)`,
-          }}
-        >
+        <Reveal className="max-w-6xl mx-auto mb-16">
           <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
             Catálogo
           </p>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight max-w-3xl">
             Uma fragrância para cada momento da sua vida.
           </h2>
-        </div>
+        </Reveal>
 
         <div className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee">
           <div className="flex gap-6 w-max animate-[marquee_40s_linear_infinite] group-hover/marquee:[animation-play-state:paused] px-6">
@@ -302,9 +350,11 @@ function Index() {
           </div>
         </ContainerScroll>
 
+        <SectionDivider label="Coleção" />
+
         {/* FULL CATALOG GRID */}
-        <div className="max-w-6xl mx-auto mt-32">
-          <div className="mb-10 text-center">
+        <div className="max-w-6xl mx-auto mt-12">
+          <Reveal className="mb-10 text-center">
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
               Catálogo
             </p>
@@ -314,7 +364,7 @@ function Index() {
             <p className="text-white/60 text-[14px]">
               Perfumes importados disponíveis
             </p>
-          </div>
+          </Reveal>
 
           <div className="max-w-md mx-auto mb-10">
             <input
@@ -384,15 +434,15 @@ function Index() {
         </div>
 
         <div className="max-w-6xl mx-auto mt-32 grid md:grid-cols-2 gap-10 items-center">
-          <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+          <Reveal y={60} className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <img
               src={lojaImg}
               alt="O Rei Importados — fachada da loja"
               className="w-full h-full object-cover aspect-[4/3]"
               loading="lazy"
             />
-          </div>
-          <div>
+          </Reveal>
+          <Reveal y={60} delay={0.15}>
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
               Visite nossa loja
             </p>
@@ -415,7 +465,7 @@ function Index() {
                 →
               </span>
             </a>
-          </div>
+          </Reveal>
         </div>
       </section>
 
