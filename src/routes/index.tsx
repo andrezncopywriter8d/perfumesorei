@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { BadgePercent, Banknote, CreditCard, TicketPercent, Truck } from "lucide-react";
 import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
@@ -172,6 +173,104 @@ const perfumes: {
 ];
 
 const INSTAGRAM_URL = "https://www.instagram.com/oreidoimportadoperfumes/";
+const CHECKOUT_BASE_URL = "https://oreidoimportado.site/checkout";
+
+function getCheckoutUrl(productName: string) {
+  const params = new URLSearchParams({ produto: productName });
+  return `${CHECKOUT_BASE_URL}?${params.toString()}`;
+}
+
+function parsePrice(price: string) {
+  return Number(price.replace(/[^\d,]/g, "").replace(",", "."));
+}
+
+function formatCurrency(value: number) {
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
+
+function PixIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      fill="currentColor"
+    >
+      <path d="M7.05 3.8a2.3 2.3 0 0 1 3.25 0L12 5.5l1.7-1.7a2.3 2.3 0 0 1 3.25 0l3.25 3.25a2.3 2.3 0 0 1 0 3.25L18.5 12l1.7 1.7a2.3 2.3 0 0 1 0 3.25l-3.25 3.25a2.3 2.3 0 0 1-3.25 0L12 18.5l-1.7 1.7a2.3 2.3 0 0 1-3.25 0L3.8 16.95a2.3 2.3 0 0 1 0-3.25L5.5 12 3.8 10.3a2.3 2.3 0 0 1 0-3.25L7.05 3.8Zm1.63 1.63-3.25 3.25L8.75 12l-3.32 3.32 3.25 3.25L12 15.25l3.32 3.32 3.25-3.25L15.25 12l3.32-3.32-3.25-3.25L12 8.75 8.68 5.43Z" />
+    </svg>
+  );
+}
+
+function PriceCard({
+  price,
+  pixPrice,
+  installmentPrice,
+}: {
+  price: string;
+  pixPrice: string;
+  installmentPrice: string;
+}) {
+  return (
+    <div className="mb-4 rounded-3xl border border-amber-200/18 bg-[linear-gradient(145deg,rgba(255,255,255,0.10),rgba(18,12,8,0.92)_46%,rgba(92,52,15,0.74))] p-4 font-['Gilroy','Manrope',Inter,system-ui,sans-serif] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_18px_44px_rgba(0,0,0,0.34)]">
+      <span className="inline-flex rounded-full border border-amber-300/65 bg-amber-200/13 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-amber-200">
+        Preço
+      </span>
+
+      <p className="mt-3 bg-[linear-gradient(180deg,#fff7db,#f4ca62_42%,#b77917)] bg-clip-text text-[30px] font-black leading-none tracking-[-0.02em] text-transparent">
+        {price}
+      </p>
+
+      <div className="mt-4 space-y-3">
+        <div className="flex items-center gap-3">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-emerald-400/13 text-[#00d26a] ring-1 ring-emerald-300/18">
+            <PixIcon className="h-5 w-5" />
+          </span>
+          <span className="text-[15px] font-extrabold leading-tight text-[#00d26a]">
+            5% OFF no Pix
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/9 text-white/62 ring-1 ring-white/10">
+            <CreditCard className="h-5 w-5" strokeWidth={2.4} />
+          </span>
+          <span className="text-[14px] leading-tight text-white/62">
+            ou <strong className="font-extrabold text-white">{installmentPrice}</strong>{" "}
+            em 5x
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#00a650] text-white shadow-[0_10px_22px_rgba(0,166,80,0.24)]">
+            <Banknote className="h-5 w-5" strokeWidth={2.4} />
+          </span>
+          <span className="bg-[linear-gradient(180deg,#59ffa1,#00a650)] bg-clip-text text-[20px] font-black leading-tight text-transparent">
+            {pixPrice} <span className="text-[14px] font-semibold">sem juros</span>
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-4 grid grid-cols-2 gap-2">
+        <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-amber-300/45 bg-[linear-gradient(180deg,rgba(255,230,0,0.16),rgba(255,255,255,0.04))] px-2 text-center text-[12px] font-extrabold text-amber-50">
+          <BadgePercent className="h-4 w-4 text-yellow-500" strokeWidth={2.8} />
+          7% OFF Saldo
+        </span>
+        <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-amber-300/45 bg-[linear-gradient(180deg,rgba(255,230,0,0.16),rgba(255,255,255,0.04))] px-2 text-center text-[12px] font-extrabold text-amber-50">
+          <TicketPercent className="h-4 w-4 text-yellow-500" strokeWidth={2.8} />
+          Cupom R$ 15
+        </span>
+      </div>
+
+      <div className="mt-4 flex min-h-14 items-center justify-center gap-3 rounded-2xl border border-emerald-300/22 bg-[linear-gradient(180deg,rgba(0,166,80,0.18),rgba(0,166,80,0.08))] px-4 text-[#00d26a]">
+        <Truck className="h-6 w-6" strokeWidth={2.5} />
+        <span className="text-[18px] font-black leading-none">Frete grátis</span>
+      </div>
+    </div>
+  );
+}
 
 const productImages: Record<string, string> = {
   ASAD: asadImg,
@@ -269,8 +368,13 @@ const productGenders: Record<string, ProductGender> = {
 };
 
 function Index() {
+  return <StorefrontPage />;
+}
+
+export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
   const [search, setSearch] = useState("");
   const [genderFilter, setGenderFilter] = useState<GenderFilter>("todos");
+  const [heroVideoFallback, setHeroVideoFallback] = useState(false);
   const catalogRef = useRef<HTMLDivElement>(null);
   const filteredProducts = catalogProducts.filter((p) => {
     const gender = productGenders[p.name] ?? "unissex";
@@ -329,26 +433,42 @@ function Index() {
         />
 
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[54%] md:-translate-y-1/2 z-[4] pointer-events-none h-[44vh] md:h-[80vh] max-h-[840px] aspect-square">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/perfume.webp"
-            preload="metadata"
-            className="w-full h-full object-contain bg-transparent animate-[fadeIn_1.4s_ease-in-out]"
-            style={{
-              filter:
-                "drop-shadow(0 50px 60px rgba(0,0,0,0.9)) drop-shadow(0 0 80px rgba(214,135,30,0.15))",
-            }}
-          >
-            <source src="/perfume-spin-transparent.webm" type="video/webm" />
-          </video>
+          {heroVideoFallback ? (
+            <img
+              src="/perfume-isolated.webp"
+              alt=""
+              aria-hidden="true"
+              decoding="async"
+              className="h-full w-full object-contain bg-transparent animate-[fadeIn_1.4s_ease-in-out]"
+              style={{
+                backgroundColor: "transparent",
+                filter:
+                  "drop-shadow(0 50px 60px rgba(0,0,0,0.9)) drop-shadow(0 0 80px rgba(214,135,30,0.15))",
+              }}
+            />
+          ) : (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              onError={() => setHeroVideoFallback(true)}
+              className="h-full w-full object-contain bg-transparent animate-[fadeIn_1.4s_ease-in-out]"
+              style={{
+                backgroundColor: "transparent",
+                filter:
+                  "drop-shadow(0 50px 60px rgba(0,0,0,0.9)) drop-shadow(0 0 80px rgba(214,135,30,0.15))",
+              }}
+            >
+              <source src="/perfume-isolated.webm" type="video/webm" />
+            </video>
+          )}
         </div>
 
         <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[7vw] md:right-auto md:bottom-[10vh] md:max-w-[480px]">
           <span className="block text-[11px] md:text-[12px] font-medium text-amber-400/90 mb-4 md:mb-5 tracking-[0.18em] uppercase">
-            Coleção exclusiva 2026
+            {virtual ? "Loja virtual oficial" : "Coleção exclusiva 2026"}
           </span>
           <h1
             className="text-white font-light tracking-[-0.025em] mb-6 [text-wrap:balance]"
@@ -367,13 +487,15 @@ function Index() {
             </em>
           </h1>
           <p className="text-white/55 text-[14px] md:text-[15px] leading-[1.6] mb-8 max-w-[360px] tracking-wide">
-            Descubra a essência do oriente.
+            {virtual
+              ? "Compre online e receba em qualquer lugar do Brasil."
+              : "Descubra a essência do oriente."}
           </p>
           <a
             href="#catalog"
             className="inline-flex items-center gap-3 text-[13px] font-medium text-amber-300 border border-amber-400/60 rounded-full px-7 py-3 backdrop-blur-sm hover:bg-amber-400/10 hover:border-amber-300 hover:text-amber-200 transition-all duration-500 tracking-wide"
           >
-            Ver catálogo
+            {virtual ? "Ver loja virtual" : "Ver catálogo"}
             <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
           </a>
         </div>
@@ -386,11 +508,19 @@ function Index() {
       >
         <Reveal className="max-w-6xl mx-auto mb-16">
           <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
-            Catálogo
+            {virtual ? "Loja virtual" : "Catálogo"}
           </p>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight max-w-4xl break-words [overflow-wrap:anywhere]">
-            Os Mais Vendidos do @oreidoimportadoperfumes
+            {virtual
+              ? "Perfumes árabes importados com entrega para todo o Brasil"
+              : "Os Mais Vendidos do @oreidoimportadoperfumes"}
           </h2>
+          {virtual && (
+            <p className="mt-5 max-w-2xl text-[14px] leading-relaxed text-white/60">
+              Frete grátis para todo o Brasil em pedidos selecionados. Escolha sua fragrância,
+              finalize no checkout seguro e receba seu perfume importado em casa.
+            </p>
+          )}
         </Reveal>
 
         <Reveal
@@ -427,7 +557,7 @@ function Index() {
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-medium">{p.price}</span>
                     <span className="inline-flex items-center gap-1 text-[12px] font-medium border border-white/40 rounded-full px-3 py-1.5 group-hover:bg-white group-hover:text-black transition-all">
-                      Comprar
+                      {virtual ? "Comprar online" : "Comprar"}
                       <span className="group-hover:translate-x-0.5 transition-transform">→</span>
                     </span>
                   </div>
@@ -485,12 +615,16 @@ function Index() {
           />
           <Reveal className="relative z-10 mb-10 text-center">
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
-              Catálogo
+              {virtual ? "Ecommerce nacional" : "Catálogo"}
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-3">
-              O Rei do Importado Perfumes
+              {virtual ? "Loja virtual O Rei do Importado" : "O Rei do Importado Perfumes"}
             </h2>
-            <p className="text-white/60 text-[14px]">Perfumes importados disponíveis</p>
+            <p className="text-white/60 text-[14px]">
+              {virtual
+                ? "Perfumes importados com frete grátis para o Brasil todo"
+                : "Perfumes importados disponíveis"}
+            </p>
           </Reveal>
 
           <div className="relative z-10 max-w-2xl mx-auto mb-10">
@@ -531,6 +665,9 @@ function Index() {
           <div className="relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredProducts.map((p, index) => {
               const gender = productGenders[p.name] ?? "unissex";
+              const priceValue = parsePrice(p.price);
+              const pixPrice = formatCurrency(priceValue * 0.95);
+              const installmentPrice = formatCurrency(priceValue / 5);
               const genderLabel =
                 gender === "masculino"
                   ? "Masculino"
@@ -590,24 +727,42 @@ function Index() {
                       </span>
                     </div>
                     <div className="mt-auto">
-                      <div className="mb-4 flex items-end justify-between gap-3 border-t border-white/10 pt-4">
-                        <div>
-                          <p className="text-[10px] uppercase tracking-[0.18em] text-white/42">
-                            Preco
-                          </p>
-                          <p className="text-[24px] font-bold leading-none text-amber-200">
-                            {p.price}
-                          </p>
+                      {virtual ? (
+                        <PriceCard
+                          price={p.price}
+                          pixPrice={pixPrice}
+                          installmentPrice={installmentPrice}
+                        />
+                      ) : (
+                        <div className="mb-4 flex items-end justify-between gap-3 border-t border-white/10 pt-4">
+                          <div>
+                            <p className="text-[10px] uppercase tracking-[0.18em] text-white/42">
+                              Preco
+                            </p>
+                            <p className="text-[24px] font-bold leading-none text-amber-200">
+                              {p.price}
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                      )}
                       <a
-                        href={INSTAGRAM_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex min-h-12 w-full items-center justify-center rounded-xl border border-amber-200/35 bg-[linear-gradient(180deg,#f6d995,#c99022)] px-4 text-center text-[11px] font-bold uppercase tracking-[0.14em] text-[#160d05] shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_12px_24px_rgba(201,144,34,0.12)] transition-all duration-300 hover:border-amber-100/60 hover:bg-[linear-gradient(180deg,#ffe8aa,#d49a2d)] focus:outline-none focus:ring-4 focus:ring-amber-300/20"
+                        href={virtual ? getCheckoutUrl(p.name) : INSTAGRAM_URL}
+                        target={virtual ? undefined : "_blank"}
+                        rel={virtual ? undefined : "noopener noreferrer"}
+                        className={`flex min-h-12 w-full items-center justify-center rounded-xl px-4 text-center font-[Inter,system-ui,sans-serif] text-[12px] font-extrabold uppercase tracking-[0.08em] transition-all duration-300 focus:outline-none focus:ring-4 ${
+                          virtual
+                            ? "border border-[#3483fa]/70 bg-[linear-gradient(180deg,#5b9cff,#2563eb)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.32),0_16px_36px_rgba(37,99,235,0.34)] hover:-translate-y-0.5 hover:border-[#9ec2ff] hover:bg-[linear-gradient(180deg,#6da8ff,#1d4ed8)] focus:ring-[#3483fa]/25"
+                            : "border border-amber-200/35 bg-[linear-gradient(180deg,#f6d995,#c99022)] text-[#160d05] shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_12px_24px_rgba(201,144,34,0.12)] hover:border-amber-100/60 hover:bg-[linear-gradient(180deg,#ffe8aa,#d49a2d)] focus:ring-amber-300/20"
+                        }`}
                       >
-                        Comprar pelo Instagram
+                        {virtual ? "Comprar agora" : "Comprar pelo Instagram"}
+                        {virtual && <span className="ml-2 text-[15px] leading-none">→</span>}
                       </a>
+                      {virtual && (
+                        <p className="mt-3 text-center font-[Inter,system-ui,sans-serif] text-[11px] font-semibold text-[#00a650]">
+                          Frete grátis para todo o Brasil
+                        </p>
+                      )}
                     </div>
                   </div>
                 </article>
@@ -622,17 +777,25 @@ function Index() {
           )}
 
           <p className="text-center text-white/50 text-[12px] mt-12">
-            Consulte disponibilidade antes de finalizar o pedido.
+            {virtual
+              ? "Oferta válida para compras online enquanto houver estoque."
+              : "Consulte disponibilidade antes de finalizar o pedido."}
             <br />
-            Instagram:{" "}
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-amber-400 hover:text-amber-300"
-            >
-              @oreidoimportadoperfumes
-            </a>
+            {virtual ? (
+              <span>Entrega nacional com checkout seguro.</span>
+            ) : (
+              <>
+                Instagram:{" "}
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-400 hover:text-amber-300"
+                >
+                  @oreidoimportadoperfumes
+                </a>
+              </>
+            )}
           </p>
         </div>
 
