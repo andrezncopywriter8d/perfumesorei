@@ -153,13 +153,13 @@ function Index() {
           }}
         />
 
-        {/* darken left + bottom to anchor text and merge lion */}
+        {/* darken left + bottom to anchor text and merge lion + seamless fade into next section */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-[3]"
           style={{
             background:
-              "linear-gradient(to right, #020202 0%, rgba(2,2,2,0.85) 25%, rgba(2,2,2,0.25) 50%, transparent 70%), linear-gradient(to top, #020202 0%, rgba(2,2,2,0.4) 18%, transparent 35%)",
+              "linear-gradient(to right, #070403 0%, rgba(7,4,3,0.85) 25%, rgba(7,4,3,0.25) 50%, transparent 70%), linear-gradient(to top, #070403 0%, rgba(7,4,3,0.6) 12%, transparent 28%)",
           }}
         />
 
