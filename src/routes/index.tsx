@@ -71,7 +71,7 @@ function Reveal({
             end: "top 45%",
             scrub: 1.2,
           },
-        }
+        },
       );
     }, el);
     return () => ctx.revert();
@@ -95,10 +95,7 @@ function SectionDivider({ label }: { label: string }) {
   const lineScale = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 1]);
 
   return (
-    <div
-      ref={ref}
-      className="relative h-[40vh] overflow-hidden bg-[#070403] flex items-center"
-    >
+    <div ref={ref} className="relative h-[40vh] overflow-hidden bg-[#070403] flex items-center">
       <motion.div
         className="whitespace-nowrap text-[14vw] md:text-[10vw] font-light tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200/20 via-amber-400/40 to-amber-700/10 select-none pointer-events-none"
         style={{
@@ -253,11 +250,20 @@ const catalogProducts: { name: string; price: string }[] = [
   { name: "AMBER", price: "R$ 570,00" },
 ];
 
+const catalogAccents = [
+  "from-amber-300 via-orange-500 to-yellow-600",
+  "from-rose-200 via-pink-400 to-amber-400",
+  "from-slate-200 via-zinc-500 to-amber-300",
+  "from-orange-200 via-amber-500 to-red-700",
+  "from-yellow-200 via-amber-400 to-stone-600",
+  "from-fuchsia-300 via-rose-500 to-orange-400",
+];
+
 function Index() {
   const [search, setSearch] = useState("");
   const catalogRef = useRef<HTMLDivElement>(null);
   const filteredProducts = catalogProducts.filter((p) =>
-    p.name.toLowerCase().includes(search.trim().toLowerCase())
+    p.name.toLowerCase().includes(search.trim().toLowerCase()),
   );
 
   return (
@@ -369,7 +375,10 @@ function Index() {
           </h2>
         </Reveal>
 
-        <Reveal y={50} className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee">
+        <Reveal
+          y={50}
+          className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee"
+        >
           <div className="flex gap-6 w-max animate-[marquee_40s_linear_infinite] group-hover/marquee:[animation-play-state:paused] px-6">
             {[...perfumes, ...perfumes].map((p, idx) => (
               <GlowCard
@@ -391,9 +400,7 @@ function Index() {
                   />
                 )}
                 <div className="relative z-10 text-white">
-                  <p className="text-[10px] uppercase tracking-[0.2em] opacity-70">
-                    {p.brand}
-                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] opacity-70">{p.brand}</p>
                   <h3 className="text-3xl font-semibold mt-1">{p.name}</h3>
                 </div>
                 <div className="relative z-10 text-white">
@@ -446,8 +453,16 @@ function Index() {
           </ContainerScroll>
         </Reveal>
 
-        <div className="max-w-6xl mx-auto mt-12">
-          <Reveal className="mb-10 text-center">
+        <div className="relative mx-auto mt-20 max-w-7xl overflow-hidden rounded-[2rem] border border-amber-300/15 bg-[linear-gradient(135deg,rgba(255,255,255,0.075),rgba(255,255,255,0.018)_42%,rgba(251,146,60,0.08))] px-4 py-8 shadow-[0_40px_120px_rgba(0,0,0,0.55)] sm:px-7 md:px-10">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(251,191,36,0.22),transparent_34%),radial-gradient(circle_at_92%_8%,rgba(244,63,94,0.16),transparent_30%),linear-gradient(180deg,rgba(7,4,3,0.28),rgba(7,4,3,0.76))]"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-amber-200/70 to-transparent"
+          />
+          <Reveal className="relative z-10 mb-10 text-center">
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
               Catálogo
             </p>
@@ -457,60 +472,97 @@ function Index() {
             <p className="text-white/60 text-[14px]">Perfumes importados disponíveis</p>
           </Reveal>
 
-          <div className="max-w-md mx-auto mb-10">
+          <div className="relative z-10 max-w-2xl mx-auto mb-10">
             <input
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar perfume..."
-              className="w-full bg-white/[0.04] border border-amber-400/30 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 rounded-full px-5 py-3 text-[14px] text-white placeholder:text-white/40 transition-all"
+              className="h-13 w-full rounded-2xl border border-white/12 bg-black/35 px-5 text-[15px] text-white shadow-inner shadow-black/30 outline-none transition-all placeholder:text-white/38 focus:border-amber-300/70 focus:ring-4 focus:ring-amber-300/15"
             />
           </div>
 
-          <Reveal y={50} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
-            {filteredProducts.map((p) => (
-              <article
-                key={p.name}
-                className="group relative flex flex-col rounded-2xl border border-amber-400/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 overflow-hidden"
-              >
-                <div className="relative aspect-square bg-gradient-to-br from-[#1a0f0a] via-[#0f0805] to-[#0a0506] flex flex-col items-center justify-center overflow-hidden border-b border-amber-400/10">
-                  {productImages[p.name] ? (
-                    <img
-                      src={productImages[p.name]}
-                      alt={p.name}
-                      loading="lazy"
-                      className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+          <div className="relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredProducts.map((p, index) => {
+              const accent = catalogAccents[index % catalogAccents.length];
+              return (
+                <article
+                  key={p.name}
+                  className="group relative flex min-h-[430px] flex-col overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#120b08]/86 shadow-[0_24px_70px_rgba(0,0,0,0.34)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-200/45 hover:shadow-[0_34px_90px_rgba(217,119,6,0.18)]"
+                >
+                  <div
+                    aria-hidden="true"
+                    className={`absolute inset-0 bg-gradient-to-br ${accent} opacity-[0.16] transition-opacity duration-300 group-hover:opacity-[0.28]`}
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-px rounded-[1.55rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(255,255,255,0.02)_44%,rgba(0,0,0,0.28))]"
+                  />
+                  <div className="relative mx-3 mt-3 aspect-[1/1.08] bg-[radial-gradient(circle_at_50%_22%,rgba(255,255,255,0.16),transparent_30%),linear-gradient(145deg,rgba(251,191,36,0.16),rgba(12,7,5,0.2)_42%,rgba(0,0,0,0.4))] flex flex-col items-center justify-center overflow-hidden rounded-[1.25rem] border border-white/10">
+                    <div
+                      aria-hidden="true"
+                      className={`absolute inset-x-8 bottom-5 h-12 rounded-full bg-gradient-to-r ${accent} opacity-30 blur-2xl`}
                     />
-                  ) : (
-                    <>
-                      <div className="w-12 h-12 rounded-full border border-amber-400/40 flex items-center justify-center mb-3">
-                        <span className="text-amber-400 text-lg">✦</span>
-                      </div>
-                      <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400/70">
-                        Imagem em breve
-                      </span>
-                    </>
-                  )}
-                </div>
-                <div className="p-4 sm:p-5 flex flex-col flex-1">
-                  <h3 className="text-[14px] sm:text-[15px] font-semibold text-white leading-tight mb-3 min-h-[2.5em]">
-                    {p.name}
-                  </h3>
-                  <div className="mt-auto">
-                    <p className="text-[18px] font-bold text-amber-400 mb-3">{p.price}</p>
-                    <a
-                      href={INSTAGRAM_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center w-full text-[11px] font-semibold tracking-wider uppercase bg-gradient-to-r from-amber-500 to-amber-400 text-black rounded-md py-2.5 hover:from-amber-400 hover:to-amber-300 transition-all"
-                    >
-                      Comprar pelo Instagram
-                    </a>
+                    {productImages[p.name] ? (
+                      <img
+                        src={productImages[p.name]}
+                        alt={p.name}
+                        loading="lazy"
+                        className="relative z-10 h-[94%] w-[94%] object-contain p-1 drop-shadow-[0_26px_24px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.09]"
+                      />
+                    ) : (
+                      <>
+                        <div className="w-12 h-12 rounded-full border border-amber-400/40 flex items-center justify-center mb-3">
+                          <span className="text-amber-400 text-lg">✦</span>
+                        </div>
+                        <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400/70">
+                          Imagem em breve
+                        </span>
+                      </>
+                    )}
                   </div>
-                </div>
-              </article>
-            ))}
-          </Reveal>
+                  <div className="relative p-5 flex flex-col flex-1">
+                    <div className="mb-4 flex items-start justify-between gap-3">
+                      <div>
+                        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-200/62">
+                          Perfume importado
+                        </p>
+                        <h3 className="text-[19px] sm:text-[20px] font-semibold text-white leading-tight">
+                          {p.name}
+                        </h3>
+                      </div>
+                      <span className="rounded-full border border-white/10 bg-white/[0.06] px-2.5 py-1 text-[10px] font-semibold text-white/62">
+                        #{String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className="mt-auto">
+                      <div className="mb-4 flex items-end justify-between gap-3 border-t border-white/10 pt-4">
+                        <div>
+                          <p className="text-[10px] uppercase tracking-[0.18em] text-white/42">
+                            Preco
+                          </p>
+                          <p className="text-[24px] font-bold leading-none text-amber-200">
+                            {p.price}
+                          </p>
+                        </div>
+                        <span
+                          className={`h-8 w-8 rounded-full bg-gradient-to-br ${accent} opacity-90 shadow-lg shadow-amber-950/50`}
+                        />
+                      </div>
+                      <a
+                        href={INSTAGRAM_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex min-h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r ${accent} px-4 text-center text-[11px] font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-amber-300/25`}
+                      >
+                        Comprar pelo Instagram
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
 
           {filteredProducts.length === 0 && (
             <p className="text-center text-white/50 mt-10 text-[14px]">
@@ -550,8 +602,8 @@ function Index() {
               O Rei Importados
             </h2>
             <p className="text-white/70 text-[14px] leading-relaxed mb-6 max-w-md">
-              Conheça nossa coleção pessoalmente. Atendimento exclusivo, experimente as
-              fragrâncias árabes ao vivo e sinta cada nota antes de levar para casa.
+              Conheça nossa coleção pessoalmente. Atendimento exclusivo, experimente as fragrâncias
+              árabes ao vivo e sinta cada nota antes de levar para casa.
             </p>
             <p className="text-white/60 text-[13px] mb-8">📞 (86) 988100164</p>
             <a
