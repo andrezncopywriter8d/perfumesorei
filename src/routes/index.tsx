@@ -232,15 +232,19 @@ function Index() {
           </div>
         </div>
 
-        {/* VIDEO CATALOG */}
-        <div className="max-w-6xl mx-auto mt-32">
-          <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
-            Em movimento
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-10 max-w-2xl">
-            Veja as fragrâncias por dentro.
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <ContainerScroll
+          titleComponent={
+            <div className="mb-4">
+              <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+                Em movimento
+              </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight max-w-2xl mx-auto">
+                Veja as fragrâncias por dentro.
+              </h2>
+            </div>
+          }
+        >
+          <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 h-full">
             {["/catalog-1.mp4", "/catalog-2.mp4", "/catalog-3.mp4"].map((src) => (
               <div
                 key={src}
@@ -259,7 +263,7 @@ function Index() {
               </div>
             ))}
           </div>
-        </div>
+        </ContainerScroll>
 
         {/* FULL CATALOG GRID */}
         <div className="max-w-6xl mx-auto mt-32">
