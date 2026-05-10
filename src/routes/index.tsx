@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Banknote, CreditCard, Truck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Banknote, CreditCard, Search, ShoppingBag, Truck, User } from "lucide-react";
 import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
@@ -369,6 +369,132 @@ function Index() {
   return <StorefrontPage />;
 }
 
+function LuxuryHero({
+  virtual,
+  heroVideoFallback,
+  onVideoFallback,
+}: {
+  virtual: boolean;
+  heroVideoFallback: boolean;
+  onVideoFallback: () => void;
+}) {
+  return (
+    <section className="luxury-hero">
+      <div className="hero-bg" aria-hidden="true" />
+      <div className="hero-amber-glow" aria-hidden="true" />
+      <div className="hero-bottom-glow" aria-hidden="true" />
+      <div className="hero-particles" aria-hidden="true" />
+
+      <header className="luxury-header">
+        <a href="/" className="brand" aria-label="ASAD Luxury Perfumes">
+          <div className="brand-fake-logo">A</div>
+          <div className="brand-text">
+            <strong>ASAD</strong>
+            <span>LUXURY PERFUMES</span>
+          </div>
+        </a>
+
+        <nav className="hero-nav" aria-label="Navegação principal">
+          <a className="active" href="/">
+            Início
+          </a>
+          <a href="#catalog">Catálogo</a>
+          <a href="#catalog">Coleções</a>
+          <a href="#sobre">Sobre nós</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <div className="hero-icons">
+          <button type="button" aria-label="Pesquisar">
+            <Search size={23} />
+          </button>
+          <button type="button" aria-label="Conta">
+            <User size={23} />
+          </button>
+          <button type="button" className="bag-button" aria-label="Carrinho">
+            <ShoppingBag size={23} />
+            <span>0</span>
+          </button>
+        </div>
+      </header>
+
+      <main className="hero-content">
+        <div className="hero-copy">
+          <p className="hero-kicker">
+            {virtual ? "LOJA VIRTUAL OFICIAL" : "COLEÇÃO EXCLUSIVA 2026"}
+          </p>
+
+          <h1>
+            Fragrâncias árabes
+            <br />
+            que contam histórias
+            <br />
+            <em>eternas.</em>
+          </h1>
+
+          <p className="hero-subtitle">
+            {virtual
+              ? "Compre online e receba em qualquer lugar do Brasil."
+              : "Descubra a essência do oriente."}
+          </p>
+
+          <a href="#catalog" className="hero-button">
+            {virtual ? "Ver loja virtual" : "Ver catálogo"}
+            <ArrowRight size={18} />
+          </a>
+        </div>
+
+        <div className="hero-visual" aria-hidden="true">
+          <img className="lion-image" src="/lion.webp" alt="" decoding="async" />
+          <div className="perfume-stage">
+            {heroVideoFallback ? (
+              <img
+                className="perfume-image"
+                src="/perfume-isolated.webp"
+                alt=""
+                decoding="async"
+              />
+            ) : (
+              <video
+                className="perfume-image"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                onError={onVideoFallback}
+              >
+                <source src="/perfume-isolated.webm" type="video/webm" />
+              </video>
+            )}
+          </div>
+        </div>
+      </main>
+
+      <footer className="hero-footer">
+        <div className="hero-pagination" aria-hidden="true">
+          <span className="current">01</span>
+          <span>02</span>
+          <span>03</span>
+        </div>
+
+        <div className="hero-line" aria-hidden="true">
+          <span />
+        </div>
+
+        <div className="hero-arrows">
+          <button type="button" aria-label="Anterior">
+            <ArrowLeft size={18} />
+          </button>
+          <button type="button" aria-label="Próximo">
+            <ArrowRight size={18} />
+          </button>
+        </div>
+      </footer>
+    </section>
+  );
+}
+
 export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
   const [search, setSearch] = useState("");
   const [genderFilter, setGenderFilter] = useState<GenderFilter>("todos");
@@ -389,7 +515,13 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
 
   return (
     <div className="relative bg-[#070403] text-white">
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#070403] text-white">
+      <LuxuryHero
+        virtual={virtual}
+        heroVideoFallback={heroVideoFallback}
+        onVideoFallback={() => setHeroVideoFallback(true)}
+      />
+
+      <section className="hidden">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-[1]"
