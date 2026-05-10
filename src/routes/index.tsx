@@ -294,15 +294,6 @@ const productGenders: Record<string, ProductGender> = {
   AMBER: "unissex",
 };
 
-const catalogAccents = [
-  "from-amber-300 via-orange-500 to-yellow-600",
-  "from-rose-200 via-pink-400 to-amber-400",
-  "from-slate-200 via-zinc-500 to-amber-300",
-  "from-orange-200 via-amber-500 to-red-700",
-  "from-yellow-200 via-amber-400 to-stone-600",
-  "from-fuchsia-300 via-rose-500 to-orange-400",
-];
-
 function Index() {
   const [search, setSearch] = useState("");
   const [genderFilter, setGenderFilter] = useState<GenderFilter>("todos");
@@ -559,7 +550,6 @@ function Index() {
 
           <div className="relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredProducts.map((p, index) => {
-              const accent = catalogAccents[index % catalogAccents.length];
               const gender = productGenders[p.name] ?? "unissex";
               const genderLabel =
                 gender === "masculino"
@@ -571,20 +561,20 @@ function Index() {
               return (
                 <article
                   key={p.name}
-                  className="group relative flex min-h-[430px] flex-col overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#120b08]/86 shadow-[0_24px_70px_rgba(0,0,0,0.34)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-200/45 hover:shadow-[0_34px_90px_rgba(217,119,6,0.18)]"
+                  className="group relative flex min-h-[430px] flex-col overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#100b08]/92 shadow-[0_22px_58px_rgba(0,0,0,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-200/38 hover:bg-[#15100c]/95 hover:shadow-[0_30px_80px_rgba(0,0,0,0.38)]"
                 >
                   <div
                     aria-hidden="true"
-                    className={`absolute inset-0 bg-gradient-to-br ${accent} opacity-[0.16] transition-opacity duration-300 group-hover:opacity-[0.28]`}
+                    className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.012)_46%,rgba(245,158,11,0.04))]"
                   />
                   <div
                     aria-hidden="true"
-                    className="absolute inset-px rounded-[1.55rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(255,255,255,0.02)_44%,rgba(0,0,0,0.28))]"
+                    className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-amber-100/32 to-transparent"
                   />
-                  <div className="relative mx-3 mt-3 aspect-[1/1.08] bg-[radial-gradient(circle_at_50%_22%,rgba(255,255,255,0.16),transparent_30%),linear-gradient(145deg,rgba(251,191,36,0.16),rgba(12,7,5,0.2)_42%,rgba(0,0,0,0.4))] flex flex-col items-center justify-center overflow-hidden rounded-[1.25rem] border border-white/10">
+                  <div className="relative mx-3 mt-3 aspect-[1/1.08] bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.12),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.055),rgba(22,17,13,0.8)_52%,rgba(0,0,0,0.34))] flex flex-col items-center justify-center overflow-hidden rounded-[1.05rem] border border-white/10">
                     <div
                       aria-hidden="true"
-                      className={`absolute inset-x-8 bottom-5 h-12 rounded-full bg-gradient-to-r ${accent} opacity-30 blur-2xl`}
+                      className="absolute inset-x-10 bottom-5 h-10 rounded-full bg-amber-200/18 blur-2xl"
                     />
                     {productImages[p.name] ? (
                       <img
@@ -628,15 +618,12 @@ function Index() {
                             {p.price}
                           </p>
                         </div>
-                        <span
-                          className={`h-8 w-8 rounded-full bg-gradient-to-br ${accent} opacity-90 shadow-lg shadow-amber-950/50`}
-                        />
                       </div>
                       <a
                         href={INSTAGRAM_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`flex min-h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r ${accent} px-4 text-center text-[11px] font-bold uppercase tracking-[0.14em] text-black transition-all duration-300 hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-amber-300/25`}
+                        className="flex min-h-12 w-full items-center justify-center rounded-xl border border-amber-200/35 bg-[linear-gradient(180deg,#f6d995,#c99022)] px-4 text-center text-[11px] font-bold uppercase tracking-[0.14em] text-[#160d05] shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_12px_24px_rgba(201,144,34,0.12)] transition-all duration-300 hover:border-amber-100/60 hover:bg-[linear-gradient(180deg,#ffe8aa,#d49a2d)] focus:outline-none focus:ring-4 focus:ring-amber-300/20"
                       >
                         Comprar pelo Instagram
                       </a>
