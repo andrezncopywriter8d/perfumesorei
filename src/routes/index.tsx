@@ -411,8 +411,8 @@ function Index() {
           <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
             Catálogo
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight max-w-3xl">
-            Uma fragrância para cada momento da sua vida.
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight max-w-4xl">
+            Os Mais Vendidos do @oreidoimportadoperfumes
           </h2>
         </Reveal>
 
