@@ -441,15 +441,15 @@ function Index() {
         </div>
 
         <div className="max-w-6xl mx-auto mt-32 grid md:grid-cols-2 gap-10 items-center">
-          <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+          <Reveal y={60} className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <img
               src={lojaImg}
               alt="O Rei Importados — fachada da loja"
               className="w-full h-full object-cover aspect-[4/3]"
               loading="lazy"
             />
-          </div>
-          <div>
+          </Reveal>
+          <Reveal y={60} delay={0.15}>
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
               Visite nossa loja
             </p>
@@ -472,7 +472,7 @@ function Index() {
                 →
               </span>
             </a>
-          </div>
+          </Reveal>
         </div>
       </section>
 
