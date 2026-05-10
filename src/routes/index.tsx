@@ -149,7 +149,7 @@ function Index() {
       <section
         id="catalog"
         ref={catalogRef}
-        className="relative py-24 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#f0f0ee]"
+        className="relative py-24 px-6 sm:px-12 md:px-20 lg:px-28 bg-gradient-to-b from-[#3a2418] via-[#1a0f0a] to-black"
       >
         <div
           className="max-w-6xl mx-auto mb-16"
