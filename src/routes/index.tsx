@@ -5,33 +5,33 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
-import asadImg from "@/assets/asad-new.png";
-import asadBourbonImg from "@/assets/asad-bourbon.png";
-import asadElixirImg from "@/assets/asad-elixir.png";
-import yaraRoseImg from "@/assets/yara-rose.png";
-import yaraTousImg from "@/assets/yara-tous.png";
-import yaraElixirImg from "@/assets/yara-elixir.png";
-import liquidBrunImg from "@/assets/liquid-brun.png";
-import aneesaImg from "@/assets/aneesa.png";
-import raveImg from "@/assets/rave.png";
-import clubIntenseImg from "@/assets/club-intense.png";
-import clubWomanImg from "@/assets/club-woman.png";
-import avantImg from "@/assets/avant.png";
-import toroImg from "@/assets/toro.png";
-import sabahImg from "@/assets/sabah.png";
-import vulcanImg from "@/assets/vulcan.png";
-import durratImg from "@/assets/durrat.png";
-import amberImg from "@/assets/amber.png";
-import fakharImg from "@/assets/fakhar.png";
-import elFursonImg from "@/assets/el-furson.png";
-import alNobleWazeerImg from "@/assets/al-noble-wazeer.png";
-import meitreImg from "@/assets/meitre.png";
-import fakarGoldImg from "@/assets/fakar-gold.png";
-import fakharBlackImg from "@/assets/fakhar-black.png";
-import fakarRoseImg from "@/assets/fakar-rose.png";
-import attarAlWesalImg from "@/assets/attar-al-wesal.png";
-import khamrahImg from "@/assets/khamrah.png";
-import voujePartyImg from "@/assets/vouje-party.png";
+import asadImg from "@/assets/asad-new.webp";
+import asadBourbonImg from "@/assets/asad-bourbon.webp";
+import asadElixirImg from "@/assets/asad-elixir.webp";
+import yaraRoseImg from "@/assets/yara-rose.webp";
+import yaraTousImg from "@/assets/yara-tous.webp";
+import yaraElixirImg from "@/assets/yara-elixir.webp";
+import liquidBrunImg from "@/assets/liquid-brun.webp";
+import aneesaImg from "@/assets/aneesa.webp";
+import raveImg from "@/assets/rave.webp";
+import clubIntenseImg from "@/assets/club-intense.webp";
+import clubWomanImg from "@/assets/club-woman.webp";
+import avantImg from "@/assets/avant.webp";
+import toroImg from "@/assets/toro.webp";
+import sabahImg from "@/assets/sabah.webp";
+import vulcanImg from "@/assets/vulcan.webp";
+import durratImg from "@/assets/durrat.webp";
+import amberImg from "@/assets/amber.webp";
+import fakharImg from "@/assets/fakhar.webp";
+import elFursonImg from "@/assets/el-furson.webp";
+import alNobleWazeerImg from "@/assets/al-noble-wazeer.webp";
+import meitreImg from "@/assets/meitre.webp";
+import fakarGoldImg from "@/assets/fakar-gold.webp";
+import fakharBlackImg from "@/assets/fakhar-black.webp";
+import fakarRoseImg from "@/assets/fakar-rose.webp";
+import attarAlWesalImg from "@/assets/attar-al-wesal.webp";
+import khamrahImg from "@/assets/khamrah.webp";
+import voujePartyImg from "@/assets/vouje-party.webp";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
@@ -328,7 +328,7 @@ function Index() {
         />
 
         <img
-          src="/lion.png"
+          src="/lion.webp"
           alt=""
           aria-hidden="true"
           className="absolute right-[-4%] top-1/2 -translate-y-1/2 h-[55vh] md:h-[78vh] w-auto max-w-none z-[2] pointer-events-none select-none"
