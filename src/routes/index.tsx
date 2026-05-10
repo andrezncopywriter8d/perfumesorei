@@ -207,7 +207,7 @@ function Index() {
               Conheça nossa coleção pessoalmente. Atendimento exclusivo, experimente as
               fragrâncias árabes ao vivo e sinta cada nota antes de levar para casa.
             </p>
-            <p className="text-white/60 text-[13px] mb-8">📞 (98) 98810-0154</p>
+            <p className="text-white/60 text-[13px] mb-8">📞 (98) 98810-0184</p>
             <a
               href="https://share.google/OkcIQzpngPsggMKWr"
               target="_blank"
