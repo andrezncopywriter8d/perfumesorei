@@ -16,6 +16,7 @@ import sabahImg from "@/assets/sabah.png";
 import vulcanImg from "@/assets/vulcan.png";
 import durratImg from "@/assets/durrat.png";
 import amberImg from "@/assets/amber.png";
+import fakharImg from "@/assets/fakhar.png";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
@@ -179,6 +180,7 @@ const productImages: Record<string, string> = {
   "VULCAN FEU": vulcanImg,
   DURRAT: durratImg,
   AMBER: amberImg,
+  "FAKAR PLATINUM": fakharImg,
 };
 
 const catalogProducts: { name: string; price: string }[] = [
