@@ -336,7 +336,7 @@ function Index() {
             playsInline
             poster="/perfume.webp"
             preload="metadata"
-            className="w-full h-full object-contain animate-[fadeIn_1.4s_ease-in-out]"
+            className="w-full h-full object-contain bg-transparent mix-blend-multiply animate-[fadeIn_1.4s_ease-in-out] md:mix-blend-normal"
             style={{
               filter:
                 "drop-shadow(0 50px 60px rgba(0,0,0,0.9)) drop-shadow(0 0 80px rgba(214,135,30,0.15))",
