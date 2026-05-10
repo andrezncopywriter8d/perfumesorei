@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
+import lojaImg from "@/assets/loja.jpg";
 
 const glowColors = ["orange", "orange", "red", "orange", "orange", "red"] as const;
 
@@ -185,14 +186,50 @@ function Index() {
           </div>
         </div>
 
+        {/* LOCATION */}
+        <div className="max-w-6xl mx-auto mt-32 grid md:grid-cols-2 gap-10 items-center">
+          <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+            <img
+              src={lojaImg}
+              alt="O Rei Importados — fachada da loja"
+              className="w-full h-full object-cover aspect-[4/3]"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+              Visite nossa loja
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-5">
+              O Rei Importados
+            </h2>
+            <p className="text-white/70 text-[14px] leading-relaxed mb-6 max-w-md">
+              Conheça nossa coleção pessoalmente. Atendimento exclusivo, experimente as
+              fragrâncias árabes ao vivo e sinta cada nota antes de levar para casa.
+            </p>
+            <p className="text-white/60 text-[13px] mb-8">📞 (98) 98810-0154</p>
+            <a
+              href="https://share.google/OkcIQzpngPsggMKWr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-[13px] font-medium text-amber-400 border border-amber-400/60 rounded-full px-5 py-2.5 hover:bg-amber-400 hover:text-black transition-all duration-200 group"
+            >
+              Ver no Google Maps
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                →
+              </span>
+            </a>
+          </div>
+        </div>
+
         <footer className="max-w-6xl mx-auto mt-32 pt-10 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-[12px] text-white/50">
-            © 2026 Lattafa Perfumes. Todos os direitos reservados.
+            © 2026 O Rei Importados. Todos os direitos reservados.
           </p>
           <div className="flex gap-6 text-[12px] text-white/70">
             <a href="#" className="hover:text-white">Instagram</a>
             <a href="#" className="hover:text-white">TikTok</a>
-            <a href="#" className="hover:text-white">Contato</a>
+            <a href="https://share.google/OkcIQzpngPsggMKWr" target="_blank" rel="noopener noreferrer" className="hover:text-white">Localização</a>
           </div>
         </footer>
       </section>
