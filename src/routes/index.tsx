@@ -332,7 +332,7 @@ function Index() {
                   <img
                     src={p.image}
                     alt={p.name}
-                    className="absolute inset-0 w-full h-full object-contain p-6 -z-10 opacity-90 group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
+                    className="absolute inset-0 w-full h-full object-cover -z-10 opacity-95 group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
                 )}
@@ -432,7 +432,7 @@ function Index() {
                       src={productImages[p.name]}
                       alt={p.name}
                       loading="lazy"
-                      className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <>
