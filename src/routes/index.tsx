@@ -66,6 +66,21 @@ const perfumes = [
   },
 ];
 
+const catalogProducts = [
+  { name: "Armaf Club de Nuit Intense Man", brand: "Armaf", price: "R$ 299,00", oldPrice: "R$ 349,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa Raghba Black", brand: "Lattafa", price: "R$ 279,00", image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa Khamrah Gold", brand: "Lattafa", price: "R$ 329,00", oldPrice: "R$ 389,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80&auto=format&fit=crop" },
+  { name: "Fragrance World Erotica Amor", brand: "Fragrance World", price: "R$ 329,00", image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80&auto=format&fit=crop" },
+  { name: "Stella Dustin Tycoon Intense Man", brand: "Stella Dustin", price: "R$ 269,00", oldPrice: "R$ 319,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa Tagheer Khanjar", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1610461888750-10bfc601b874?w=600&q=80&auto=format&fit=crop" },
+  { name: "Al Wataniah Yara Vivid", brand: "Al Wataniah", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59d75?w=600&q=80&auto=format&fit=crop" },
+  { name: "Afnan 9 PM Pure", brand: "Afnan", price: "R$ 289,00", image: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa The Kingdom Men", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&q=80&auto=format&fit=crop" },
+  { name: "Al Wataniah Sheikh Oud", brand: "Al Wataniah", price: "R$ 229,00", image: "https://images.unsplash.com/photo-1605651531144-51381895e23d?w=600&q=80&auto=format&fit=crop" },
+  { name: "Lattafa Bade'e Al Oud Amethyst", brand: "Lattafa", price: "R$ 339,00", oldPrice: "R$ 389,00", discount: "13% OFF", image: "https://images.unsplash.com/photo-1592914610354-fd354ea45e48?w=600&q=80&auto=format&fit=crop" },
+  { name: "Afnan Supremacy Not Only Intense", brand: "Afnan", price: "R$ 419,00", oldPrice: "R$ 489,00", discount: "14% OFF", image: "https://images.unsplash.com/photo-1557170334-a9086d21c1f4?w=600&q=80&auto=format&fit=crop" },
+];
+
 function Index() {
   const navLinks = ["Story", "Products", "Help", "Support"];
   const [scrollY, setScrollY] = useState(0);
@@ -216,7 +231,75 @@ function Index() {
           </div>
         </div>
 
-        {/* LOCATION */}
+        {/* FULL CATALOG GRID */}
+        <div className="max-w-6xl mx-auto mt-32">
+          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+            <div>
+              <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+                Loja
+              </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight max-w-2xl">
+                Perfumes árabes em destaque
+              </h2>
+            </div>
+            <a
+              href="https://share.google/OkcIQzpngPsggMKWr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] font-medium text-amber-400 hover:text-amber-300 transition-colors"
+            >
+              Ver todos →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {catalogProducts.map((p) => (
+              <article
+                key={p.name}
+                className="group relative flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/40 transition-all duration-300 overflow-hidden"
+              >
+                <div className="relative aspect-square bg-gradient-to-br from-[#1a0f0a] to-[#0a0506] flex items-center justify-center overflow-hidden">
+                  {p.discount && (
+                    <span className="absolute top-3 left-3 z-10 text-[10px] font-bold tracking-wider px-2 py-1 rounded bg-amber-500 text-black">
+                      {p.discount}
+                    </span>
+                  )}
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
+                <div className="p-4 flex flex-col flex-1">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-1">
+                    {p.brand}
+                  </p>
+                  <h3 className="text-[14px] font-medium text-white leading-tight mb-3 line-clamp-2 min-h-[2.5em]">
+                    {p.name}
+                  </h3>
+                  <div className="mt-auto">
+                    {p.oldPrice && (
+                      <p className="text-[11px] text-white/40 line-through">
+                        {p.oldPrice}
+                      </p>
+                    )}
+                    <p className="text-[16px] font-semibold text-amber-400 mb-3">
+                      {p.price}
+                    </p>
+                    <button
+                      type="button"
+                      className="w-full text-[11px] font-semibold tracking-wider uppercase bg-amber-500 text-black rounded-md py-2.5 hover:bg-amber-400 transition-colors"
+                    >
+                      Comprar
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <div className="max-w-6xl mx-auto mt-32 grid md:grid-cols-2 gap-10 items-center">
           <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <img
