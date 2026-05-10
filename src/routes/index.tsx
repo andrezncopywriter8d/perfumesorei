@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BadgePercent, Banknote, CreditCard, TicketPercent, Truck } from "lucide-react";
+import { Banknote, CreditCard, Truck } from "lucide-react";
 import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
@@ -191,6 +191,15 @@ function formatCurrency(value: number) {
   });
 }
 
+function isIOSDevice() {
+  if (typeof navigator === "undefined") return false;
+
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+}
+
 function PixIcon({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -251,17 +260,6 @@ function PriceCard({
             {pixPrice} <span className="text-[14px] font-semibold">sem juros</span>
           </span>
         </div>
-      </div>
-
-      <div className="mt-4 grid grid-cols-2 gap-2">
-        <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-amber-300/45 bg-[linear-gradient(180deg,rgba(255,230,0,0.16),rgba(255,255,255,0.04))] px-2 text-center text-[12px] font-extrabold text-amber-50">
-          <BadgePercent className="h-4 w-4 text-yellow-500" strokeWidth={2.8} />
-          7% OFF Saldo
-        </span>
-        <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-amber-300/45 bg-[linear-gradient(180deg,rgba(255,230,0,0.16),rgba(255,255,255,0.04))] px-2 text-center text-[12px] font-extrabold text-amber-50">
-          <TicketPercent className="h-4 w-4 text-yellow-500" strokeWidth={2.8} />
-          Cupom R$ 15
-        </span>
       </div>
 
       <div className="mt-4 flex min-h-14 items-center justify-center gap-3 rounded-2xl border border-emerald-300/22 bg-[linear-gradient(180deg,rgba(0,166,80,0.18),rgba(0,166,80,0.08))] px-4 text-[#00d26a]">
@@ -374,7 +372,7 @@ function Index() {
 export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
   const [search, setSearch] = useState("");
   const [genderFilter, setGenderFilter] = useState<GenderFilter>("todos");
-  const [heroVideoFallback, setHeroVideoFallback] = useState(false);
+  const [heroVideoFallback, setHeroVideoFallback] = useState(true);
   const catalogRef = useRef<HTMLDivElement>(null);
   const filteredProducts = catalogProducts.filter((p) => {
     const gender = productGenders[p.name] ?? "unissex";
@@ -384,6 +382,10 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
 
     return matchesSearch && matchesGender;
   });
+
+  useEffect(() => {
+    setHeroVideoFallback(isIOSDevice());
+  }, []);
 
   return (
     <div className="relative bg-[#070403] text-white">
