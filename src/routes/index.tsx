@@ -1,34 +1,62 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 function Reveal({
   children,
-  delay = 0,
-  y = 40,
   className,
+  y = 80,
+  scale = 0.96,
 }: {
   children: ReactNode;
-  delay?: number;
-  y?: number;
   className?: string;
+  y?: number;
+  scale?: number;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { y, opacity: 0, scale, filter: "blur(8px)" },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          filter: "blur(0px)",
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            end: "top 45%",
+            scrub: 1.2,
+          },
+        }
+      );
+    }, el);
+    return () => ctx.revert();
+  }, [y, scale]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
+    <div ref={ref} className={className}>
       {children}
-    </motion.div>
+    </div>
   );
 }
+
 
 function SectionDivider({ label }: { label: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -281,7 +309,7 @@ function Index() {
           </h2>
         </Reveal>
 
-        <div className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee">
+        <Reveal y={50} className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee">
           <div className="flex gap-6 w-max animate-[marquee_40s_linear_infinite] group-hover/marquee:[animation-play-state:paused] px-6">
             {[...perfumes, ...perfumes].map((p, idx) => (
               <GlowCard
@@ -315,40 +343,42 @@ function Index() {
               </GlowCard>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        <ContainerScroll
-          titleComponent={
-            <div className="mb-4">
-              <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
-                Em movimento
-              </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight max-w-2xl mx-auto">
-                Veja as fragrâncias por dentro.
-              </h2>
-            </div>
-          }
-        >
-          <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 h-full">
-            {["/catalog-1.mp4", "/catalog-2.mp4", "/catalog-3.mp4"].map((src) => (
-              <div
-                key={src}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 aspect-[9/16] shadow-xl"
-              >
-                <video
-                  src={src}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <Reveal y={70}>
+          <ContainerScroll
+            titleComponent={
+              <div className="mb-4">
+                <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+                  Em movimento
+                </p>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight max-w-2xl mx-auto">
+                  Veja as fragrâncias por dentro.
+                </h2>
               </div>
-            ))}
-          </div>
-        </ContainerScroll>
+            }
+          >
+            <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 h-full">
+              {["/catalog-1.mp4", "/catalog-2.mp4", "/catalog-3.mp4"].map((src) => (
+                <div
+                  key={src}
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 aspect-[9/16] shadow-xl"
+                >
+                  <video
+                    src={src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                </div>
+              ))}
+            </div>
+          </ContainerScroll>
+        </Reveal>
 
         <SectionDivider label="Coleção" />
 
@@ -376,7 +406,7 @@ function Index() {
             />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
+          <Reveal y={50} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
             {filteredProducts.map((p) => (
               <article
                 key={p.name}
@@ -410,7 +440,7 @@ function Index() {
                 </div>
               </article>
             ))}
-          </div>
+          </Reveal>
 
           {filteredProducts.length === 0 && (
             <p className="text-center text-white/50 mt-10 text-[14px]">
@@ -442,7 +472,7 @@ function Index() {
               loading="lazy"
             />
           </Reveal>
-          <Reveal y={60} delay={0.15}>
+          <Reveal y={60}>
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
               Visite nossa loja
             </p>
