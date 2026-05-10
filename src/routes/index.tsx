@@ -116,40 +116,28 @@ function Index() {
   return (
     <div className="relative bg-gradient-to-br from-[#1a0f0a] via-[#2a1810] to-[#0a0506] text-white">
       {/* HERO */}
-      <section
-        className="relative min-h-screen overflow-hidden flex items-center"
-        style={{
-          background:
-            "radial-gradient(circle at 85% 45%, rgba(160,87,12,0.42), transparent 32%), linear-gradient(90deg, #020202 0%, #050202 55%, #170b02 100%)",
-        }}
-      >
-        {/* warm glow */}
+      <section className="relative min-h-screen w-full overflow-hidden bg-[#020202] text-white flex items-center justify-center">
+        {/* warm amber glow behind lion (right side) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-0 -right-[10%] w-[55%] h-full blur-3xl z-[1]"
+          className="pointer-events-none absolute top-0 -right-[10%] w-[55%] h-full blur-2xl z-[1]"
           style={{
             background:
-              "radial-gradient(circle, rgba(218,130,22,0.28), transparent 65%)",
+              "radial-gradient(circle at 70% 45%, rgba(198,111,18,0.35), rgba(62,27,4,0.12) 35%, transparent 70%)",
           }}
         />
 
-        {/* lion */}
+        {/* lion — subtle, right side only */}
         <img
           src="/lion.png"
           alt=""
           aria-hidden="true"
-          className="absolute right-0 top-0 h-full w-[85%] sm:w-[75%] md:w-[65%] object-cover object-left z-[2] pointer-events-none"
-          style={{
-            opacity: 1,
-            maskImage:
-              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 12%, #000 30%, #000 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 12%, #000 30%, #000 100%)",
-          }}
+          className="absolute right-0 top-[8%] h-[55vh] md:h-[78vh] max-w-[85vw] md:max-w-[42vw] w-auto object-contain object-right opacity-[0.18] md:opacity-[0.28] z-[2] pointer-events-none"
+          style={{ filter: "saturate(0.95) contrast(1.05)" }}
         />
 
-        {/* product video */}
-        <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[50%] md:-translate-x-[40%] z-[4] pointer-events-none h-[55vh] sm:h-[65vh] md:h-[72vh] max-h-[720px] aspect-square">
+        {/* product video — centered */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] pointer-events-none h-[43vh] md:h-[66vh] max-h-[720px] aspect-square">
           <video
             autoPlay
             muted
@@ -157,46 +145,33 @@ function Index() {
             playsInline
             preload="auto"
             className="w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out]"
-            style={{ filter: "drop-shadow(0 40px 55px rgba(0,0,0,0.75))" }}
+            style={{ filter: "drop-shadow(0 35px 55px rgba(0,0,0,0.75))" }}
           >
             <source src="/perfume.webm" type="video/webm" />
           </video>
         </div>
 
-        {/* bottom fade to hide product base */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[35%] z-[3]"
-          style={{
-            background:
-              "linear-gradient(to top, #020202 0%, rgba(2,2,2,0.85) 35%, transparent 100%)",
-          }}
-        />
-
-        {/* content */}
-        <div className="relative z-[5] w-full px-6 sm:px-12 md:px-20 lg:px-28">
-          <div className="max-w-[460px] mt-auto md:mt-[42vh]">
-            <span className="block text-[14px] font-semibold text-blue-500 mb-4">
-              Coleção exclusiva 2026 —
-            </span>
-            <h1 className="text-[38px] sm:text-[48px] md:text-[56px] lg:text-[62px] leading-[0.98] font-extrabold tracking-[-0.04em] text-white mb-5 drop-shadow-lg">
-              Fragrâncias árabes
-              <br />
-              que contam histórias
-              <br />
-              eternas.
-            </h1>
-            <p className="text-white/70 text-[17px] mb-7">
-              Descubra a essência do oriente.
-            </p>
-            <a
-              href="#catalog"
-              className="inline-flex items-center gap-2 text-[14px] font-semibold text-blue-500 border-[1.5px] border-blue-500 rounded-full px-7 py-3.5 hover:bg-blue-500 hover:text-white hover:shadow-[0_0_30px_rgba(0,120,255,0.35)] transition-all duration-300"
-            >
-              Ver catálogo
-              <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-            </a>
-          </div>
+        {/* content — bottom-left */}
+        <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[6vw] md:right-auto md:bottom-[9vh] md:max-w-[420px]">
+          <span className="block text-[12px] md:text-[13px] font-semibold text-blue-500 mb-3 md:mb-4">
+            Coleção exclusiva 2026 —
+          </span>
+          <h1
+            className="text-white font-extrabold tracking-[-0.04em] mb-5 max-w-[340px] md:max-w-[430px]"
+            style={{ fontSize: "clamp(32px, 3.4vw, 56px)", lineHeight: 1.02 }}
+          >
+            Fragrâncias árabes que contam histórias eternas.
+          </h1>
+          <p className="text-white/70 text-[15px] md:text-[16px] leading-[1.5] mb-6">
+            Descubra a essência do oriente.
+          </p>
+          <a
+            href="#catalog"
+            className="inline-flex items-center gap-2 text-[14px] font-semibold text-blue-500 border-[1.5px] border-blue-500 rounded-full px-6 py-3 hover:bg-blue-500 hover:text-white hover:shadow-[0_0_28px_rgba(0,120,255,0.35)] transition-all duration-300"
+          >
+            Ver catálogo
+            <span>→</span>
+          </a>
         </div>
       </section>
 
