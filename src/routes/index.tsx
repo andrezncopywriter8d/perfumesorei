@@ -28,8 +28,114 @@ import khamrahImg from "@/assets/khamrah.png";
 import voujePartyImg from "@/assets/vouje-party.png";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-...
-const perfumes: { name: string; brand: string; notes: string; price: string; gradient: string; image?: string }[] = [
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+function Reveal({
+  children,
+  className,
+  y = 80,
+  scale = 0.96,
+}: {
+  children: ReactNode;
+  className?: string;
+  y?: number;
+  scale?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { y, opacity: 0, scale, filter: "blur(8px)" },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          filter: "blur(0px)",
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            end: "top 45%",
+            scrub: 1.2,
+          },
+        }
+      );
+    }, el);
+    return () => ctx.revert();
+  }, [y, scale]);
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}
+
+function SectionDivider({ label }: { label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [0, 1, 1, 0]);
+  const lineScale = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 1]);
+
+  return (
+    <div
+      ref={ref}
+      className="relative h-[40vh] overflow-hidden bg-[#070403] flex items-center"
+    >
+      <motion.div
+        className="whitespace-nowrap text-[14vw] md:text-[10vw] font-light tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200/20 via-amber-400/40 to-amber-700/10 select-none pointer-events-none"
+        style={{
+          x,
+          opacity,
+          fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
+        }}
+      >
+        {label} — {label} — {label}
+      </motion.div>
+      <motion.div
+        style={{ scaleX: lineScale }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[60%] h-px origin-left bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"
+      />
+    </div>
+  );
+}
+
+const glowColors = ["orange", "orange", "red", "orange", "orange", "red"] as const;
+
+export const Route = createFileRoute("/")({
+  component: Index,
+});
+
+function Logo() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 256 256" fill="none">
+      <path
+        fill="rgb(84, 84, 84)"
+        d="M 160 88 L 194 34 L 216 0 L 256 0 L 256 40 L 221.5 93.5 L 200 128 L 256 128 L 256 256 L 96 256 L 96 168 L 64.246 220 L 40 256 L 0 256 L 0 216 L 34 162 L 56 128 L 0 128 L 0 0 L 160 0 Z"
+      />
+    </svg>
+  );
+}
+
+const perfumes: {
+  name: string;
+  brand: string;
+  notes: string;
+  price: string;
+  gradient: string;
+  image?: string;
+}[] = [
   {
     name: "Asad",
     brand: "Lattafa",
@@ -143,9 +249,7 @@ function Index() {
 
   return (
     <div className="relative bg-[#070403] text-white">
-      {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden bg-[#070403] text-white">
-        {/* soft golden atmosphere on the right */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-[1]"
@@ -163,7 +267,6 @@ function Index() {
           }}
         />
 
-        {/* lion — subtle background texture, fully faded into black */}
         <img
           src="/lion.png"
           alt=""
@@ -180,7 +283,6 @@ function Index() {
           }}
         />
 
-        {/* darken left + bottom to anchor text and merge lion + seamless fade into next section */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-[3]"
@@ -190,7 +292,6 @@ function Index() {
           }}
         />
 
-        {/* product video — hero protagonist */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[54%] md:-translate-y-1/2 z-[4] pointer-events-none h-[44vh] md:h-[80vh] max-h-[840px] aspect-square">
           <video
             autoPlay
@@ -208,7 +309,6 @@ function Index() {
           </video>
         </div>
 
-        {/* content — bottom-left, refined hierarchy */}
         <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[7vw] md:right-auto md:bottom-[10vh] md:max-w-[480px]">
           <span className="block text-[11px] md:text-[12px] font-medium text-amber-400/90 mb-4 md:mb-5 tracking-[0.18em] uppercase">
             Coleção exclusiva 2026
@@ -225,7 +325,9 @@ function Index() {
             <br />
             que contam histórias
             <br />
-            <em className="italic font-normal bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">eternas.</em>
+            <em className="italic font-normal bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
+              eternas.
+            </em>
           </h1>
           <p className="text-white/55 text-[14px] md:text-[15px] leading-[1.6] mb-8 max-w-[360px] tracking-wide">
             Descubra a essência do oriente.
@@ -240,9 +342,6 @@ function Index() {
         </div>
       </section>
 
-      
-
-      {/* CATALOG with parallax */}
       <section
         id="catalog"
         ref={catalogRef}
@@ -274,7 +373,7 @@ function Index() {
                   <img
                     src={p.image}
                     alt={p.name}
-                    className="absolute inset-0 w-full h-full object-cover -z-10 opacity-95 group-hover:scale-105 transition-transform duration-700"
+                    className="absolute inset-0 w-full h-full object-contain p-4 -z-10 opacity-95 group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
                 )}
@@ -290,9 +389,7 @@ function Index() {
                     <span className="text-lg font-medium">{p.price}</span>
                     <span className="inline-flex items-center gap-1 text-[12px] font-medium border border-white/40 rounded-full px-3 py-1.5 group-hover:bg-white group-hover:text-black transition-all">
                       Comprar
-                      <span className="group-hover:translate-x-0.5 transition-transform">
-                        →
-                      </span>
+                      <span className="group-hover:translate-x-0.5 transition-transform">→</span>
                     </span>
                   </div>
                 </div>
@@ -336,9 +433,6 @@ function Index() {
           </ContainerScroll>
         </Reveal>
 
-        
-
-        {/* FULL CATALOG GRID */}
         <div className="max-w-6xl mx-auto mt-12">
           <Reveal className="mb-10 text-center">
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
@@ -347,9 +441,7 @@ function Index() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-3">
               O Rei do Importado Perfumes
             </h2>
-            <p className="text-white/60 text-[14px]">
-              Perfumes importados disponíveis
-            </p>
+            <p className="text-white/60 text-[14px]">Perfumes importados disponíveis</p>
           </Reveal>
 
           <div className="max-w-md mx-auto mb-10">
@@ -392,9 +484,7 @@ function Index() {
                     {p.name}
                   </h3>
                   <div className="mt-auto">
-                    <p className="text-[18px] font-bold text-amber-400 mb-3">
-                      {p.price}
-                    </p>
+                    <p className="text-[18px] font-bold text-amber-400 mb-3">{p.price}</p>
                     <a
                       href={INSTAGRAM_URL}
                       target="_blank"
@@ -467,7 +557,6 @@ function Index() {
       </section>
 
       <CinematicFooter />
-
     </div>
   );
 }
