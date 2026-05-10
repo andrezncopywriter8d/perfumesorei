@@ -116,6 +116,7 @@ const perfumes = [
     notes: "Âmbar · Baunilha · Madeira",
     price: "R$ 289",
     gradient: "from-amber-900 via-yellow-900 to-[#1a0f0a]",
+    image: asadImg,
   },
   {
     name: "Yara",
