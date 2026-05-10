@@ -186,6 +186,35 @@ function Index() {
           </div>
         </div>
 
+        {/* VIDEO CATALOG */}
+        <div className="max-w-6xl mx-auto mt-32">
+          <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+            Em movimento
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-10 max-w-2xl">
+            Veja as fragrâncias por dentro.
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            {["/catalog-1.mp4", "/catalog-2.mp4", "/catalog-3.mp4"].map((src) => (
+              <div
+                key={src}
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 aspect-[9/16] shadow-xl"
+              >
+                <video
+                  src={src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* LOCATION */}
         <div className="max-w-6xl mx-auto mt-32 grid md:grid-cols-2 gap-10 items-center">
           <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
