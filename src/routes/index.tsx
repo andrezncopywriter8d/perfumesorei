@@ -25,7 +25,7 @@ function Index() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover animate-[fadeIn_1.2s_ease-in-out]"
+        className="absolute inset-0 w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out]"
         src="/perfume.mp4"
       />
 
