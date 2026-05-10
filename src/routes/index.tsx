@@ -411,7 +411,7 @@ function Index() {
           <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
             Catálogo
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight max-w-4xl">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight max-w-4xl break-words [overflow-wrap:anywhere]">
             Os Mais Vendidos do @oreidoimportadoperfumes
           </h2>
         </Reveal>
@@ -436,7 +436,7 @@ function Index() {
                   <img
                     src={p.image}
                     alt={p.name}
-                    className="absolute inset-0 w-full h-full object-contain p-4 -z-10 opacity-95 group-hover:scale-105 transition-transform duration-700"
+                    className="absolute inset-0 w-full h-full object-contain p-1 -z-10 opacity-95 scale-[1.16] group-hover:scale-[1.2] transition-transform duration-700"
                     loading="lazy"
                   />
                 )}
@@ -571,7 +571,7 @@ function Index() {
                     aria-hidden="true"
                     className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-amber-100/32 to-transparent"
                   />
-                  <div className="relative mx-3 mt-3 aspect-[1/1.08] bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.12),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.055),rgba(22,17,13,0.8)_52%,rgba(0,0,0,0.34))] flex flex-col items-center justify-center overflow-hidden rounded-[1.05rem] border border-white/10">
+                  <div className="relative mx-2.5 mt-2.5 aspect-[1/1.03] bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.12),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.055),rgba(22,17,13,0.8)_52%,rgba(0,0,0,0.34))] flex flex-col items-center justify-center overflow-hidden rounded-[1.05rem] border border-white/10">
                     <div
                       aria-hidden="true"
                       className="absolute inset-x-10 bottom-5 h-10 rounded-full bg-amber-200/18 blur-2xl"
@@ -581,7 +581,7 @@ function Index() {
                         src={productImages[p.name]}
                         alt={p.name}
                         loading="lazy"
-                        className="relative z-10 h-[108%] w-[108%] object-contain p-0 drop-shadow-[0_26px_24px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:scale-[1.08]"
+                        className="relative z-10 h-[138%] w-[138%] object-contain p-0 drop-shadow-[0_28px_26px_rgba(0,0,0,0.58)] transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                     ) : (
                       <>
