@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 
-const glowColors = ["orange", "purple", "red", "blue", "orange", "purple"] as const;
+const glowColors = ["orange", "orange", "red", "orange", "orange", "red"] as const;
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -25,42 +25,42 @@ const perfumes = [
     brand: "Lattafa",
     notes: "Âmbar · Baunilha · Madeira",
     price: "R$ 289",
-    gradient: "from-amber-900 via-yellow-800 to-black",
+    gradient: "from-amber-900 via-yellow-900 to-[#1a0f0a]",
   },
   {
     name: "Yara",
     brand: "Lattafa",
     notes: "Tangerina · Orquídea · Almíscar",
     price: "R$ 249",
-    gradient: "from-pink-900 via-rose-800 to-purple-950",
+    gradient: "from-amber-800 via-orange-950 to-[#1a0f0a]",
   },
   {
     name: "Khamrah",
     brand: "Lattafa",
     notes: "Canela · Tâmara · Praliné",
     price: "R$ 329",
-    gradient: "from-orange-900 via-red-900 to-amber-950",
+    gradient: "from-orange-900 via-amber-950 to-[#0a0506]",
   },
   {
     name: "Oud Mood",
     brand: "Lattafa",
     notes: "Oud · Açafrão · Patchouli",
     price: "R$ 369",
-    gradient: "from-stone-800 via-neutral-900 to-black",
+    gradient: "from-[#3a2418] via-[#1a0f0a] to-black",
   },
   {
     name: "Fakhar",
     brand: "Lattafa",
     notes: "Maçã · Damasco · Couro",
     price: "R$ 279",
-    gradient: "from-yellow-900 via-amber-800 to-stone-900",
+    gradient: "from-yellow-900 via-amber-900 to-[#1a0f0a]",
   },
   {
     name: "Bade'e Al Oud",
     brand: "Lattafa",
     notes: "Açafrão · Rosa · Oud",
     price: "R$ 419",
-    gradient: "from-purple-950 via-indigo-950 to-black",
+    gradient: "from-amber-950 via-[#2a1810] to-black",
   },
 ];
 
