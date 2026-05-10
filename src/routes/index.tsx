@@ -85,7 +85,9 @@ const catalogProducts: { name: string; brand: string; price: string; oldPrice?: 
 function Index() {
   const navLinks = ["Story", "Products", "Help", "Support"];
   const [scrollY, setScrollY] = useState(0);
+  const [genderFilter, setGenderFilter] = useState<"todos" | Gender>("todos");
   const catalogRef = useRef<HTMLDivElement>(null);
+  const filteredProducts = genderFilter === "todos" ? catalogProducts : catalogProducts.filter((p) => p.gender === genderFilter);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
