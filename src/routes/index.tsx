@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
+import asadImg from "@/assets/asad.png";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
@@ -108,13 +109,14 @@ function Logo() {
   );
 }
 
-const perfumes = [
+const perfumes: { name: string; brand: string; notes: string; price: string; gradient: string; image?: string }[] = [
   {
     name: "Asad",
     brand: "Lattafa",
     notes: "Âmbar · Baunilha · Madeira",
     price: "R$ 289",
     gradient: "from-amber-900 via-yellow-900 to-[#1a0f0a]",
+    image: asadImg,
   },
   {
     name: "Yara",
@@ -154,6 +156,10 @@ const perfumes = [
 ];
 
 const INSTAGRAM_URL = "https://www.instagram.com/oreidoimportadoperfumes/";
+
+const productImages: Record<string, string> = {
+  ASAD: asadImg,
+};
 
 const catalogProducts: { name: string; price: string }[] = [
   { name: "ASAD", price: "R$ 200,00" },
@@ -322,6 +328,14 @@ function Index() {
                   className={`absolute inset-0 -z-10 bg-gradient-to-br ${p.gradient} rounded-2xl group-hover:scale-105 transition-transform duration-700`}
                 />
                 <div className="absolute inset-0 -z-10 bg-black/20 rounded-2xl group-hover:bg-black/10 transition-colors duration-500" />
+                {p.image && (
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="absolute inset-0 w-full h-full object-contain p-6 -z-10 opacity-90 group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
+                    loading="lazy"
+                  />
+                )}
                 <div className="relative z-10 text-white">
                   <p className="text-[10px] uppercase tracking-[0.2em] opacity-70">
                     {p.brand}
@@ -413,12 +427,23 @@ function Index() {
                 className="group relative flex flex-col rounded-2xl border border-amber-400/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 overflow-hidden"
               >
                 <div className="relative aspect-square bg-gradient-to-br from-[#1a0f0a] via-[#0f0805] to-[#0a0506] flex flex-col items-center justify-center overflow-hidden border-b border-amber-400/10">
-                  <div className="w-12 h-12 rounded-full border border-amber-400/40 flex items-center justify-center mb-3">
-                    <span className="text-amber-400 text-lg">✦</span>
-                  </div>
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400/70">
-                    Imagem em breve
-                  </span>
+                  {productImages[p.name] ? (
+                    <img
+                      src={productImages[p.name]}
+                      alt={p.name}
+                      loading="lazy"
+                      className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <>
+                      <div className="w-12 h-12 rounded-full border border-amber-400/40 flex items-center justify-center mb-3">
+                        <span className="text-amber-400 text-lg">✦</span>
+                      </div>
+                      <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400/70">
+                        Imagem em breve
+                      </span>
+                    </>
+                  )}
                 </div>
                 <div className="p-4 sm:p-5 flex flex-col flex-1">
                   <h3 className="text-[14px] sm:text-[15px] font-semibold text-white leading-tight mb-3 min-h-[2.5em]">
