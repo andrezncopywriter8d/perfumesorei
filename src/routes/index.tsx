@@ -117,28 +117,45 @@ function Index() {
   return (
     <div className="relative bg-gradient-to-br from-[#1a0f0a] via-[#2a1810] to-[#0a0506] text-white">
       {/* HERO */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#020202] text-white flex items-center justify-center">
-        {/* warm amber glow behind lion (right side) */}
+      <section className="relative min-h-screen w-full overflow-hidden bg-[#020202] text-white">
+        {/* warm amber glow on the right */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-0 -right-[10%] w-[55%] h-full blur-2xl z-[1]"
+          className="pointer-events-none absolute inset-y-0 right-0 w-[65%] z-[1]"
           style={{
             background:
-              "radial-gradient(circle at 70% 45%, rgba(198,111,18,0.35), rgba(62,27,4,0.12) 35%, transparent 70%)",
+              "radial-gradient(ellipse 70% 80% at 75% 50%, rgba(214,135,30,0.45), rgba(120,60,10,0.18) 40%, transparent 75%)",
           }}
         />
 
-        {/* lion — subtle, right side only */}
+        {/* lion — fully integrated background, faded edges */}
         <img
           src="/lion.png"
           alt=""
           aria-hidden="true"
-          className="absolute right-0 top-[8%] h-[55vh] md:h-[78vh] max-w-[85vw] md:max-w-[42vw] w-auto object-contain object-right opacity-[0.18] md:opacity-[0.28] z-[2] pointer-events-none"
-          style={{ filter: "saturate(0.95) contrast(1.05)" }}
+          className="absolute right-0 top-1/2 -translate-y-1/2 h-[60vh] md:h-[82vh] w-auto max-w-none z-[2] pointer-events-none select-none"
+          style={{
+            opacity: 0.55,
+            filter: "saturate(0.9) contrast(1.05) brightness(0.95)",
+            maskImage:
+              "radial-gradient(ellipse 70% 80% at 70% 50%, #000 35%, rgba(0,0,0,0.6) 60%, transparent 90%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 70% 80% at 70% 50%, #000 35%, rgba(0,0,0,0.6) 60%, transparent 90%)",
+          }}
         />
 
-        {/* product video — centered */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] pointer-events-none h-[43vh] md:h-[66vh] max-h-[720px] aspect-square">
+        {/* extra dark vignette to merge lion into bg */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-[3]"
+          style={{
+            background:
+              "linear-gradient(to right, #020202 0%, rgba(2,2,2,0.4) 35%, transparent 60%, transparent 100%), linear-gradient(to top, #020202 0%, transparent 25%)",
+          }}
+        />
+
+        {/* product video — centered, large */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] pointer-events-none h-[50vh] md:h-[78vh] max-h-[820px] aspect-square">
           <video
             autoPlay
             muted
@@ -146,22 +163,26 @@ function Index() {
             playsInline
             preload="auto"
             className="w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out]"
-            style={{ filter: "drop-shadow(0 35px 55px rgba(0,0,0,0.75))" }}
+            style={{ filter: "drop-shadow(0 40px 60px rgba(0,0,0,0.85))" }}
           >
             <source src="/perfume.webm" type="video/webm" />
           </video>
         </div>
 
         {/* content — bottom-left */}
-        <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[6vw] md:right-auto md:bottom-[9vh] md:max-w-[420px]">
-          <span className="block text-[12px] md:text-[13px] font-semibold text-blue-500 mb-3 md:mb-4">
+        <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[6vw] md:right-auto md:bottom-[9vh] md:max-w-[460px]">
+          <span className="block text-[12px] md:text-[13px] font-semibold text-blue-500 mb-3 md:mb-4 tracking-wide">
             Coleção exclusiva 2026 —
           </span>
           <h1
-            className="text-white font-extrabold tracking-[-0.04em] mb-5 max-w-[340px] md:max-w-[430px]"
-            style={{ fontSize: "clamp(32px, 3.4vw, 56px)", lineHeight: 1.02 }}
+            className="text-white font-extrabold tracking-[-0.035em] mb-5"
+            style={{ fontSize: "clamp(34px, 3.6vw, 58px)", lineHeight: 1.02 }}
           >
-            Fragrâncias árabes que contam histórias eternas.
+            Fragrâncias árabes
+            <br />
+            que contam histórias
+            <br />
+            eternas.
           </h1>
           <p className="text-white/70 text-[15px] md:text-[16px] leading-[1.5] mb-6">
             Descubra a essência do oriente.
