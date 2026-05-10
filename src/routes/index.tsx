@@ -109,7 +109,7 @@ function Logo() {
   );
 }
 
-const perfumes = [
+const perfumes: { name: string; brand: string; notes: string; price: string; gradient: string; image?: string }[] = [
   {
     name: "Asad",
     brand: "Lattafa",
