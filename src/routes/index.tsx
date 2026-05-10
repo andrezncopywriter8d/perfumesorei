@@ -440,7 +440,7 @@ function Index() {
                 </div>
               </article>
             ))}
-          </div>
+          </Reveal>
 
           {filteredProducts.length === 0 && (
             <p className="text-center text-white/50 mt-10 text-[14px]">
