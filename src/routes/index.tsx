@@ -324,6 +324,14 @@ function Index() {
                   className={`absolute inset-0 -z-10 bg-gradient-to-br ${p.gradient} rounded-2xl group-hover:scale-105 transition-transform duration-700`}
                 />
                 <div className="absolute inset-0 -z-10 bg-black/20 rounded-2xl group-hover:bg-black/10 transition-colors duration-500" />
+                {p.image && (
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="absolute inset-0 w-full h-full object-contain p-6 -z-10 opacity-90 group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
+                    loading="lazy"
+                  />
+                )}
                 <div className="relative z-10 text-white">
                   <p className="text-[10px] uppercase tracking-[0.2em] opacity-70">
                     {p.brand}
