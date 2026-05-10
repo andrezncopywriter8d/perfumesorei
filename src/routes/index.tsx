@@ -66,28 +66,46 @@ const perfumes = [
   },
 ];
 
-type Gender = "masculino" | "feminino";
-const catalogProducts: { name: string; brand: string; price: string; oldPrice?: string; discount?: string; image: string; gender: Gender }[] = [
-  { name: "Armaf Club de Nuit Intense Man", brand: "Armaf", price: "R$ 299,00", oldPrice: "R$ 349,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa Raghba Black", brand: "Lattafa", price: "R$ 279,00", image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa Khamrah Gold", brand: "Lattafa", price: "R$ 329,00", oldPrice: "R$ 389,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
-  { name: "Fragrance World Erotica Amor", brand: "Fragrance World", price: "R$ 329,00", image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
-  { name: "Stella Dustin Tycoon Intense Man", brand: "Stella Dustin", price: "R$ 269,00", oldPrice: "R$ 319,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa Tagheer Khanjar", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1610461888750-10bfc601b874?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Al Wataniah Yara Vivid", brand: "Al Wataniah", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59d75?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
-  { name: "Afnan 9 PM Pure", brand: "Afnan", price: "R$ 289,00", image: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa The Kingdom Men", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Al Wataniah Sheikh Oud", brand: "Al Wataniah", price: "R$ 229,00", image: "https://images.unsplash.com/photo-1605651531144-51381895e23d?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa Bade'e Al Oud Amethyst", brand: "Lattafa", price: "R$ 339,00", oldPrice: "R$ 389,00", discount: "13% OFF", image: "https://images.unsplash.com/photo-1592914610354-fd354ea45e48?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
-  { name: "Afnan Supremacy Not Only Intense", brand: "Afnan", price: "R$ 419,00", oldPrice: "R$ 489,00", discount: "14% OFF", image: "https://images.unsplash.com/photo-1557170334-a9086d21c1f4?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
+const INSTAGRAM_URL = "https://www.instagram.com/oreidoimportadoperfumes/";
+
+const catalogProducts: { name: string; price: string }[] = [
+  { name: "ASAD", price: "R$ 200,00" },
+  { name: "ASA BURBON", price: "R$ 320,00" },
+  { name: "ASAD ELIXIR", price: "R$ 320,00" },
+  { name: "YARA ROSE", price: "R$ 200,00" },
+  { name: "YARA TOUS", price: "R$ 200,00" },
+  { name: "YARA ELIXIR", price: "R$ 320,00" },
+  { name: "LIQUID BRUN", price: "R$ 370,00" },
+  { name: "FAKAR GOLD", price: "R$ 220,00" },
+  { name: "FAKHAR BLACK", price: "R$ 240,00" },
+  { name: "FAKAR ROSE", price: "R$ 240,00" },
+  { name: "FAKAR PLATINUM", price: "R$ 190,00" },
+  { name: "ATTAR AL WESAL", price: "R$ 180,00" },
+  { name: "KHAMRAH", price: "R$ 210,00" },
+  { name: "VOUJE PARTY", price: "R$ 190,00" },
+  { name: "EL FURSON", price: "R$ 180,00" },
+  { name: "AL NOBLE WAZEER", price: "R$ 320,00" },
+  { name: "MEITE", price: "R$ 200,00" },
+  { name: "ANEESA", price: "R$ 200,00" },
+  { name: "RAVE AU SOLEIL", price: "R$ 220,00" },
+  { name: "CLUB DE NOIRL INTENSE", price: "R$ 330,00" },
+  { name: "CLUB DE NOIRL WOMEN", price: "R$ 310,00" },
+  { name: "APELT DIL", price: "R$ 210,00" },
+  { name: "AVANT PERFUME", price: "R$ 200,00" },
+  { name: "TORO", price: "R$ 190,00" },
+  { name: "SABAH AL", price: "R$ 190,00" },
+  { name: "VULCAN FEU", price: "R$ 420,00" },
+  { name: "DURRAT", price: "R$ 190,00" },
+  { name: "AMBER", price: "R$ 570,00" },
 ];
 
 function Index() {
-  const navLinks = ["Story", "Products", "Help", "Support"];
   const [scrollY, setScrollY] = useState(0);
-  const [genderFilter, setGenderFilter] = useState<"todos" | Gender>("todos");
+  const [search, setSearch] = useState("");
   const catalogRef = useRef<HTMLDivElement>(null);
-  const filteredProducts = genderFilter === "todos" ? catalogProducts : catalogProducts.filter((p) => p.gender === genderFilter);
+  const filteredProducts = catalogProducts.filter((p) =>
+    p.name.toLowerCase().includes(search.trim().toLowerCase())
+  );
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -269,95 +287,83 @@ function Index() {
 
         {/* FULL CATALOG GRID */}
         <div className="max-w-6xl mx-auto mt-32">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
-            <div>
-              <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
-                Loja
-              </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight max-w-2xl">
-                Perfumes árabes em destaque
-              </h2>
-            </div>
-            <a
-              href="https://share.google/OkcIQzpngPsggMKWr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[12px] font-medium text-amber-400 hover:text-amber-300 transition-colors"
-            >
-              Ver todos →
-            </a>
+          <div className="mb-10 text-center">
+            <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+              Catálogo
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight mb-3">
+              O Rei do Importado Perfumes
+            </h2>
+            <p className="text-white/60 text-[14px]">
+              Perfumes importados disponíveis
+            </p>
           </div>
 
-          <div className="flex flex-wrap gap-3 mb-8">
-            {([
-              { key: "todos", label: "Todos" },
-              { key: "masculino", label: "Masculinos" },
-              { key: "feminino", label: "Femininos" },
-            ] as const).map((opt) => {
-              const active = genderFilter === opt.key;
-              return (
-                <button
-                  key={opt.key}
-                  type="button"
-                  onClick={() => setGenderFilter(opt.key)}
-                  className={`text-[12px] font-semibold tracking-wider uppercase rounded-full px-5 py-2.5 border transition-all duration-200 ${
-                    active
-                      ? "bg-amber-500 text-black border-amber-500 shadow-lg shadow-amber-500/20"
-                      : "text-amber-300 border-amber-400/40 hover:bg-amber-400/10 hover:border-amber-400"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              );
-            })}
+          <div className="max-w-md mx-auto mb-10">
+            <input
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Buscar perfume..."
+              className="w-full bg-white/[0.04] border border-amber-400/30 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20 rounded-full px-5 py-3 text-[14px] text-white placeholder:text-white/40 transition-all"
+            />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
             {filteredProducts.map((p) => (
               <article
                 key={p.name}
-                className="group relative flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/40 transition-all duration-300 overflow-hidden"
+                className="group relative flex flex-col rounded-2xl border border-amber-400/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 overflow-hidden"
               >
-                <div className="relative aspect-square bg-gradient-to-br from-[#1a0f0a] to-[#0a0506] flex items-center justify-center overflow-hidden">
-                  {p.discount && (
-                    <span className="absolute top-3 left-3 z-10 text-[10px] font-bold tracking-wider px-2 py-1 rounded bg-amber-500 text-black">
-                      {p.discount}
-                    </span>
-                  )}
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                <div className="relative aspect-square bg-gradient-to-br from-[#1a0f0a] via-[#0f0805] to-[#0a0506] flex flex-col items-center justify-center overflow-hidden border-b border-amber-400/10">
+                  <div className="w-12 h-12 rounded-full border border-amber-400/40 flex items-center justify-center mb-3">
+                    <span className="text-amber-400 text-lg">✦</span>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400/70">
+                    Imagem em breve
+                  </span>
                 </div>
-                <div className="p-4 flex flex-col flex-1">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-1">
-                    {p.brand}
-                  </p>
-                  <h3 className="text-[14px] font-medium text-white leading-tight mb-3 line-clamp-2 min-h-[2.5em]">
+                <div className="p-4 sm:p-5 flex flex-col flex-1">
+                  <h3 className="text-[14px] sm:text-[15px] font-semibold text-white leading-tight mb-3 min-h-[2.5em]">
                     {p.name}
                   </h3>
                   <div className="mt-auto">
-                    {p.oldPrice && (
-                      <p className="text-[11px] text-white/40 line-through">
-                        {p.oldPrice}
-                      </p>
-                    )}
-                    <p className="text-[16px] font-semibold text-amber-400 mb-3">
+                    <p className="text-[18px] font-bold text-amber-400 mb-3">
                       {p.price}
                     </p>
-                    <button
-                      type="button"
-                      className="w-full text-[11px] font-semibold tracking-wider uppercase bg-amber-500 text-black rounded-md py-2.5 hover:bg-amber-400 transition-colors"
+                    <a
+                      href={INSTAGRAM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center w-full text-[11px] font-semibold tracking-wider uppercase bg-gradient-to-r from-amber-500 to-amber-400 text-black rounded-md py-2.5 hover:from-amber-400 hover:to-amber-300 transition-all"
                     >
-                      Comprar
-                    </button>
+                      Comprar pelo Instagram
+                    </a>
                   </div>
                 </div>
               </article>
             ))}
           </div>
+
+          {filteredProducts.length === 0 && (
+            <p className="text-center text-white/50 mt-10 text-[14px]">
+              Nenhum perfume encontrado.
+            </p>
+          )}
+
+          <p className="text-center text-white/50 text-[12px] mt-12">
+            Consulte disponibilidade antes de finalizar o pedido.
+            <br />
+            Instagram:{" "}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-400 hover:text-amber-300"
+            >
+              @oreidoimportadoperfumes
+            </a>
+          </p>
         </div>
 
         <div className="max-w-6xl mx-auto mt-32 grid md:grid-cols-2 gap-10 items-center">
