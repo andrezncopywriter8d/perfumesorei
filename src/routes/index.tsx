@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import lojaImg from "@/assets/loja.webp";
+import asadImg from "@/assets/asad.png";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
