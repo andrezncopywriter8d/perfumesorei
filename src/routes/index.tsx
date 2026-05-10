@@ -92,28 +92,6 @@ function Index() {
         </video>
 
         <div className="relative z-10 flex flex-col h-full">
-          <nav className="flex items-center justify-center pt-4 sm:pt-6 px-4 sm:px-8 gap-2 sm:gap-3">
-            <div
-              className="flex items-center justify-center rounded-full w-10 h-10 sm:w-11 sm:h-11 shrink-0"
-              style={{ backgroundColor: "#EDEDED" }}
-            >
-              <Logo />
-            </div>
-            <div
-              className="flex items-center gap-4 sm:gap-10 rounded-xl px-4 sm:px-8 py-2.5 sm:py-3"
-              style={{ backgroundColor: "#EDEDED" }}
-            >
-              {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href="#catalog"
-                  className="text-[12px] sm:text-[14px] font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200"
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-          </nav>
 
           <div className="flex-1 flex items-end pb-10 sm:pb-16 lg:pb-20 px-6 sm:px-12 md:px-20 lg:px-28">
             <div className="max-w-xs">
