@@ -216,7 +216,75 @@ function Index() {
           </div>
         </div>
 
-        {/* LOCATION */}
+        {/* FULL CATALOG GRID */}
+        <div className="max-w-6xl mx-auto mt-32">
+          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+            <div>
+              <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-widest mb-3">
+                Loja
+              </p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white tracking-tight max-w-2xl">
+                Perfumes árabes em destaque
+              </h2>
+            </div>
+            <a
+              href="https://share.google/OkcIQzpngPsggMKWr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] font-medium text-amber-400 hover:text-amber-300 transition-colors"
+            >
+              Ver todos →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {catalogProducts.map((p) => (
+              <article
+                key={p.name}
+                className="group relative flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-amber-500/40 transition-all duration-300 overflow-hidden"
+              >
+                <div className="relative aspect-square bg-gradient-to-br from-[#1a0f0a] to-[#0a0506] flex items-center justify-center overflow-hidden">
+                  {p.discount && (
+                    <span className="absolute top-3 left-3 z-10 text-[10px] font-bold tracking-wider px-2 py-1 rounded bg-amber-500 text-black">
+                      {p.discount}
+                    </span>
+                  )}
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
+                <div className="p-4 flex flex-col flex-1">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-1">
+                    {p.brand}
+                  </p>
+                  <h3 className="text-[14px] font-medium text-white leading-tight mb-3 line-clamp-2 min-h-[2.5em]">
+                    {p.name}
+                  </h3>
+                  <div className="mt-auto">
+                    {p.oldPrice && (
+                      <p className="text-[11px] text-white/40 line-through">
+                        {p.oldPrice}
+                      </p>
+                    )}
+                    <p className="text-[16px] font-semibold text-amber-400 mb-3">
+                      {p.price}
+                    </p>
+                    <button
+                      type="button"
+                      className="w-full text-[11px] font-semibold tracking-wider uppercase bg-amber-500 text-black rounded-md py-2.5 hover:bg-amber-400 transition-colors"
+                    >
+                      Comprar
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <div className="max-w-6xl mx-auto mt-32 grid md:grid-cols-2 gap-10 items-center">
           <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <img
