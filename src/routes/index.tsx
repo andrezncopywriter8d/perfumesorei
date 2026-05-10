@@ -84,9 +84,9 @@ function Index() {
           className="absolute inset-0 w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out]"
           style={{
             WebkitMaskImage:
-              "radial-gradient(ellipse 55% 75% at center, black 55%, transparent 95%)",
+              "radial-gradient(ellipse 28% 55% at center, black 60%, transparent 100%)",
             maskImage:
-              "radial-gradient(ellipse 55% 75% at center, black 55%, transparent 95%)",
+              "radial-gradient(ellipse 28% 55% at center, black 60%, transparent 100%)",
           }}
           src="/perfume.mp4"
         />
