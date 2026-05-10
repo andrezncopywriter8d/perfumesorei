@@ -309,7 +309,7 @@ function Index() {
           </h2>
         </Reveal>
 
-        <div className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee">
+        <Reveal y={50} className="-mx-6 sm:-mx-12 md:-mx-20 lg:-mx-28 overflow-hidden group/marquee">
           <div className="flex gap-6 w-max animate-[marquee_40s_linear_infinite] group-hover/marquee:[animation-play-state:paused] px-6">
             {[...perfumes, ...perfumes].map((p, idx) => (
               <GlowCard
