@@ -66,20 +66,37 @@ const perfumes = [
   },
 ];
 
-type Gender = "masculino" | "feminino";
-const catalogProducts: { name: string; brand: string; price: string; oldPrice?: string; discount?: string; image: string; gender: Gender }[] = [
-  { name: "Armaf Club de Nuit Intense Man", brand: "Armaf", price: "R$ 299,00", oldPrice: "R$ 349,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa Raghba Black", brand: "Lattafa", price: "R$ 279,00", image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa Khamrah Gold", brand: "Lattafa", price: "R$ 329,00", oldPrice: "R$ 389,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
-  { name: "Fragrance World Erotica Amor", brand: "Fragrance World", price: "R$ 329,00", image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
-  { name: "Stella Dustin Tycoon Intense Man", brand: "Stella Dustin", price: "R$ 269,00", oldPrice: "R$ 319,00", discount: "15% OFF", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa Tagheer Khanjar", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1610461888750-10bfc601b874?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Al Wataniah Yara Vivid", brand: "Al Wataniah", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59d75?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
-  { name: "Afnan 9 PM Pure", brand: "Afnan", price: "R$ 289,00", image: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa The Kingdom Men", brand: "Lattafa", price: "R$ 239,00", image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Al Wataniah Sheikh Oud", brand: "Al Wataniah", price: "R$ 229,00", image: "https://images.unsplash.com/photo-1605651531144-51381895e23d?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
-  { name: "Lattafa Bade'e Al Oud Amethyst", brand: "Lattafa", price: "R$ 339,00", oldPrice: "R$ 389,00", discount: "13% OFF", image: "https://images.unsplash.com/photo-1592914610354-fd354ea45e48?w=600&q=80&auto=format&fit=crop", gender: "feminino" },
-  { name: "Afnan Supremacy Not Only Intense", brand: "Afnan", price: "R$ 419,00", oldPrice: "R$ 489,00", discount: "14% OFF", image: "https://images.unsplash.com/photo-1557170334-a9086d21c1f4?w=600&q=80&auto=format&fit=crop", gender: "masculino" },
+const INSTAGRAM_URL = "https://www.instagram.com/oreidoimportadoperfumes/";
+
+const catalogProducts: { name: string; price: string }[] = [
+  { name: "ASAD", price: "R$ 200,00" },
+  { name: "ASA BURBON", price: "R$ 320,00" },
+  { name: "ASAD ELIXIR", price: "R$ 320,00" },
+  { name: "YARA ROSE", price: "R$ 200,00" },
+  { name: "YARA TOUS", price: "R$ 200,00" },
+  { name: "YARA ELIXIR", price: "R$ 320,00" },
+  { name: "LIQUID BRUN", price: "R$ 370,00" },
+  { name: "FAKAR GOLD", price: "R$ 220,00" },
+  { name: "FAKHAR BLACK", price: "R$ 240,00" },
+  { name: "FAKAR ROSE", price: "R$ 240,00" },
+  { name: "FAKAR PLATINUM", price: "R$ 190,00" },
+  { name: "ATTAR AL WESAL", price: "R$ 180,00" },
+  { name: "KHAMRAH", price: "R$ 210,00" },
+  { name: "VOUJE PARTY", price: "R$ 190,00" },
+  { name: "EL FURSON", price: "R$ 180,00" },
+  { name: "AL NOBLE WAZEER", price: "R$ 320,00" },
+  { name: "MEITE", price: "R$ 200,00" },
+  { name: "ANEESA", price: "R$ 200,00" },
+  { name: "RAVE AU SOLEIL", price: "R$ 220,00" },
+  { name: "CLUB DE NOIRL INTENSE", price: "R$ 330,00" },
+  { name: "CLUB DE NOIRL WOMEN", price: "R$ 310,00" },
+  { name: "APELT DIL", price: "R$ 210,00" },
+  { name: "AVANT PERFUME", price: "R$ 200,00" },
+  { name: "TORO", price: "R$ 190,00" },
+  { name: "SABAH AL", price: "R$ 190,00" },
+  { name: "VULCAN FEU", price: "R$ 420,00" },
+  { name: "DURRAT", price: "R$ 190,00" },
+  { name: "AMBER", price: "R$ 570,00" },
 ];
 
 function Index() {
