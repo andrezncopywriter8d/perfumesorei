@@ -118,81 +118,97 @@ function Index() {
     <div className="relative bg-gradient-to-br from-[#1a0f0a] via-[#2a1810] to-[#0a0506] text-white">
       {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden bg-[#020202] text-white">
-        {/* warm amber glow on the right */}
+        {/* soft golden atmosphere on the right */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 right-0 w-[65%] z-[1]"
+          className="pointer-events-none absolute inset-0 z-[1]"
           style={{
             background:
-              "radial-gradient(ellipse 70% 80% at 75% 50%, rgba(214,135,30,0.45), rgba(120,60,10,0.18) 40%, transparent 75%)",
+              "radial-gradient(ellipse 55% 70% at 82% 55%, rgba(198,128,40,0.32), rgba(120,60,10,0.10) 45%, transparent 72%)",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-[1]"
+          style={{
+            background:
+              "radial-gradient(ellipse 35% 45% at 88% 45%, rgba(232,170,75,0.18), transparent 70%)",
           }}
         />
 
-        {/* lion — fully integrated background, faded edges */}
+        {/* lion — subtle background texture, fully faded into black */}
         <img
           src="/lion.png"
           alt=""
           aria-hidden="true"
-          className="absolute right-0 top-1/2 -translate-y-1/2 h-[60vh] md:h-[82vh] w-auto max-w-none z-[2] pointer-events-none select-none"
+          className="absolute right-[-4%] top-1/2 -translate-y-1/2 h-[55vh] md:h-[78vh] w-auto max-w-none z-[2] pointer-events-none select-none"
           style={{
-            opacity: 0.55,
-            filter: "saturate(0.9) contrast(1.05) brightness(0.95)",
+            opacity: 0.32,
+            filter: "saturate(0.7) contrast(0.95) brightness(0.78)",
+            mixBlendMode: "screen",
             maskImage:
-              "radial-gradient(ellipse 70% 80% at 70% 50%, #000 35%, rgba(0,0,0,0.6) 60%, transparent 90%)",
+              "radial-gradient(ellipse 55% 70% at 65% 50%, #000 25%, rgba(0,0,0,0.5) 55%, transparent 85%)",
             WebkitMaskImage:
-              "radial-gradient(ellipse 70% 80% at 70% 50%, #000 35%, rgba(0,0,0,0.6) 60%, transparent 90%)",
+              "radial-gradient(ellipse 55% 70% at 65% 50%, #000 25%, rgba(0,0,0,0.5) 55%, transparent 85%)",
           }}
         />
 
-        {/* extra dark vignette to merge lion into bg */}
+        {/* darken left + bottom to anchor text and merge lion */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-[3]"
           style={{
             background:
-              "linear-gradient(to right, #020202 0%, rgba(2,2,2,0.4) 35%, transparent 60%, transparent 100%), linear-gradient(to top, #020202 0%, transparent 25%)",
+              "linear-gradient(to right, #020202 0%, rgba(2,2,2,0.85) 25%, rgba(2,2,2,0.25) 50%, transparent 70%), linear-gradient(to top, #020202 0%, rgba(2,2,2,0.4) 18%, transparent 35%)",
           }}
         />
 
-        {/* product video — centered, large */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] pointer-events-none h-[50vh] md:h-[78vh] max-h-[820px] aspect-square">
+        {/* product video — hero protagonist */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[54%] md:-translate-y-1/2 z-[4] pointer-events-none h-[44vh] md:h-[80vh] max-h-[840px] aspect-square">
           <video
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
-            className="w-full h-full object-contain animate-[fadeIn_1.2s_ease-in-out]"
-            style={{ filter: "drop-shadow(0 40px 60px rgba(0,0,0,0.85))" }}
+            className="w-full h-full object-contain animate-[fadeIn_1.4s_ease-in-out]"
+            style={{
+              filter:
+                "drop-shadow(0 50px 60px rgba(0,0,0,0.9)) drop-shadow(0 0 80px rgba(214,135,30,0.15))",
+            }}
           >
             <source src="/perfume.webm" type="video/webm" />
           </video>
         </div>
 
-        {/* content — bottom-left */}
-        <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[6vw] md:right-auto md:bottom-[9vh] md:max-w-[460px]">
-          <span className="block text-[12px] md:text-[13px] font-semibold text-blue-500 mb-3 md:mb-4 tracking-wide">
-            Coleção exclusiva 2026 —
+        {/* content — bottom-left, refined hierarchy */}
+        <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[7vw] md:right-auto md:bottom-[10vh] md:max-w-[480px]">
+          <span className="block text-[11px] md:text-[12px] font-medium text-blue-400/90 mb-4 md:mb-5 tracking-[0.18em] uppercase">
+            Coleção exclusiva 2026
           </span>
           <h1
-            className="text-white font-extrabold tracking-[-0.035em] mb-5"
-            style={{ fontSize: "clamp(34px, 3.6vw, 58px)", lineHeight: 1.02 }}
+            className="text-white font-light tracking-[-0.025em] mb-6 [text-wrap:balance]"
+            style={{
+              fontSize: "clamp(30px, 3.2vw, 52px)",
+              lineHeight: 1.08,
+              fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
+            }}
           >
             Fragrâncias árabes
             <br />
             que contam histórias
             <br />
-            eternas.
+            <em className="italic font-normal text-white/95">eternas.</em>
           </h1>
-          <p className="text-white/70 text-[15px] md:text-[16px] leading-[1.5] mb-6">
+          <p className="text-white/55 text-[14px] md:text-[15px] leading-[1.6] mb-8 max-w-[360px] tracking-wide">
             Descubra a essência do oriente.
           </p>
           <a
             href="#catalog"
-            className="inline-flex items-center gap-2 text-[14px] font-semibold text-blue-500 border-[1.5px] border-blue-500 rounded-full px-6 py-3 hover:bg-blue-500 hover:text-white hover:shadow-[0_0_28px_rgba(0,120,255,0.35)] transition-all duration-300"
+            className="inline-flex items-center gap-3 text-[13px] font-medium text-blue-400 border border-blue-400/60 rounded-full px-7 py-3 backdrop-blur-sm hover:bg-blue-400/10 hover:border-blue-400 hover:text-blue-300 transition-all duration-500 tracking-wide"
           >
             Ver catálogo
-            <span>→</span>
+            <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
           </a>
         </div>
       </section>
