@@ -98,53 +98,65 @@ function Index() {
   return (
     <div className="relative bg-gradient-to-br from-[#1a0f0a] via-[#2a1810] to-[#0a0506] text-white">
       {/* HERO */}
-      <section className="hero-section relative h-screen min-h-[680px] overflow-hidden">
-        <div className="hero-product-glow" aria-hidden="true" />
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="hero-product-video animate-[fadeIn_1.2s_ease-in-out]"
-        >
-          <source src="/perfume.webm" type="video/webm" />
-        </video>
+      <section
+        className="relative min-h-screen overflow-hidden flex items-center"
+        style={{
+          background:
+            "radial-gradient(circle at 85% 45%, rgba(160,87,12,0.42), transparent 32%), linear-gradient(90deg, #020202 0%, #050202 55%, #170b02 100%)",
+        }}
+      >
+        {/* warm glow */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 -right-[10%] w-[55%] h-full blur-3xl z-[1]"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(218,130,22,0.28), transparent 65%)",
+          }}
+        />
 
-        <div className="relative z-10 flex flex-col h-full">
+        {/* lion */}
+        <img
+          src="/lion.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute right-0 top-0 h-full w-[70%] md:w-[60%] object-cover object-left opacity-60 md:opacity-70 z-[2] pointer-events-none"
+          style={{ mixBlendMode: "screen", filter: "contrast(1.08) saturate(0.95)" }}
+        />
 
-          <div className="flex-1 flex items-end pb-10 sm:pb-16 lg:pb-20 px-6 sm:px-12 md:px-20 lg:px-28">
-            <div className="max-w-xs">
-              <a
-                href="#catalog"
-                className="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-blue-500 hover:text-blue-600 transition-colors mb-3 group"
-              >
-                Coleção exclusiva 2026
-                <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">
-                  →
-                </span>
-              </a>
-              <h1 className="text-[1.5rem] sm:text-[1.75rem] leading-[1.15] font-medium text-white tracking-tight mb-3 drop-shadow-lg">
-                Fragrâncias árabes que contam histórias eternas.
-              </h1>
-              <p className="text-[13px] text-white/70 font-normal mb-3">
-                Descubra a essência do oriente.
-              </p>
-              <a
-                href="#catalog"
-                className="inline-flex items-center gap-2 text-[13px] font-medium text-blue-500 border border-blue-400 rounded-full px-5 py-2.5 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-200 group"
-              >
-                Ver catálogo
-                <span className="transition-transform duration-200 group-hover:translate-x-0.5">
-                  →
-                </span>
-              </a>
-            </div>
-          </div>
+        {/* product */}
+        <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[50%] md:-translate-x-[35%] z-[4] pointer-events-none">
+          <img
+            src="/perfume.png"
+            alt="Perfume árabe premium preto e dourado"
+            className="h-[50vh] sm:h-[60vh] md:h-[68vh] max-h-[720px] w-auto object-contain"
+            style={{ filter: "drop-shadow(0 40px 55px rgba(0,0,0,0.75))" }}
+          />
+        </div>
 
-          {/* scroll indicator */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-gray-500 text-xs animate-bounce">
-            
+        {/* content */}
+        <div className="relative z-[5] w-full px-6 sm:px-12 md:px-20 lg:px-28">
+          <div className="max-w-[460px] mt-auto md:mt-[42vh]">
+            <span className="block text-[14px] font-semibold text-blue-500 mb-4">
+              Coleção exclusiva 2026 —
+            </span>
+            <h1 className="text-[38px] sm:text-[48px] md:text-[56px] lg:text-[62px] leading-[0.98] font-extrabold tracking-[-0.04em] text-white mb-5 drop-shadow-lg">
+              Fragrâncias árabes
+              <br />
+              que contam histórias
+              <br />
+              eternas.
+            </h1>
+            <p className="text-white/70 text-[17px] mb-7">
+              Descubra a essência do oriente.
+            </p>
+            <a
+              href="#catalog"
+              className="inline-flex items-center gap-2 text-[14px] font-semibold text-blue-500 border-[1.5px] border-blue-500 rounded-full px-7 py-3.5 hover:bg-blue-500 hover:text-white hover:shadow-[0_0_30px_rgba(0,120,255,0.35)] transition-all duration-300"
+            >
+              Ver catálogo
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+            </a>
           </div>
         </div>
       </section>
