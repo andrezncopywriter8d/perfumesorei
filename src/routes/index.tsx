@@ -125,7 +125,7 @@ function Index() {
 
           {/* scroll indicator */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-gray-500 text-xs animate-bounce">
-            ↓ scroll
+            
           </div>
         </div>
       </section>
