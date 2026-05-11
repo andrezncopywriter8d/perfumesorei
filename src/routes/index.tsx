@@ -375,10 +375,10 @@ function LuxuryHero({
       <div className="hero-particles" aria-hidden="true" />
 
       <header className="luxury-header">
-        <a href="/" className="brand" aria-label="ASAD Luxury Perfumes">
-          <div className="brand-fake-logo">A</div>
+        <a href="/" className="brand" aria-label="O Rei Luxury Perfumes">
+          <div className="brand-fake-logo">O</div>
           <div className="brand-text">
-            <strong>ASAD</strong>
+            <strong>OREI</strong>
             <span>LUXURY PERFUMES</span>
           </div>
         </a>
