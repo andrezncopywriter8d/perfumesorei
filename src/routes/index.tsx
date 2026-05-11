@@ -292,7 +292,7 @@ const productImages: Record<string, string> = {
   MEITE: meitreImg,
 };
 
-type GenderFilter = "todos" | "masculino" | "feminino";
+type CatalogFilter = "todos" | "masculino" | "feminino" | "arabes" | "mais-vendidos" | "promocoes";
 type ProductGender = "masculino" | "feminino" | "unissex";
 
 const catalogProducts: { name: string; price: string }[] = [
@@ -356,6 +356,40 @@ const productGenders: Record<string, ProductGender> = {
   DURRAT: "feminino",
   AMBER: "unissex",
 };
+
+const catalogCategories: { id: CatalogFilter; label: string }[] = [
+  { id: "todos", label: "Todos" },
+  { id: "masculino", label: "Masculino" },
+  { id: "feminino", label: "Feminino" },
+  { id: "arabes", label: "Árabes" },
+  { id: "mais-vendidos", label: "Mais vendidos" },
+  { id: "promocoes", label: "Promoções" },
+];
+
+const bestSellerNames = new Set([
+  "ASAD",
+  "ASA BURBON",
+  "ASAD ELIXIR",
+  "YARA ROSE",
+  "YARA TOUS",
+  "LIQUID BRUN",
+  "KHAMRAH",
+  "CLUB DE NOIRL INTENSE",
+]);
+
+function matchesCatalogFilter(product: { name: string; price: string }, filter: CatalogFilter) {
+  const gender = productGenders[product.name] ?? "unissex";
+  const priceValue = parsePrice(product.price);
+
+  if (filter === "todos") return true;
+  if (filter === "masculino") return gender === "masculino" || gender === "unissex";
+  if (filter === "feminino") return gender === "feminino" || gender === "unissex";
+  if (filter === "arabes") return true;
+  if (filter === "mais-vendidos") return bestSellerNames.has(product.name);
+  if (filter === "promocoes") return priceValue <= 200;
+
+  return true;
+}
 
 function Index() {
   return <StorefrontPage />;
@@ -483,16 +517,35 @@ function LuxuryHero({
 
 export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
   const [search, setSearch] = useState("");
-  const [genderFilter, setGenderFilter] = useState<GenderFilter>("todos");
+  const [catalogFilter, setCatalogFilter] = useState<CatalogFilter>("todos");
+  const [visibleMobileProducts, setVisibleMobileProducts] = useState(4);
+  const [isMobileCatalog, setIsMobileCatalog] = useState(false);
   const catalogRef = useRef<HTMLDivElement>(null);
-  const filteredProducts = catalogProducts.filter((p) => {
-    const gender = productGenders[p.name] ?? "unissex";
-    const matchesSearch = p.name.toLowerCase().includes(search.trim().toLowerCase());
-    const matchesGender =
-      genderFilter === "todos" || gender === genderFilter || gender === "unissex";
 
-    return matchesSearch && matchesGender;
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const handleChange = () => setIsMobileCatalog(mediaQuery.matches);
+
+    handleChange();
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    setVisibleMobileProducts(4);
+  }, [catalogFilter, search]);
+
+  const filteredProducts = catalogProducts.filter((p) => {
+    const matchesSearch = p.name.toLowerCase().includes(search.trim().toLowerCase());
+    const matchesCategory = matchesCatalogFilter(p, catalogFilter);
+
+    return matchesSearch && matchesCategory;
   });
+  const visibleProducts = isMobileCatalog
+    ? filteredProducts.slice(0, visibleMobileProducts)
+    : filteredProducts;
+  const hasMoreMobileProducts = isMobileCatalog && visibleProducts.length < filteredProducts.length;
 
   return (
     <div className="relative bg-[#070403] text-white">
@@ -624,7 +677,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
             </p>
           </Reveal>
 
-          <div className="relative z-10 max-w-2xl mx-auto mb-10">
+          <div className="catalog-toolbar relative z-10 max-w-2xl mx-auto mb-10">
             <input
               id="catalog-search"
               type="search"
@@ -633,20 +686,16 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
               placeholder="Buscar perfume..."
               className="h-13 w-full rounded-2xl border border-white/12 bg-black/35 px-5 text-[15px] text-white shadow-inner shadow-black/30 outline-none transition-all placeholder:text-white/38 focus:border-amber-300/70 focus:ring-4 focus:ring-amber-300/15"
             />
-            <div className="mt-4 grid grid-cols-3 gap-2 rounded-2xl border border-white/10 bg-black/25 p-1.5 backdrop-blur-md">
-              {[
-                { id: "todos", label: "Todos" },
-                { id: "masculino", label: "Masculino" },
-                { id: "feminino", label: "Feminino" },
-              ].map((option) => {
-                const isActive = genderFilter === option.id;
+            <div className="catalog-tabs mt-4 grid grid-cols-3 gap-2 rounded-2xl border border-white/10 bg-black/25 p-1.5 backdrop-blur-md">
+              {catalogCategories.map((option) => {
+                const isActive = catalogFilter === option.id;
 
                 return (
                   <button
                     key={option.id}
                     type="button"
-                    onClick={() => setGenderFilter(option.id as GenderFilter)}
-                    className={`min-h-11 rounded-xl px-3 text-[11px] font-bold uppercase tracking-[0.13em] transition-all focus:outline-none focus:ring-4 focus:ring-amber-300/20 ${
+                    onClick={() => setCatalogFilter(option.id)}
+                    className={`catalog-tab min-h-11 rounded-xl px-3 text-[11px] font-bold uppercase tracking-[0.13em] transition-all focus:outline-none focus:ring-4 focus:ring-amber-300/20 ${
                       isActive
                         ? "bg-gradient-to-r from-amber-300 via-orange-400 to-amber-500 text-black shadow-[0_12px_26px_rgba(245,158,11,0.22)]"
                         : "text-white/58 hover:bg-white/[0.06] hover:text-white"
@@ -660,8 +709,8 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
             </div>
           </div>
 
-          <div className="relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredProducts.map((p, index) => {
+          <div className="products-grid relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {visibleProducts.map((p, index) => {
               const gender = productGenders[p.name] ?? "unissex";
               const priceValue = parsePrice(p.price);
               const pixPrice = formatCurrency(priceValue * 0.95);
@@ -676,7 +725,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
               return (
                 <article
                   key={p.name}
-                  className="group relative flex min-h-[430px] flex-col overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#100b08]/92 shadow-[0_22px_58px_rgba(0,0,0,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-200/38 hover:bg-[#15100c]/95 hover:shadow-[0_30px_80px_rgba(0,0,0,0.38)]"
+                  className="product-card group relative flex min-h-[430px] flex-col overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#100b08]/92 shadow-[0_22px_58px_rgba(0,0,0,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-200/38 hover:bg-[#15100c]/95 hover:shadow-[0_30px_80px_rgba(0,0,0,0.38)]"
                 >
                   <div
                     aria-hidden="true"
@@ -686,7 +735,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
                     aria-hidden="true"
                     className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-amber-100/32 to-transparent"
                   />
-                  <div className="relative mx-2.5 mt-2.5 aspect-[1/1.03] bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.12),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.055),rgba(22,17,13,0.8)_52%,rgba(0,0,0,0.34))] flex flex-col items-center justify-center overflow-hidden rounded-[1.05rem] border border-white/10">
+                  <div className="product-image-wrapper relative mx-2.5 mt-2.5 aspect-[1/1.03] bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.12),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.055),rgba(22,17,13,0.8)_52%,rgba(0,0,0,0.34))] flex flex-col items-center justify-center overflow-hidden rounded-[1.05rem] border border-white/10">
                     <div
                       aria-hidden="true"
                       className="absolute inset-x-10 bottom-5 h-10 rounded-full bg-amber-200/18 blur-2xl"
@@ -697,7 +746,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
                         alt={p.name}
                         loading="lazy"
                         decoding="async"
-                        className="relative z-10 h-[138%] w-[138%] object-contain p-0 drop-shadow-[0_28px_26px_rgba(0,0,0,0.58)] transition-transform duration-500 group-hover:scale-[1.04]"
+                        className="product-image relative z-10 h-[138%] w-[138%] object-contain p-0 drop-shadow-[0_28px_26px_rgba(0,0,0,0.58)] transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                     ) : (
                       <>
@@ -710,17 +759,17 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
                       </>
                     )}
                   </div>
-                  <div className="relative p-5 flex flex-col flex-1">
+                  <div className="product-card-body relative p-5 flex flex-col flex-1">
                     <div className="mb-4 flex items-start justify-between gap-3">
                       <div>
-                        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-200/62">
+                        <p className="product-category mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-200/62">
                           {genderLabel}
                         </p>
-                        <h3 className="text-[19px] sm:text-[20px] font-semibold text-white leading-tight">
+                        <h3 className="product-title text-[19px] sm:text-[20px] font-semibold text-white leading-tight">
                           {p.name}
                         </h3>
                       </div>
-                      <span className="rounded-full border border-white/10 bg-white/[0.06] px-2.5 py-1 text-[10px] font-semibold text-white/62">
+                      <span className="product-number rounded-full border border-white/10 bg-white/[0.06] px-2.5 py-1 text-[10px] font-semibold text-white/62">
                         #{String(index + 1).padStart(2, "0")}
                       </span>
                     </div>
@@ -737,7 +786,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
                             <p className="text-[10px] uppercase tracking-[0.18em] text-white/42">
                               Preco
                             </p>
-                            <p className="text-[24px] font-bold leading-none text-amber-200">
+                            <p className="product-price text-[24px] font-bold leading-none text-amber-200">
                               {p.price}
                             </p>
                           </div>
@@ -747,7 +796,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
                         href={virtual ? getCheckoutUrl(p.name) : INSTAGRAM_URL}
                         target={virtual ? undefined : "_blank"}
                         rel={virtual ? undefined : "noopener noreferrer"}
-                        className={`flex min-h-12 w-full items-center justify-center rounded-xl px-4 text-center font-[Inter,system-ui,sans-serif] text-[12px] font-extrabold uppercase tracking-[0.08em] transition-all duration-300 focus:outline-none focus:ring-4 ${
+                        className={`product-button flex min-h-12 w-full items-center justify-center rounded-xl px-4 text-center font-[Inter,system-ui,sans-serif] text-[12px] font-extrabold uppercase tracking-[0.08em] transition-all duration-300 focus:outline-none focus:ring-4 ${
                           virtual
                             ? "border border-[#3483fa]/70 bg-[linear-gradient(180deg,#5b9cff,#2563eb)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.32),0_16px_36px_rgba(37,99,235,0.34)] hover:-translate-y-0.5 hover:border-[#9ec2ff] hover:bg-[linear-gradient(180deg,#6da8ff,#1d4ed8)] focus:ring-[#3483fa]/25"
                             : "border border-amber-200/35 bg-[linear-gradient(180deg,#f6d995,#c99022)] text-[#160d05] shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_12px_24px_rgba(201,144,34,0.12)] hover:border-amber-100/60 hover:bg-[linear-gradient(180deg,#ffe8aa,#d49a2d)] focus:ring-amber-300/20"
@@ -767,6 +816,18 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
               );
             })}
           </div>
+
+          {hasMoreMobileProducts && (
+            <div className="relative z-10 mt-7 flex justify-center md:hidden">
+              <button
+                type="button"
+                onClick={() => setVisibleMobileProducts((current) => current + 4)}
+                className="rounded-full border border-amber-200/45 bg-black/35 px-6 py-3 text-[12px] font-extrabold uppercase tracking-[0.12em] text-amber-200 shadow-[0_14px_34px_rgba(0,0,0,0.32)] backdrop-blur-md transition-all hover:border-amber-100 hover:bg-amber-300/10"
+              >
+                Ver mais perfumes
+              </button>
+            </div>
+          )}
 
           {filteredProducts.length === 0 && (
             <p className="text-center text-white/50 mt-10 text-[14px]">
