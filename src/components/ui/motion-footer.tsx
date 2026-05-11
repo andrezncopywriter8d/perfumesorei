@@ -165,7 +165,7 @@ export function CinematicFooter({
   links = [
     { label: "Catálogo", href: "#catalog" },
     { label: "Localização", href: "https://share.google/OkcIQzpngPsggMKWr" },
-    { label: "Instagram", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/oreidoimportadoperfumes/" },
     { label: "TikTok", href: "#" },
   ],
   ctaLabel = "Visite nossa loja",
@@ -278,7 +278,7 @@ export function CinematicFooter({
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10 text-[12px] text-white/40">
             <p>© {new Date().getFullYear()} {brand} Importados. Todos os direitos reservados.</p>
-            <p>Feito com cuidado em São Luís — MA</p>
+            <p>Feito com cuidado em Teresina — PI</p>
           </div>
         </div>
       </footer>
