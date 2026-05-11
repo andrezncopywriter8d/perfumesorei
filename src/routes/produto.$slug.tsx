@@ -206,13 +206,13 @@ function ProductPage() {
   const pixPrice = formatCurrency(priceValue * 0.9);
   const installment = formatCurrency(priceValue / 6);
   const related = useMemo(
-    () => products.filter((item) => item.name !== product.name).slice(0, 4),
+    () => products.filter((item) => item.name !== product.name),
     [product.name],
   );
   const gallery = [product.image, product.image, product.image, product.image].filter(Boolean) as string[];
 
   return (
-    <main className="min-h-screen bg-[#050403] text-[#f5f0e8]">
+    <main className="min-h-screen bg-[#050403] font-[Poppins,system-ui,sans-serif] text-[#f5f0e8]">
       <ProductTopBar />
       <ProductHeader />
 
@@ -272,8 +272,8 @@ function ProductPage() {
           </div>
 
           <aside className="rounded-[1.45rem] border border-amber-300/14 bg-[linear-gradient(145deg,rgba(255,255,255,0.055),rgba(10,7,5,0.78)_42%,rgba(55,31,9,0.14))] p-5 shadow-[0_28px_80px_rgba(0,0,0,0.34)] sm:p-7">
-            <p className="mb-3 text-[12px] font-extrabold uppercase tracking-[0.22em] text-amber-300">{product.brand}</p>
-            <h1 className="font-serif text-[42px] leading-none tracking-[-0.04em] text-[#fff8eb] sm:text-6xl">
+            <p className="mb-3 font-[Montserrat,Poppins,system-ui,sans-serif] text-[12px] font-black uppercase tracking-[0.26em] text-amber-300">{product.brand}</p>
+            <h1 className="font-[Montserrat,Poppins,system-ui,sans-serif] text-[42px] font-black leading-[0.96] tracking-[-0.055em] text-[#fff8eb] sm:text-6xl">
               {titleCase(product.name)}
             </h1>
             <div className="mt-4 flex flex-wrap items-center gap-2 text-[13px] text-white/58">
@@ -395,9 +395,9 @@ function ProductHeader() {
     <header className="sticky top-0 z-40 border-b border-amber-300/14 bg-[#050403]/92 px-4 py-4 backdrop-blur-xl">
       <div className="mx-auto grid max-w-[1440px] items-center gap-4 lg:grid-cols-[260px_1fr_360px]">
         <a href="/" className="flex items-center gap-3">
-          <span className="grid h-12 w-12 place-items-center rounded-2xl border border-amber-300/45 text-2xl font-serif italic text-amber-200 shadow-[0_0_24px_rgba(212,175,55,0.12)]">O</span>
+          <span className="grid h-12 w-12 place-items-center rounded-2xl border border-amber-300/45 font-[Montserrat,Poppins,system-ui,sans-serif] text-2xl font-black italic text-amber-200 shadow-[0_0_24px_rgba(212,175,55,0.12)]">O</span>
           <span>
-            <strong className="block font-serif text-2xl leading-none tracking-wide text-white">O REI</strong>
+            <strong className="block font-[Montserrat,Poppins,system-ui,sans-serif] text-2xl font-black leading-none tracking-[-0.04em] text-white">O REI</strong>
             <small className="text-[9px] font-bold uppercase tracking-[0.26em] text-amber-300">O Rei do Importado Perfumes</small>
           </span>
         </a>
@@ -459,13 +459,13 @@ function FragranceSection({ product }: { product: Product }) {
   return (
     <section className="mt-8 grid overflow-hidden rounded-2xl border border-amber-300/18 bg-[linear-gradient(135deg,rgba(255,255,255,0.045),rgba(8,5,3,0.94))] lg:grid-cols-[0.9fr_2.1fr]">
       <div className="border-b border-amber-300/14 bg-amber-300/[0.035] p-7 lg:border-b-0 lg:border-r">
-        <h2 className="font-serif text-3xl text-white">Sobre a Fragrância</h2>
+        <h2 className="font-[Montserrat,Poppins,system-ui,sans-serif] text-3xl font-black tracking-[-0.045em] text-white">Sobre a Fragrância</h2>
         <p className="mt-5 text-[14px] leading-7 text-white/64">{product.about}</p>
       </div>
       <div className="grid gap-8 p-7 md:grid-cols-3">
         {noteGroups.map((group) => (
           <div key={group.title}>
-            <h3 className="mb-5 font-serif text-lg text-white">{group.title}</h3>
+            <h3 className="mb-5 font-[Montserrat,Poppins,system-ui,sans-serif] text-lg font-extrabold tracking-[-0.02em] text-white">{group.title}</h3>
             <div className="grid grid-cols-3 gap-3">
               {group.notes.map((note) => (
                 <div key={note.name} className="text-center">
@@ -482,29 +482,35 @@ function FragranceSection({ product }: { product: Product }) {
 }
 
 function RelatedProducts({ products: relatedProducts }: { products: Product[] }) {
+  const carouselProducts = [...relatedProducts, ...relatedProducts];
+
   return (
-    <section className="mt-12">
+    <section className="mt-12 overflow-hidden">
       <div className="mb-6 flex items-end justify-between gap-4">
-        <h2 className="font-serif text-3xl text-white sm:text-4xl">Produtos Relacionados</h2>
+        <h2 className="font-[Montserrat,Poppins,system-ui,sans-serif] text-3xl font-black tracking-[-0.055em] text-white sm:text-4xl">Produtos Relacionados</h2>
         <a href="/#catalog" className="hidden rounded-full border border-amber-300/35 px-5 py-2 text-[12px] font-bold text-amber-200 hover:bg-amber-300/10 sm:inline-flex">
           Ver todos <ArrowRight className="ml-2 h-4 w-4" />
         </a>
       </div>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-6">
-        {relatedProducts.map((product) => (
-          <article key={product.name} className="group overflow-hidden rounded-2xl border border-amber-300/14 bg-[#120d09] p-3 transition hover:-translate-y-1 hover:border-amber-300/45">
+      <div className="group/related relative -mx-4 overflow-hidden px-4">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#050403] to-transparent" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#050403] to-transparent" />
+        <div className="flex w-max gap-4 animate-[marquee_55s_linear_infinite] group-hover/related:[animation-play-state:paused] md:gap-6">
+        {carouselProducts.map((product, index) => (
+          <article key={`${product.name}-${index}`} className="group w-[168px] shrink-0 overflow-hidden rounded-2xl border border-amber-300/14 bg-[#120d09] p-3 transition hover:-translate-y-1 hover:border-amber-300/45 sm:w-[220px] md:w-[260px]">
             <div className="relative aspect-square overflow-hidden rounded-xl bg-[radial-gradient(circle_at_50%_28%,rgba(212,175,55,0.16),transparent_44%),#1a120c]">
               <button className="absolute right-2 top-2 z-10 grid h-8 w-8 place-items-center rounded-full bg-black/45 text-white/70 backdrop-blur"><Heart className="h-4 w-4" /></button>
               {product.image && <img src={product.image} alt={product.name} className="h-full w-full object-contain p-1 transition duration-500 group-hover:scale-110" />}
             </div>
             <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300">{product.brand}</p>
-            <h3 className="mt-1 min-h-10 text-[14px] font-semibold text-white">{titleCase(product.name)}</h3>
+            <h3 className="mt-1 min-h-10 font-[Montserrat,Poppins,system-ui,sans-serif] text-[14px] font-extrabold tracking-[-0.03em] text-white">{titleCase(product.name)}</h3>
             <p className="mt-2 text-[15px] font-black text-amber-200">{product.price}</p>
             <a href={`/produto/${slugify(product.name)}`} className="mt-4 flex h-10 items-center justify-center gap-2 rounded-lg bg-[linear-gradient(180deg,#ffe37d,#d4a62b)] text-[11px] font-black uppercase tracking-[0.08em] text-black">
               Ver detalhes <ShoppingBag className="h-4 w-4" />
             </a>
           </article>
         ))}
+        </div>
       </div>
     </section>
   );
