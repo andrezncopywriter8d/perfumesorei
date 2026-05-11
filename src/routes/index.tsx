@@ -191,15 +191,6 @@ function formatCurrency(value: number) {
   });
 }
 
-function isIOSDevice() {
-  if (typeof navigator === "undefined") return false;
-
-  return (
-    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
-  );
-}
-
 function PixIcon({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -371,23 +362,11 @@ function Index() {
 
 function LuxuryHero({
   virtual,
-  heroVideoFallback,
-  onVideoFallback,
 }: {
   virtual: boolean;
-  heroVideoFallback: boolean;
-  onVideoFallback: () => void;
 }) {
   return (
-    <section className="luxury-hero luxury-hero-static">
-      <img
-        className="hero-reference-scene"
-        src="/luxury-hero-reference.png"
-        alt="ASAD Luxury Perfumes"
-        decoding="async"
-        fetchPriority="high"
-      />
-      <a className="hero-static-catalog-hit" href="#catalog" aria-label="Ver catálogo" />
+    <section className="luxury-hero">
       <div className="hero-bg" aria-hidden="true" />
       <div className="hero-amber-glow" aria-hidden="true" />
       <div className="hero-bottom-glow" aria-hidden="true" />
@@ -413,16 +392,16 @@ function LuxuryHero({
         </nav>
 
         <div className="hero-icons">
-          <button type="button" aria-label="Pesquisar">
+          <a href="#catalog-search" aria-label="Pesquisar">
             <Search size={23} />
-          </button>
-          <button type="button" aria-label="Conta">
+          </a>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram">
             <User size={23} />
-          </button>
-          <button type="button" className="bag-button" aria-label="Carrinho">
+          </a>
+          <a href="#catalog" className="bag-button" aria-label="Carrinho">
             <ShoppingBag size={23} />
             <span>0</span>
-          </button>
+          </a>
         </div>
       </header>
 
@@ -455,26 +434,13 @@ function LuxuryHero({
         <div className="hero-visual" aria-hidden="true">
           <img className="lion-image" src="/lion.webp" alt="" decoding="async" />
           <div className="perfume-stage">
-            {heroVideoFallback ? (
-              <img
-                className="perfume-image"
-                src="/perfume-isolated.webp"
-                alt=""
-                decoding="async"
-              />
-            ) : (
-              <video
-                className="perfume-image"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                onError={onVideoFallback}
-              >
-                <source src="/perfume-isolated.webm" type="video/webm" />
-              </video>
-            )}
+            <img
+              className="perfume-image"
+              src="/perfume-isolated.webp"
+              alt=""
+              decoding="async"
+              fetchPriority="high"
+            />
           </div>
         </div>
       </main>
@@ -506,7 +472,6 @@ function LuxuryHero({
 export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
   const [search, setSearch] = useState("");
   const [genderFilter, setGenderFilter] = useState<GenderFilter>("todos");
-  const [heroVideoFallback, setHeroVideoFallback] = useState(true);
   const catalogRef = useRef<HTMLDivElement>(null);
   const filteredProducts = catalogProducts.filter((p) => {
     const gender = productGenders[p.name] ?? "unissex";
@@ -517,131 +482,9 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
     return matchesSearch && matchesGender;
   });
 
-  useEffect(() => {
-    setHeroVideoFallback(isIOSDevice());
-  }, []);
-
   return (
     <div className="relative bg-[#070403] text-white">
-      <LuxuryHero
-        virtual={virtual}
-        heroVideoFallback={heroVideoFallback}
-        onVideoFallback={() => setHeroVideoFallback(true)}
-      />
-
-      <section className="hidden">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-[1]"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 70% at 82% 55%, rgba(198,128,40,0.32), rgba(120,60,10,0.10) 45%, transparent 72%)",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-[1]"
-          style={{
-            background:
-              "radial-gradient(ellipse 35% 45% at 88% 45%, rgba(232,170,75,0.18), transparent 70%)",
-          }}
-        />
-
-        <img
-          src="/lion.webp"
-          alt=""
-          aria-hidden="true"
-          decoding="async"
-          fetchPriority="low"
-          className="absolute right-[-4%] top-1/2 -translate-y-1/2 h-[55vh] md:h-[78vh] w-auto max-w-none z-[2] pointer-events-none select-none"
-          style={{
-            opacity: 0.32,
-            filter: "saturate(0.7) contrast(0.95) brightness(0.78)",
-            mixBlendMode: "screen",
-            maskImage:
-              "radial-gradient(ellipse 55% 70% at 65% 50%, #000 25%, rgba(0,0,0,0.5) 55%, transparent 85%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 55% 70% at 65% 50%, #000 25%, rgba(0,0,0,0.5) 55%, transparent 85%)",
-          }}
-        />
-
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-[3]"
-          style={{
-            background:
-              "linear-gradient(to right, #070403 0%, rgba(7,4,3,0.85) 25%, rgba(7,4,3,0.25) 50%, transparent 70%), linear-gradient(to top, #070403 0%, rgba(7,4,3,0.6) 12%, transparent 28%)",
-          }}
-        />
-
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[54%] md:-translate-y-1/2 z-[4] pointer-events-none h-[44vh] md:h-[80vh] max-h-[840px] aspect-square">
-          {heroVideoFallback ? (
-            <img
-              src="/perfume-isolated.webp"
-              alt=""
-              aria-hidden="true"
-              decoding="async"
-              className="h-full w-full object-contain bg-transparent animate-[fadeIn_1.4s_ease-in-out]"
-              style={{
-                backgroundColor: "transparent",
-                filter:
-                  "drop-shadow(0 50px 60px rgba(0,0,0,0.9)) drop-shadow(0 0 80px rgba(214,135,30,0.15))",
-              }}
-            />
-          ) : (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              onError={() => setHeroVideoFallback(true)}
-              className="h-full w-full object-contain bg-transparent animate-[fadeIn_1.4s_ease-in-out]"
-              style={{
-                backgroundColor: "transparent",
-                filter:
-                  "drop-shadow(0 50px 60px rgba(0,0,0,0.9)) drop-shadow(0 0 80px rgba(214,135,30,0.15))",
-              }}
-            >
-              <source src="/perfume-isolated.webm" type="video/webm" />
-            </video>
-          )}
-        </div>
-
-        <div className="absolute z-[5] left-6 right-6 bottom-10 md:left-[7vw] md:right-auto md:bottom-[10vh] md:max-w-[480px]">
-          <span className="block text-[11px] md:text-[12px] font-medium text-amber-400/90 mb-4 md:mb-5 tracking-[0.18em] uppercase">
-            {virtual ? "Loja virtual oficial" : "Coleção exclusiva 2026"}
-          </span>
-          <h1
-            className="text-white font-light tracking-[-0.025em] mb-6 [text-wrap:balance]"
-            style={{
-              fontSize: "clamp(30px, 3.2vw, 52px)",
-              lineHeight: 1.08,
-              fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-            }}
-          >
-            Fragrâncias árabes
-            <br />
-            que contam histórias
-            <br />
-            <em className="italic font-normal bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
-              eternas.
-            </em>
-          </h1>
-          <p className="text-white/55 text-[14px] md:text-[15px] leading-[1.6] mb-8 max-w-[360px] tracking-wide">
-            {virtual
-              ? "Compre online e receba em qualquer lugar do Brasil."
-              : "Descubra a essência do oriente."}
-          </p>
-          <a
-            href="#catalog"
-            className="inline-flex items-center gap-3 text-[13px] font-medium text-amber-300 border border-amber-400/60 rounded-full px-7 py-3 backdrop-blur-sm hover:bg-amber-400/10 hover:border-amber-300 hover:text-amber-200 transition-all duration-500 tracking-wide"
-          >
-            {virtual ? "Ver loja virtual" : "Ver catálogo"}
-            <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
-          </a>
-        </div>
-      </section>
+      <LuxuryHero virtual={virtual} />
 
       <section
         id="catalog"
@@ -771,6 +614,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
 
           <div className="relative z-10 max-w-2xl mx-auto mb-10">
             <input
+              id="catalog-search"
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
