@@ -369,6 +369,7 @@ function LuxuryHero({
   return (
     <section className="luxury-hero">
       <div className="hero-bg" aria-hidden="true" />
+      <div className="marble-texture" aria-hidden="true" />
       <div className="hero-amber-glow" aria-hidden="true" />
       <div className="hero-bottom-glow" aria-hidden="true" />
       <div className="hero-particles" aria-hidden="true" />
@@ -444,15 +445,13 @@ function LuxuryHero({
 
         <div className="hero-visual" aria-hidden="true">
           <img className="lion-image" src="/lion.webp" alt="" decoding="async" />
-          <div className="perfume-stage">
-            <img
-              className="perfume-image"
-              src="/perfume-hero-photo.png"
-              alt=""
-              decoding="async"
-              fetchPriority="high"
-            />
-          </div>
+          <img
+            className="perfume-image"
+            src="/perfume-hero-photo.png"
+            alt=""
+            decoding="async"
+            fetchPriority="high"
+          />
         </div>
       </main>
 
