@@ -447,7 +447,7 @@ function LuxuryHero({
           <img className="lion-image" src="/lion.webp" alt="" decoding="async" />
           <img
             className="perfume-image"
-            src="/perfume-hero-photo.png"
+            src="/perfume-asad-transparent.png"
             alt=""
             decoding="async"
             fetchPriority="high"

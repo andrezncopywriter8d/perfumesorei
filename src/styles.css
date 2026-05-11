@@ -658,9 +658,9 @@ html, body {
 
 .perfume-image {
   position: absolute;
-  right: clamp(285px, 29vw, 560px);
-  top: clamp(104px, 12vh, 148px);
-  width: clamp(365px, 28vw, 535px);
+  right: clamp(270px, 28vw, 535px);
+  top: clamp(96px, 11vh, 136px);
+  width: clamp(410px, 30vw, 600px);
   height: auto;
   object-fit: contain;
   transform: rotate(-7deg);
@@ -671,15 +671,13 @@ html, body {
   box-shadow: none;
   opacity: 0.99;
   mix-blend-mode: normal;
-  mask-image: radial-gradient(ellipse 48% 58% at 52% 52%, black 0%, black 66%, rgba(0, 0, 0, 0.78) 76%, transparent 91%);
-  -webkit-mask-image: radial-gradient(ellipse 48% 58% at 52% 52%, black 0%, black 66%, rgba(0, 0, 0, 0.78) 76%, transparent 91%);
   filter:
-    saturate(1.08)
-    contrast(1.06)
-    brightness(1.02)
-    drop-shadow(0 24px 34px rgba(0, 0, 0, 0.82))
-    drop-shadow(0 0 38px rgba(241, 174, 45, 0.38))
-    drop-shadow(0 0 88px rgba(181, 94, 11, 0.34));
+    saturate(1.1)
+    contrast(1.08)
+    brightness(1.03)
+    drop-shadow(0 26px 36px rgba(0, 0, 0, 0.84))
+    drop-shadow(0 0 42px rgba(241, 174, 45, 0.42))
+    drop-shadow(0 0 96px rgba(181, 94, 11, 0.38));
   animation: perfumeFloat 5.8s ease-in-out infinite;
 }
 
@@ -777,8 +775,8 @@ html, body {
   }
 
   .perfume-image {
-    right: 18vw;
-    width: clamp(340px, 38vw, 500px);
+    right: 15vw;
+    width: clamp(390px, 43vw, 560px);
   }
 
   .lion-image {
@@ -880,18 +878,16 @@ html, body {
   }
 
   .perfume-image {
-    top: 16px;
-    right: 13%;
-    width: min(56vw, 260px);
+    top: 6px;
+    right: 10%;
+    width: min(64vw, 292px);
     transform: rotate(-4deg);
-    mask-image: radial-gradient(ellipse 52% 61% at 52% 52%, black 0%, black 67%, rgba(0, 0, 0, 0.75) 77%, transparent 92%);
-    -webkit-mask-image: radial-gradient(ellipse 52% 61% at 52% 52%, black 0%, black 67%, rgba(0, 0, 0, 0.75) 77%, transparent 92%);
     filter:
-      saturate(1.08)
-      contrast(1.04)
-      brightness(1.02)
+      saturate(1.1)
+      contrast(1.06)
+      brightness(1.03)
       drop-shadow(0 14px 20px rgba(0, 0, 0, 0.8))
-      drop-shadow(0 0 28px rgba(241, 174, 45, 0.32));
+      drop-shadow(0 0 30px rgba(241, 174, 45, 0.34));
     animation: perfumeFloatMobile 5.8s ease-in-out infinite;
   }
 
@@ -962,9 +958,9 @@ html, body {
   }
 
   .perfume-image {
-    top: 18px;
-    right: 9%;
-    width: min(62vw, 250px);
+    top: 4px;
+    right: 7%;
+    width: min(68vw, 276px);
   }
 
   .lion-image {
