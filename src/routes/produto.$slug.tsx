@@ -202,9 +202,8 @@ function ProductPage() {
   const [selectedSize, setSelectedSize] = useState(product.sizes[0] ?? "100ml");
 
   const priceValue = parsePrice(product.price);
-  const oldPrice = formatCurrency(priceValue * 1.125);
-  const pixPrice = formatCurrency(priceValue * 0.9);
-  const installment = formatCurrency(priceValue / 6);
+  const oldPrice = formatCurrency(priceValue * 1.28);
+  const pixPrice = formatCurrency(priceValue);
   const related = useMemo(
     () => products.filter((item) => item.name !== product.name),
     [product.name],
@@ -293,13 +292,13 @@ function ProductPage() {
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <span className="rounded-lg border border-emerald-400/35 bg-emerald-500/10 px-3 py-1.5 text-[12px] font-extrabold text-emerald-400">
-                  10% OFF no PIX
+                  PREÇO FINAL NO PIX
                 </span>
                 <span className="text-[15px] font-bold text-amber-200">{pixPrice} no PIX</span>
               </div>
               <div className="mt-3 inline-flex items-center gap-3 rounded-lg border border-white/12 bg-black/24 px-4 py-2 text-[13px] text-white/70">
                 <CreditCard className="h-4 w-4 text-amber-300" />
-                ou 6x de {installment} sem juros
+                em até 18x com juros • consulte a taxa
               </div>
             </div>
 
@@ -378,7 +377,7 @@ function ProductTopBar() {
       <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-5">
           <span className="inline-flex items-center gap-2"><Truck className="h-3.5 w-3.5 text-amber-300" />Envio para todo o Brasil</span>
-          <span className="inline-flex items-center gap-2"><CreditCard className="h-3.5 w-3.5 text-amber-300" />Até 5x sem juros no cartão</span>
+          <span className="inline-flex items-center gap-2"><CreditCard className="h-3.5 w-3.5 text-amber-300" />Até 18x com juros no cartão</span>
         </div>
         <div className="flex gap-5">
           <a href={INSTAGRAM_URL} className="hover:text-amber-200">Atendimento</a>
@@ -519,7 +518,7 @@ function RelatedProducts({ products: relatedProducts }: { products: Product[] })
 function BenefitsStrip() {
   const benefits = [
     { icon: BadgeCheck, title: "Produtos 100% Originais", text: "Garantia de procedência" },
-    { icon: CreditCard, title: "Parcelamento em até 5x", text: "Sem juros no cartão de crédito" },
+    { icon: CreditCard, title: "Parcelamento em até 18x", text: "Com juros • consulte a taxa" },
     { icon: Headphones, title: "Atendimento Premium", text: "Suporte dedicado via WhatsApp" },
     { icon: Heart, title: "Satisfação Garantida", text: "Mais de 10 mil clientes satisfeitos" },
   ];

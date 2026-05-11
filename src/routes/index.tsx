@@ -239,7 +239,7 @@ function PriceCard({
             <PixIcon className="h-5 w-5" />
           </span>
           <span className="text-[15px] font-extrabold leading-tight text-[#00d26a]">
-            5% OFF no Pix
+            Pix no valor final
           </span>
         </div>
 
@@ -248,8 +248,8 @@ function PriceCard({
             <CreditCard className="h-5 w-5" strokeWidth={2.4} />
           </span>
           <span className="text-[14px] leading-tight text-white/62">
-            ou <strong className="font-extrabold text-white">{installmentPrice}</strong>{" "}
-            em 5x
+            até <strong className="font-extrabold text-white">{installmentPrice}</strong>{" "}
+            com juros
           </span>
         </div>
 
@@ -258,7 +258,7 @@ function PriceCard({
             <Banknote className="h-5 w-5" strokeWidth={2.4} />
           </span>
           <span className="bg-[linear-gradient(180deg,#59ffa1,#00a650)] bg-clip-text text-[20px] font-black leading-tight text-transparent">
-            {pixPrice} <span className="text-[14px] font-semibold">sem juros</span>
+            {pixPrice} <span className="text-[14px] font-semibold">preço final</span>
           </span>
         </div>
       </div>
@@ -700,8 +700,8 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
             {filteredProducts.map((p, index) => {
               const gender = productGenders[p.name] ?? "unissex";
               const priceValue = parsePrice(p.price);
-              const pixPrice = formatCurrency(priceValue * 0.95);
-              const installmentPrice = formatCurrency(priceValue / 5);
+              const pixPrice = formatCurrency(priceValue);
+              const installmentPrice = "18x";
               const productUrl = `/produto/${slugifyProductName(p.name)}`;
               const genderLabel =
                 gender === "masculino"
