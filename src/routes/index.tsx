@@ -192,6 +192,15 @@ function formatCurrency(value: number) {
   });
 }
 
+function slugifyProductName(name: string) {
+  return name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
 function PixIcon({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -693,6 +702,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
               const priceValue = parsePrice(p.price);
               const pixPrice = formatCurrency(priceValue * 0.95);
               const installmentPrice = formatCurrency(priceValue / 5);
+              const productUrl = `/produto/${slugifyProductName(p.name)}`;
               const genderLabel =
                 gender === "masculino"
                   ? "Masculino"
@@ -703,6 +713,17 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
               return (
                 <article
                   key={p.name}
+                  role="link"
+                  tabIndex={0}
+                  onClick={() => {
+                    window.location.href = productUrl;
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      window.location.href = productUrl;
+                    }
+                  }}
                   className="product-card group relative flex min-h-[430px] flex-col overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#100b08]/92 shadow-[0_22px_58px_rgba(0,0,0,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-200/38 hover:bg-[#15100c]/95 hover:shadow-[0_30px_80px_rgba(0,0,0,0.38)]"
                 >
                   <div
@@ -771,17 +792,16 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
                         </div>
                       )}
                       <a
-                        href={virtual ? getCheckoutUrl(p.name) : INSTAGRAM_URL}
-                        target={virtual ? undefined : "_blank"}
-                        rel={virtual ? undefined : "noopener noreferrer"}
+                        href={productUrl}
+                        onClick={(event) => event.stopPropagation()}
                         className={`product-button flex min-h-12 w-full items-center justify-center rounded-xl px-4 text-center font-[Inter,system-ui,sans-serif] text-[12px] font-extrabold uppercase tracking-[0.08em] transition-all duration-300 focus:outline-none focus:ring-4 ${
                           virtual
                             ? "border border-[#3483fa]/70 bg-[linear-gradient(180deg,#5b9cff,#2563eb)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.32),0_16px_36px_rgba(37,99,235,0.34)] hover:-translate-y-0.5 hover:border-[#9ec2ff] hover:bg-[linear-gradient(180deg,#6da8ff,#1d4ed8)] focus:ring-[#3483fa]/25"
                             : "border border-amber-200/35 bg-[linear-gradient(180deg,#f6d995,#c99022)] text-[#160d05] shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_12px_24px_rgba(201,144,34,0.12)] hover:border-amber-100/60 hover:bg-[linear-gradient(180deg,#ffe8aa,#d49a2d)] focus:ring-amber-300/20"
                         }`}
                       >
-                        {virtual ? "Comprar agora" : "Comprar pelo Instagram"}
-                        {virtual && <span className="ml-2 text-[15px] leading-none">→</span>}
+                        Ver detalhes
+                        <span className="ml-2 text-[15px] leading-none">→</span>
                       </a>
                       {virtual && (
                         <p className="mt-3 text-center font-[Inter,system-ui,sans-serif] text-[11px] font-semibold text-[#00a650]">
