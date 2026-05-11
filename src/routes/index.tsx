@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Banknote, CreditCard, Search, ShoppingBag, Truck
 import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import { Button } from "@/components/ui/button-1";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import lojaImg from "@/assets/loja.webp";
 import asadImg from "@/assets/asad-new.webp";
 import asadBourbonImg from "@/assets/asad-bourbon.webp";
@@ -32,11 +33,6 @@ import attarAlWesalImg from "@/assets/attar-al-wesal.webp";
 import khamrahImg from "@/assets/khamrah.webp";
 import voujePartyImg from "@/assets/vouje-party.webp";
 
-const CinematicFooter = lazy(() =>
-  import("@/components/ui/motion-footer").then((module) => ({
-    default: module.CinematicFooter,
-  })),
-);
 const ContainerScroll = lazy(() =>
   import("@/components/ui/container-scroll-animation").then((module) => ({
     default: module.ContainerScroll,
@@ -59,6 +55,17 @@ function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const shouldSkipHeavyScrollAnimation =
+      window.matchMedia("(max-width: 768px)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (shouldSkipHeavyScrollAnimation) {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+      el.style.filter = "none";
+      return;
+    }
+
     let ctx: { revert: () => void } | undefined;
     let cancelled = false;
 
@@ -881,9 +888,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
         </div>
       </section>
 
-      <Suspense fallback={null}>
-        <CinematicFooter />
-      </Suspense>
+      <CinematicFooter />
     </div>
   );
 }

@@ -1,14 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const STYLES = `
 .cinematic-footer-wrapper {
@@ -75,6 +68,38 @@ const STYLES = `
   background-clip: text;
   filter: drop-shadow(0 0 24px color-mix(in oklch, #f59e0b 30%, transparent));
 }
+
+@media (max-width: 768px) {
+  .cinematic-footer-wrapper {
+    content-visibility: auto;
+    contain-intrinsic-size: 720px;
+  }
+
+  .footer-aurora {
+    width: 125vw !important;
+    height: 125vw !important;
+    opacity: 0.42 !important;
+  }
+
+  .footer-bg-grid {
+    background-size: 84px 84px;
+    opacity: 0.55;
+  }
+
+  .footer-glass-pill {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .footer-giant-bg-text {
+    font-size: 34vw;
+    bottom: 6vw;
+  }
+
+  .footer-text-glow {
+    filter: none;
+  }
+}
 `;
 
 type MagneticButtonProps = React.HTMLAttributes<HTMLElement> & {
@@ -86,50 +111,13 @@ type MagneticButtonProps = React.HTMLAttributes<HTMLElement> & {
 
 const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
   ({ className, children, as: Component = "button", ...props }, forwardedRef) => {
-    const localRef = useRef<HTMLElement | null>(null);
-
-    useEffect(() => {
-      const element = localRef.current;
-      if (!element) return;
-
-      const ctx = gsap.context(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-          const rect = element.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          gsap.to(element, {
-            x: x * 0.35,
-            y: y * 0.35,
-            scale: 1.05,
-            ease: "power2.out",
-            duration: 0.4,
-          });
-        };
-        const handleMouseLeave = () => {
-          gsap.to(element, {
-            x: 0, y: 0, scale: 1,
-            ease: "elastic.out(1, 0.3)", duration: 1.2,
-          });
-        };
-        element.addEventListener("mousemove", handleMouseMove);
-        element.addEventListener("mouseleave", handleMouseLeave);
-        return () => {
-          element.removeEventListener("mousemove", handleMouseMove);
-          element.removeEventListener("mouseleave", handleMouseLeave);
-        };
-      }, element);
-
-      return () => ctx.revert();
-    }, []);
-
     return (
       <Component
-        ref={(node: HTMLElement) => {
-          localRef.current = node;
+        ref={(node: HTMLElement | null) => {
           if (typeof forwardedRef === "function") forwardedRef(node);
           else if (forwardedRef) (forwardedRef as React.MutableRefObject<HTMLElement | null>).current = node;
         }}
-        className={cn("cursor-pointer", className)}
+        className={cn("cursor-pointer transition-transform duration-200 hover:-translate-y-0.5", className)}
         {...props}
       >
         {children}
@@ -171,56 +159,16 @@ export function CinematicFooter({
   ctaLabel = "Visite nossa loja",
   ctaHref = "https://share.google/OkcIQzpngPsggMKWr",
 }: CinematicFooterProps) {
-  const wrapperRef = useRef<HTMLElement | null>(null);
-  const giantTextRef = useRef<HTMLDivElement | null>(null);
-  const headingRef = useRef<HTMLDivElement | null>(null);
-  const linksRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (!wrapperRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        giantTextRef.current,
-        { y: "12vh", scale: 0.85, opacity: 0 },
-        {
-          y: "0vh", scale: 1, opacity: 1, ease: "power1.out",
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: "top 85%",
-            end: "bottom bottom",
-            scrub: 1,
-          },
-        }
-      );
-      gsap.fromTo(
-        [headingRef.current, linksRef.current],
-        { y: 60, opacity: 0 },
-        {
-          y: 0, opacity: 1, stagger: 0.15, ease: "power3.out",
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: "top 50%",
-            end: "bottom bottom",
-            scrub: 1,
-          },
-        }
-      );
-    }, wrapperRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
     <>
       <style>{STYLES}</style>
       <footer
-        ref={wrapperRef as React.RefObject<HTMLElement>}
         className="cinematic-footer-wrapper relative isolate overflow-hidden bg-[#0a0506] text-white pt-32 pb-12"
       >
         <div className="absolute inset-0 footer-bg-grid pointer-events-none" />
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1100px] max-h-[1100px] footer-aurora pointer-events-none opacity-70" />
 
         <div
-          ref={giantTextRef}
           aria-hidden
           className="footer-giant-bg-text absolute inset-x-0 bottom-[-4vw] text-center select-none pointer-events-none"
         >
@@ -228,7 +176,7 @@ export function CinematicFooter({
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-12">
-          <div ref={headingRef} className="text-center mb-16">
+          <div className="text-center mb-16">
             <p className="text-[11.5px] font-medium text-amber-400 uppercase tracking-[0.4em] mb-5">
               {brand}
             </p>
@@ -250,7 +198,6 @@ export function CinematicFooter({
           </div>
 
           <div
-            ref={linksRef}
             className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-20"
           >
             {links.map((link) => (
