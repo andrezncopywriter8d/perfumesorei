@@ -292,7 +292,7 @@ const productImages: Record<string, string> = {
   MEITE: meitreImg,
 };
 
-type CatalogFilter = "todos" | "masculino" | "feminino" | "arabes" | "mais-vendidos" | "promocoes";
+type CatalogFilter = "todos" | "masculino" | "feminino" | "mais-vendidos" | "promocoes";
 type ProductGender = "masculino" | "feminino" | "unissex";
 
 const catalogProducts: { name: string; price: string }[] = [
@@ -361,7 +361,6 @@ const catalogCategories: { id: CatalogFilter; label: string }[] = [
   { id: "todos", label: "Todos" },
   { id: "masculino", label: "Masculino" },
   { id: "feminino", label: "Feminino" },
-  { id: "arabes", label: "Árabes" },
   { id: "mais-vendidos", label: "Mais vendidos" },
   { id: "promocoes", label: "Promoções" },
 ];
@@ -384,7 +383,6 @@ function matchesCatalogFilter(product: { name: string; price: string }, filter: 
   if (filter === "todos") return true;
   if (filter === "masculino") return gender === "masculino" || gender === "unissex";
   if (filter === "feminino") return gender === "feminino" || gender === "unissex";
-  if (filter === "arabes") return true;
   if (filter === "mais-vendidos") return bestSellerNames.has(product.name);
   if (filter === "promocoes") return priceValue <= 200;
 
@@ -518,23 +516,7 @@ function LuxuryHero({
 export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
   const [search, setSearch] = useState("");
   const [catalogFilter, setCatalogFilter] = useState<CatalogFilter>("todos");
-  const [visibleMobileProducts, setVisibleMobileProducts] = useState(4);
-  const [isMobileCatalog, setIsMobileCatalog] = useState(false);
   const catalogRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-    const handleChange = () => setIsMobileCatalog(mediaQuery.matches);
-
-    handleChange();
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
-
-  useEffect(() => {
-    setVisibleMobileProducts(4);
-  }, [catalogFilter, search]);
 
   const filteredProducts = catalogProducts.filter((p) => {
     const matchesSearch = p.name.toLowerCase().includes(search.trim().toLowerCase());
@@ -542,10 +524,6 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
 
     return matchesSearch && matchesCategory;
   });
-  const visibleProducts = isMobileCatalog
-    ? filteredProducts.slice(0, visibleMobileProducts)
-    : filteredProducts;
-  const hasMoreMobileProducts = isMobileCatalog && visibleProducts.length < filteredProducts.length;
 
   return (
     <div className="relative bg-[#070403] text-white">
@@ -710,7 +688,7 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
           </div>
 
           <div className="products-grid relative z-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {visibleProducts.map((p, index) => {
+            {filteredProducts.map((p, index) => {
               const gender = productGenders[p.name] ?? "unissex";
               const priceValue = parsePrice(p.price);
               const pixPrice = formatCurrency(priceValue * 0.95);
@@ -816,18 +794,6 @@ export function StorefrontPage({ virtual = false }: { virtual?: boolean }) {
               );
             })}
           </div>
-
-          {hasMoreMobileProducts && (
-            <div className="relative z-10 mt-7 flex justify-center md:hidden">
-              <button
-                type="button"
-                onClick={() => setVisibleMobileProducts((current) => current + 4)}
-                className="rounded-full border border-amber-200/45 bg-black/35 px-6 py-3 text-[12px] font-extrabold uppercase tracking-[0.12em] text-amber-200 shadow-[0_14px_34px_rgba(0,0,0,0.32)] backdrop-blur-md transition-all hover:border-amber-100 hover:bg-amber-300/10"
-              >
-                Ver mais perfumes
-              </button>
-            </div>
-          )}
 
           {filteredProducts.length === 0 && (
             <p className="text-center text-white/50 mt-10 text-[14px]">
