@@ -717,9 +717,9 @@ html, body {
 .perfume-image {
   position: absolute;
   z-index: 4;
-  left: 58%;
+  left: 50.5%;
   right: auto;
-  top: clamp(104px, 11vh, 132px);
+  top: clamp(24px, 4vh, 56px);
   width: clamp(520px, 36vw, 700px);
   height: auto;
   object-fit: contain;
@@ -849,9 +849,9 @@ html, body {
   }
 
   .perfume-image {
-    left: 58%;
+    left: 51.5%;
     right: auto;
-    top: 118px;
+    top: 42px;
     width: clamp(390px, 45vw, 530px);
   }
 
@@ -944,7 +944,7 @@ html, body {
     position: absolute;
     left: 22%;
     right: -10%;
-    top: 288px;
+    top: 332px;
     bottom: auto;
     z-index: 2;
     height: 182px;
@@ -995,10 +995,10 @@ html, body {
 
   .perfume-image {
     z-index: 5;
-    top: -16px;
+    top: -28px;
     left: 50%;
     right: auto;
-    width: min(76vw, 336px);
+    width: min(92vw, 390px);
     transform: translateX(-50%) rotate(-6deg);
     transform-origin: center;
     filter:
@@ -1037,13 +1037,13 @@ html, body {
   .hero-bottom-glow {
     opacity: 0.45;
     background:
-      radial-gradient(ellipse at 50% 39%, rgba(255, 207, 86, 0.4) 0%, rgba(211, 104, 14, 0.19) 18%, transparent 44%);
+      radial-gradient(ellipse at 50% 46%, rgba(255, 207, 86, 0.42) 0%, rgba(211, 104, 14, 0.2) 18%, transparent 44%);
   }
 
   .hero-bottom-glow::before {
     left: 18%;
     right: 6%;
-    top: 41%;
+    top: 47%;
     height: 58px;
     background:
       linear-gradient(90deg, transparent 0%, rgba(255, 177, 42, 0.12) 14%, rgba(255, 235, 168, 0.62) 50%, rgba(255, 160, 28, 0.16) 76%, transparent 100%),
@@ -1056,7 +1056,7 @@ html, body {
   .hero-bottom-glow::after {
     left: 15%;
     right: 4%;
-    top: 36%;
+    top: 42%;
     height: 110px;
     background-size: 28px 18px, 48px 30px, 72px 42px;
     opacity: 0.48;
@@ -1077,7 +1077,7 @@ html, body {
     z-index: 30;
     max-width: 360px;
     margin-top: 0;
-    padding-top: 418px;
+    padding-top: 488px;
   }
 
   .hero-kicker {
@@ -1122,7 +1122,7 @@ html, body {
   .hero-visual::before {
     left: 16%;
     right: -16%;
-    top: 286px;
+    top: 326px;
     bottom: auto;
     height: 46%;
     background:
@@ -1139,10 +1139,10 @@ html, body {
   }
 
   .perfume-image {
-    top: -18px;
+    top: -30px;
     left: 50%;
     right: auto;
-    width: min(78vw, 320px);
+    width: min(96vw, 380px);
     transform: translateX(-50%) rotate(-5deg);
   }
 
@@ -1160,20 +1160,20 @@ html, body {
   .hero-bottom-glow {
     opacity: 0.5;
     background:
-      radial-gradient(ellipse at 50% 45%, rgba(255, 209, 88, 0.44) 0%, rgba(212, 106, 16, 0.2) 18%, transparent 46%);
+      radial-gradient(ellipse at 50% 52%, rgba(255, 209, 88, 0.46) 0%, rgba(212, 106, 16, 0.22) 18%, transparent 46%);
   }
 
   .hero-bottom-glow::before {
     left: 12%;
     right: 3%;
-    top: 42%;
+    top: 49%;
     height: 62px;
   }
 
   .hero-bottom-glow::after {
     left: 10%;
     right: 0;
-    top: 37%;
+    top: 44%;
     height: 116px;
   }
 
@@ -1188,6 +1188,6 @@ html, body {
 
   .hero-copy {
     margin-top: 0;
-    padding-top: 406px;
+    padding-top: 476px;
   }
 }
