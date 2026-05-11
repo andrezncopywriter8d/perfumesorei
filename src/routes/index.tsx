@@ -414,9 +414,11 @@ function LuxuryHero({
           </p>
 
           <h1>
-            Fragrâncias árabes
+            Fragrâncias
             <br />
-            que contam histórias
+            árabes que
+            <br />
+            contam histórias
             <br />
             <em>eternas.</em>
           </h1>
