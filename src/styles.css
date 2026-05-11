@@ -239,6 +239,49 @@ html, body {
     linear-gradient(90deg, #000000 0%, #030201 35%, #100804 68%, #1b0e04 100%);
 }
 
+.luxury-hero-static {
+  min-height: 100vh;
+  background: #020202;
+}
+
+.hero-reference-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+.luxury-hero-static .hero-bg,
+.luxury-hero-static .hero-amber-glow,
+.luxury-hero-static .hero-bottom-glow,
+.luxury-hero-static .hero-particles,
+.luxury-hero-static .luxury-header,
+.luxury-hero-static .hero-content,
+.luxury-hero-static .hero-footer {
+  display: none;
+}
+
+.luxury-hero-static::before,
+.luxury-hero-static::after {
+  display: none;
+}
+
+.hero-static-catalog-hit {
+  position: absolute;
+  left: 4.1%;
+  top: 72.8%;
+  z-index: 2;
+  width: min(13vw, 210px);
+  height: 7%;
+  min-width: 150px;
+  border-radius: 999px;
+}
+
 .luxury-hero::before,
 .luxury-hero::after {
   content: "";

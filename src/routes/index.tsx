@@ -379,7 +379,15 @@ function LuxuryHero({
   onVideoFallback: () => void;
 }) {
   return (
-    <section className="luxury-hero">
+    <section className="luxury-hero luxury-hero-static">
+      <img
+        className="hero-reference-scene"
+        src="/luxury-hero-reference.png"
+        alt="ASAD Luxury Perfumes"
+        decoding="async"
+        fetchPriority="high"
+      />
+      <a className="hero-static-catalog-hit" href="#catalog" aria-label="Ver catálogo" />
       <div className="hero-bg" aria-hidden="true" />
       <div className="hero-amber-glow" aria-hidden="true" />
       <div className="hero-bottom-glow" aria-hidden="true" />
