@@ -497,10 +497,10 @@ function RelatedProducts({ products: relatedProducts }: { products: Product[] })
         <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#050403] to-transparent" />
         <div className="flex w-max gap-4 animate-[marquee_55s_linear_infinite] group-hover/related:[animation-play-state:paused] md:gap-6">
         {carouselProducts.map((product, index) => (
-          <article key={`${product.name}-${index}`} className="group w-[168px] shrink-0 overflow-hidden rounded-2xl border border-amber-300/14 bg-[#120d09] p-3 transition hover:-translate-y-1 hover:border-amber-300/45 sm:w-[220px] md:w-[260px]">
-            <div className="relative aspect-square overflow-hidden rounded-xl bg-[radial-gradient(circle_at_50%_28%,rgba(212,175,55,0.16),transparent_44%),#1a120c]">
+          <article key={`${product.name}-${index}`} className="group w-[178px] shrink-0 overflow-hidden rounded-2xl border border-amber-300/14 bg-[#120d09] p-3 transition hover:-translate-y-1 hover:border-amber-300/45 sm:w-[236px] md:w-[280px]">
+            <div className="relative aspect-[1/1.08] overflow-hidden rounded-xl bg-[radial-gradient(circle_at_50%_28%,rgba(212,175,55,0.16),transparent_44%),#1a120c]">
               <button className="absolute right-2 top-2 z-10 grid h-8 w-8 place-items-center rounded-full bg-black/45 text-white/70 backdrop-blur"><Heart className="h-4 w-4" /></button>
-              {product.image && <img src={product.image} alt={product.name} className="h-full w-full object-contain p-1 transition duration-500 group-hover:scale-110" />}
+              {product.image && <img src={product.image} alt={product.name} className="h-full w-full scale-[1.18] object-contain p-0 transition duration-500 group-hover:scale-[1.26]" />}
             </div>
             <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300">{product.brand}</p>
             <h3 className="mt-1 min-h-10 font-[Montserrat,Poppins,system-ui,sans-serif] text-[14px] font-extrabold tracking-[-0.03em] text-white">{titleCase(product.name)}</h3>
