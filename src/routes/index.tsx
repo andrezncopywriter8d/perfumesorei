@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Banknote, CreditCard, Search, ShoppingBag, Truck, User } from "lucide-react";
 import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { GlowCard } from "@/components/ui/spotlight-card";
+import { Button } from "@/components/ui/button-1";
 import lojaImg from "@/assets/loja.webp";
 import asadImg from "@/assets/asad-new.webp";
 import asadBourbonImg from "@/assets/asad-bourbon.webp";
@@ -425,10 +426,20 @@ function LuxuryHero({
               : "Descubra a essência do oriente."}
           </p>
 
-          <a href="#catalog" className="hero-button">
+          <Button
+            type="secondary"
+            shape="rounded"
+            size="large"
+            shadow
+            className="hero-button"
+            suffix={<ArrowRight size={18} />}
+            onClick={(event) => {
+              event.preventDefault();
+              document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             {virtual ? "Ver loja virtual" : "Ver catálogo"}
-            <ArrowRight size={18} />
-          </a>
+          </Button>
         </div>
 
         <div className="hero-visual" aria-hidden="true">
