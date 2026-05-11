@@ -436,7 +436,7 @@ function LuxuryHero({
           <div className="perfume-stage">
             <img
               className="perfume-image"
-              src="/perfume-isolated.webp"
+              src="/perfume-hero-photo.png"
               alt=""
               decoding="async"
               fetchPriority="high"
