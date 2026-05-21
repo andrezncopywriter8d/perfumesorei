@@ -67,6 +67,28 @@ type Product = {
   sizes: string[];
 };
 
+function pendingProduct({
+  name,
+  brand,
+  price,
+  category,
+  sizes = ["100ml"],
+}: Pick<Product, "name" | "brand" | "price" | "category"> & { sizes?: string[] }): Product {
+  return {
+    name,
+    brand,
+    price,
+    category,
+    shortDescription:
+      "Perfume importado disponivel no catalogo O Rei do Importado. Imagem oficial em breve.",
+    about:
+      "Produto adicionado ao estoque atualizado. Em breve, esta pagina recebera foto e descricao olfativa completa.",
+    rating: 5,
+    reviews: 120,
+    sizes,
+  };
+}
+
 const products: Product[] = [
   {
     name: "ASAD",
@@ -134,6 +156,37 @@ const products: Product[] = [
   { name: "VULCAN FEU", brand: "French Avenue", price: "R$ 420,00", image: vulcanImg, category: "Masculino", shortDescription: "Premium, intenso e explosivo.", about: "Vulcan Feu entrega calor, especiarias e uma base sofisticada de alta performance.", rating: 5, reviews: 201, sizes: ["100ml"] },
   { name: "DURRAT", brand: "Al Wataniah", price: "R$ 190,00", image: durratImg, category: "Feminino", shortDescription: "Doce, macio e elegante.", about: "Durrat combina acordes delicados com fundo confortável e assinatura feminina.", rating: 5, reviews: 149, sizes: ["100ml"] },
   { name: "AMBER", brand: "Arabiyat", price: "R$ 570,00", image: amberImg, category: "Unissex", shortDescription: "Luxuoso, ambarado e profundo.", about: "Amber e uma fragrancia rica, intensa e sofisticada, feita para quem busca exclusividade.", rating: 5, reviews: 118, sizes: ["100ml"] },
+  pendingProduct({ name: "ASAD BOURBON EDP 100ML", brand: "Lattafa", price: "R$ 320,00", category: "Masculino" }),
+  pendingProduct({ name: "ASAD ELIXIR EDP 100ML", brand: "Lattafa", price: "R$ 320,00", category: "Masculino" }),
+  pendingProduct({ name: "YARA ELIXIR EDP 100ML", brand: "Lattafa", price: "R$ 320,00", category: "Feminino" }),
+  pendingProduct({ name: "YARA MOI EDP 100ML", brand: "Lattafa", price: "R$ 220,00", category: "Feminino" }),
+  pendingProduct({ name: "YARA EDP 100ML", brand: "Lattafa", price: "R$ 250,00", category: "Feminino" }),
+  pendingProduct({ name: "LIQUID BRUN EDP 100ML", brand: "French Avenue", price: "R$ 370,00", category: "Masculino" }),
+  pendingProduct({ name: "FAKHAR GOLD EXTRAIT EDP 100ML", brand: "Lattafa", price: "R$ 220,00", category: "Feminino" }),
+  pendingProduct({ name: "FAKHAR ROSE", brand: "Lattafa", price: "R$ 240,00", category: "Feminino" }),
+  pendingProduct({ name: "FAKHAR PLATINUM", brand: "Lattafa", price: "R$ 190,00", category: "Masculino" }),
+  pendingProduct({ name: "FAKHAR F EDP 100ML", brand: "Lattafa", price: "R$ 320,00", category: "Feminino" }),
+  pendingProduct({ name: "CLUB DE NUIT F EDP 105ML UAE", brand: "Armaf", price: "R$ 310,00", category: "Feminino", sizes: ["105ml"] }),
+  pendingProduct({ name: "SABAH AL WARD EDP", brand: "Al Wataniah", price: "R$ 190,00", category: "Feminino" }),
+  pendingProduct({ name: "ORIENTICA ROYAL AMBER EDP 80ML", brand: "Orientica", price: "R$ 550,00", category: "Unissex", sizes: ["80ml"] }),
+  pendingProduct({ name: "KING OF ARABIA EDP 100ML", brand: "Lattafa", price: "R$ 350,00", category: "Masculino" }),
+  pendingProduct({ name: "HAWAS BLACK EDP 100ML", brand: "Rasasi", price: "R$ 350,00", category: "Masculino" }),
+  pendingProduct({ name: "SALVO EDP 100ML", brand: "Maison Alhambra", price: "R$ 230,00", category: "Masculino" }),
+  pendingProduct({ name: "THARWAH GOLD EDP 100ML", brand: "Lattafa", price: "R$ 410,00", category: "Unissex" }),
+  pendingProduct({ name: "VENENO BIANCO EDP 100ML", brand: "French Avenue", price: "R$ 420,00", category: "Unissex" }),
+  pendingProduct({ name: "SILVER SCENT EDT 100ML", brand: "Jacques Bogart", price: "R$ 220,00", category: "Masculino" }),
+  pendingProduct({ name: "212 VIP BLACK EDP 100ML", brand: "Carolina Herrera", price: "R$ 650,00", category: "Masculino" }),
+  pendingProduct({ name: "212 VIP ROSE EDP 80ML", brand: "Carolina Herrera", price: "R$ 650,00", category: "Feminino", sizes: ["80ml"] }),
+  pendingProduct({ name: "SCANDAL POUR HOMME EDT 100ML", brand: "Jean Paul Gaultier", price: "R$ 650,00", category: "Masculino" }),
+  pendingProduct({ name: "SCANDAL POUR HOMME EDP INTENSE 100ML", brand: "Jean Paul Gaultier", price: "R$ 750,00", category: "Masculino" }),
+  pendingProduct({ name: "INVICTUS EDT 100ML", brand: "Paco Rabanne", price: "R$ 550,00", category: "Masculino" }),
+  pendingProduct({ name: "1 MILLION EDT 100ML", brand: "Paco Rabanne", price: "R$ 550,00", category: "Masculino" }),
+  pendingProduct({ name: "1 MILLION ELIXIR PARFUM INTENSE 100ML", brand: "Paco Rabanne", price: "R$ 700,00", category: "Masculino" }),
+  pendingProduct({ name: "AFNAN 9AM EDT 100ML", brand: "Afnan", price: "R$ 250,00", category: "Unissex" }),
+  pendingProduct({ name: "LA VIE EST BELLE EDP 100ML", brand: "Lancome", price: "R$ 700,00", category: "Feminino" }),
+  pendingProduct({ name: "GOOD GIRL EDP 80ML", brand: "Carolina Herrera", price: "R$ 700,00", category: "Feminino", sizes: ["80ml"] }),
+  pendingProduct({ name: "LIBRE EDP 90ML", brand: "Yves Saint Laurent", price: "R$ 900,00", category: "Feminino", sizes: ["90ml"] }),
+  pendingProduct({ name: "SAUVAGE EDP 100ML", brand: "Dior", price: "R$ 850,00", category: "Masculino" }),
 ];
 
 const noteGroups = [
