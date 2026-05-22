@@ -159,7 +159,7 @@ const products: Product[] = [
       "Asad e uma experiencia olfativa envolvente e poderosa. Sua abertura especiada evolui para um coracao doce e amadeirado, finalizando com uma base profunda e marcante.",
     rating: 5,
     reviews: 598,
-    sizes: sizesWithDecants(["100ml", "200ml"]),
+    sizes: sizesWithDecants(["100ml"]),
   },
   {
     name: "ASAD BOURBON EDP 100ML",
@@ -173,7 +173,7 @@ const products: Product[] = [
       "Asad Bourbon combina especiarias, doçura cremosa e madeiras nobres em uma fragrancia luxuosa, encorpada e inesquecivel.",
     rating: 5,
     reviews: 598,
-    sizes: sizesWithDecants(["100ml", "200ml"]),
+    sizes: sizesWithDecants(["100ml"]),
   },
   {
     name: "ASAD ELIXIR EDP 100ML",
@@ -187,7 +187,7 @@ const products: Product[] = [
       "Asad Elixir entrega uma evolucao rica, com brilho especiado no topo, corpo ambarado e base de alta fixacao.",
     rating: 5,
     reviews: 421,
-    sizes: sizesWithDecants(["100ml", "200ml"]),
+    sizes: sizesWithDecants(["100ml"]),
   },
   { name: "YARA ROSE", brand: "Lattafa", price: "R$ 200,00", image: yaraRoseImg, category: "Feminino", shortDescription: "Doce, feminino e luminoso, perfeito para uma assinatura delicada.", about: "Yara Rose une flores cremosas, frutas suaves e almíscar elegante em uma fragrancia facil de amar.", rating: 5, reviews: 384, sizes: sizesWithDecants(["100ml"]) },
   { name: "YARA TOUS", brand: "Lattafa", price: "R$ 200,00", image: yaraTousImg, category: "Feminino", shortDescription: "Tropical, cremosa e sofisticada, com uma presença alegre e memoravel.", about: "Yara Tous mistura frutas tropicais, flores suaves e fundo cremoso para uma fragrancia feminina e marcante.", rating: 5, reviews: 376, sizes: sizesWithDecants(["100ml"]) },
