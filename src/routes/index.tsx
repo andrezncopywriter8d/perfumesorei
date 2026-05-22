@@ -45,6 +45,13 @@ import laVieEstBelleImg from "@/assets/la-vie-est-belle.webp";
 import goodGirlImg from "@/assets/good-girl.webp";
 import libreImg from "@/assets/libre.webp";
 import sauvageImg from "@/assets/sauvage.webp";
+import venenoBiancoImg from "@/assets/veneno-bianco.webp";
+import tharwahGoldImg from "@/assets/tharwah-gold.webp";
+import salvoImg from "@/assets/salvo.webp";
+import hawasBlackImg from "@/assets/hawas-black.webp";
+import kingOfArabiaImg from "@/assets/king-of-arabia.webp";
+import orienticaRoyalAmberImg from "@/assets/orientica-royal-amber.webp";
+import yaraEdpImg from "@/assets/yara-edp.webp";
 
 const ContainerScroll = lazy(() =>
   import("@/components/ui/container-scroll-animation").then((module) => ({
@@ -294,25 +301,36 @@ function PriceCard({
 const productImages: Record<string, string> = {
   ASAD: asadImg,
   "ASA BURBON": asadBourbonImg,
+  "ASAD BOURBON EDP 100ML": asadBourbonImg,
   "ASAD ELIXIR": asadElixirImg,
+  "ASAD ELIXIR EDP 100ML": asadElixirImg,
   "YARA ROSE": yaraRoseImg,
   "YARA TOUS": yaraTousImg,
   "YARA ELIXIR": yaraElixirImg,
+  "YARA ELIXIR EDP 100ML": yaraElixirImg,
+  "YARA EDP 100ML": yaraEdpImg,
   "LIQUID BRUN": liquidBrunImg,
+  "LIQUID BRUN EDP 100ML": liquidBrunImg,
   ANEESA: aneesaImg,
   "RAVE AU SOLEIL": raveImg,
   "CLUB DE NOIRL INTENSE": clubIntenseImg,
   "CLUB DE NOIRL WOMEN": clubWomanImg,
+  "CLUB DE NUIT F EDP 105ML UAE": clubWomanImg,
   "AVANT PERFUME": avantImg,
   TORO: toroImg,
   "SABAH AL": sabahImg,
+  "SABAH AL WARD EDP": sabahImg,
   "VULCAN FEU": vulcanImg,
   DURRAT: durratImg,
   AMBER: amberImg,
+  "ORIENTICA ROYAL AMBER EDP 80ML": orienticaRoyalAmberImg,
   "FAKAR PLATINUM": fakharImg,
+  "FAKHAR PLATINUM": fakharImg,
   "FAKAR GOLD": fakarGoldImg,
+  "FAKHAR GOLD EXTRAIT EDP 100ML": fakarGoldImg,
   "FAKHAR BLACK": fakharBlackImg,
   "FAKAR ROSE": fakarRoseImg,
+  "FAKHAR ROSE": fakarRoseImg,
   "ATTAR AL WESAL": attarAlWesalImg,
   KHAMRAH: khamrahImg,
   "VOUJE PARTY": voujePartyImg,
@@ -332,6 +350,11 @@ const productImages: Record<string, string> = {
   "GOOD GIRL EDP 80ML": goodGirlImg,
   "LIBRE EDP 90ML": libreImg,
   "SAUVAGE EDP 100ML": sauvageImg,
+  "VENENO BIANCO EDP 100ML": venenoBiancoImg,
+  "THARWAH GOLD EDP 100ML": tharwahGoldImg,
+  "SALVO EDP 100ML": salvoImg,
+  "HAWAS BLACK EDP 100ML": hawasBlackImg,
+  "KING OF ARABIA EDP 100ML": kingOfArabiaImg,
 };
 
 type CatalogFilter = "todos" | "masculino" | "feminino" | "mais-vendidos" | "promocoes";
@@ -339,16 +362,9 @@ type ProductGender = "masculino" | "feminino" | "unissex";
 
 const catalogProducts: { name: string; price: string; stock?: number }[] = [
   { name: "ASAD", price: "R$ 200,00" },
-  { name: "ASA BURBON", price: "R$ 320,00" },
-  { name: "ASAD ELIXIR", price: "R$ 320,00" },
   { name: "YARA ROSE", price: "R$ 200,00" },
   { name: "YARA TOUS", price: "R$ 200,00" },
-  { name: "YARA ELIXIR", price: "R$ 320,00" },
-  { name: "LIQUID BRUN", price: "R$ 370,00" },
-  { name: "FAKAR GOLD", price: "R$ 220,00" },
   { name: "FAKHAR BLACK", price: "R$ 240,00" },
-  { name: "FAKAR ROSE", price: "R$ 240,00" },
-  { name: "FAKAR PLATINUM", price: "R$ 190,00" },
   { name: "ATTAR AL WESAL", price: "R$ 180,00" },
   { name: "KHAMRAH", price: "R$ 210,00" },
   { name: "VOUJE PARTY", price: "R$ 190,00" },
@@ -358,14 +374,11 @@ const catalogProducts: { name: string; price: string; stock?: number }[] = [
   { name: "ANEESA", price: "R$ 200,00" },
   { name: "RAVE AU SOLEIL", price: "R$ 220,00" },
   { name: "CLUB DE NOIRL INTENSE", price: "R$ 330,00" },
-  { name: "CLUB DE NOIRL WOMEN", price: "R$ 310,00" },
   { name: "APELT DIL", price: "R$ 210,00" },
   { name: "AVANT PERFUME", price: "R$ 200,00" },
   { name: "TORO", price: "R$ 190,00" },
-  { name: "SABAH AL", price: "R$ 190,00" },
   { name: "VULCAN FEU", price: "R$ 420,00" },
   { name: "DURRAT", price: "R$ 190,00" },
-  { name: "AMBER", price: "R$ 570,00" },
   { name: "ASAD BOURBON EDP 100ML", price: "R$ 320,00" },
   { name: "ASAD ELIXIR EDP 100ML", price: "R$ 320,00" },
   { name: "YARA ELIXIR EDP 100ML", price: "R$ 320,00" },
@@ -471,11 +484,11 @@ const catalogCategories: { id: CatalogFilter; label: string }[] = [
 
 const bestSellerNames = new Set([
   "ASAD",
-  "ASA BURBON",
-  "ASAD ELIXIR",
+  "ASAD BOURBON EDP 100ML",
+  "ASAD ELIXIR EDP 100ML",
   "YARA ROSE",
   "YARA TOUS",
-  "LIQUID BRUN",
+  "LIQUID BRUN EDP 100ML",
   "KHAMRAH",
   "CLUB DE NOIRL INTENSE",
 ]);
