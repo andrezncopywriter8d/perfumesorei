@@ -184,6 +184,7 @@ const products: Product[] = [
   pendingProduct({ name: "KING OF ARABIA EDP 100ML", brand: "Lattafa", price: "R$ 350,00", image: kingOfArabiaImg, category: "Masculino" }),
   pendingProduct({ name: "HAWAS BLACK EDP 100ML", brand: "Rasasi", price: "R$ 350,00", image: hawasBlackImg, category: "Masculino" }),
   pendingProduct({ name: "SALVO EDP 100ML", brand: "Maison Alhambra", price: "R$ 230,00", image: salvoImg, category: "Masculino" }),
+  pendingProduct({ name: "APELT DIL", brand: "Lattafa", price: "R$ 210,00", category: "Feminino" }),
   pendingProduct({ name: "THARWAH GOLD EDP 100ML", brand: "Lattafa", price: "R$ 410,00", image: tharwahGoldImg, category: "Unissex" }),
   pendingProduct({ name: "VENENO BIANCO EDP 100ML", brand: "French Avenue", price: "R$ 420,00", image: venenoBiancoImg, category: "Unissex" }),
   pendingProduct({ name: "SILVER SCENT EDT 100ML", brand: "Jacques Bogart", price: "R$ 220,00", image: silverScentImg, category: "Masculino" }),
