@@ -84,8 +84,41 @@ type Product = {
   about: string;
   rating?: number;
   reviews?: number;
-  sizes: string[];
+  sizes: ProductSize[];
 };
+
+type ProductSize = string | { label: string; price?: string };
+
+const ARABIC_DECANTS: ProductSize[] = [
+  { label: "Decante 5ml", price: "R$ 30,00" },
+  { label: "Decante 10ml", price: "R$ 55,00" },
+];
+
+const DESIGNER_BRANDS = new Set([
+  "Carolina Herrera",
+  "Dior",
+  "Jacques Bogart",
+  "Jean Paul Gaultier",
+  "Lancome",
+  "Paco Rabanne",
+  "Yves Saint Laurent",
+]);
+
+function sizesWithDecants(sizes: ProductSize[] = ["100ml"]) {
+  return [...sizes, ...ARABIC_DECANTS];
+}
+
+function isSizeMatch(size: ProductSize, label: string) {
+  return (typeof size === "string" ? size : size.label) === label;
+}
+
+function getSizeLabel(size: ProductSize) {
+  return typeof size === "string" ? size : size.label;
+}
+
+function getSizePrice(size: ProductSize) {
+  return typeof size === "string" ? undefined : size.price;
+}
 
 function pendingProduct({
   name,
@@ -95,6 +128,8 @@ function pendingProduct({
   image,
   sizes = ["100ml"],
 }: Pick<Product, "name" | "brand" | "price" | "category"> & { image?: string; sizes?: string[] }): Product {
+  const productSizes = DESIGNER_BRANDS.has(brand) ? sizes : sizesWithDecants(sizes);
+
   return {
     name,
     brand,
@@ -107,7 +142,7 @@ function pendingProduct({
       "Produto adicionado ao estoque atualizado. Em breve, esta pagina recebera foto e descricao olfativa completa.",
     rating: 5,
     reviews: 120,
-    sizes,
+    sizes: productSizes,
   };
 }
 
@@ -124,7 +159,7 @@ const products: Product[] = [
       "Asad e uma experiencia olfativa envolvente e poderosa. Sua abertura especiada evolui para um coracao doce e amadeirado, finalizando com uma base profunda e marcante.",
     rating: 5,
     reviews: 598,
-    sizes: ["100ml", "200ml"],
+    sizes: sizesWithDecants(["100ml", "200ml"]),
   },
   {
     name: "ASAD BOURBON EDP 100ML",
@@ -138,7 +173,7 @@ const products: Product[] = [
       "Asad Bourbon combina especiarias, doçura cremosa e madeiras nobres em uma fragrancia luxuosa, encorpada e inesquecivel.",
     rating: 5,
     reviews: 598,
-    sizes: ["100ml", "200ml"],
+    sizes: sizesWithDecants(["100ml", "200ml"]),
   },
   {
     name: "ASAD ELIXIR EDP 100ML",
@@ -152,32 +187,32 @@ const products: Product[] = [
       "Asad Elixir entrega uma evolucao rica, com brilho especiado no topo, corpo ambarado e base de alta fixacao.",
     rating: 5,
     reviews: 421,
-    sizes: ["100ml", "200ml"],
+    sizes: sizesWithDecants(["100ml", "200ml"]),
   },
-  { name: "YARA ROSE", brand: "Lattafa", price: "R$ 200,00", image: yaraRoseImg, category: "Feminino", shortDescription: "Doce, feminino e luminoso, perfeito para uma assinatura delicada.", about: "Yara Rose une flores cremosas, frutas suaves e almíscar elegante em uma fragrancia facil de amar.", rating: 5, reviews: 384, sizes: ["100ml"] },
-  { name: "YARA TOUS", brand: "Lattafa", price: "R$ 200,00", image: yaraTousImg, category: "Feminino", shortDescription: "Tropical, cremosa e sofisticada, com uma presença alegre e memoravel.", about: "Yara Tous mistura frutas tropicais, flores suaves e fundo cremoso para uma fragrancia feminina e marcante.", rating: 5, reviews: 376, sizes: ["100ml"] },
-  { name: "YARA ELIXIR EDP 100ML", brand: "Lattafa", price: "R$ 320,00", image: yaraElixirImg, category: "Feminino", shortDescription: "Versao mais intensa e luxuosa da linha Yara.", about: "Yara Elixir entrega doçura refinada, corpo floral e uma base aveludada de alta fixacao.", rating: 5, reviews: 332, sizes: ["100ml"] },
-  { name: "LIQUID BRUN EDP 100ML", brand: "French Avenue", price: "R$ 370,00", image: liquidBrunImg, category: "Masculino", shortDescription: "Quente, especiado e extremamente elegante.", about: "Liquid Brun combina canela, cardamomo, baunilha e madeiras em um perfume sofisticado e sedutor.", rating: 5, reviews: 267, sizes: ["100ml"] },
-  { name: "FAKHAR GOLD EXTRAIT EDP 100ML", brand: "Lattafa", price: "R$ 220,00", image: fakarGoldImg, category: "Feminino", shortDescription: "Dourado, moderno e envolvente.", about: "Fakar Gold traz uma aura brilhante, adocicada e elegante para quem busca presenca sem exagero.", rating: 5, reviews: 245, sizes: ["100ml"] },
-  { name: "FAKHAR BLACK", brand: "Lattafa", price: "R$ 240,00", image: fakharBlackImg, category: "Masculino", shortDescription: "Amadeirado, limpo e muito versatil.", about: "Fakhar Black e uma fragrancia masculina de impacto, com frescor, madeira e assinatura sofisticada.", rating: 5, reviews: 412, sizes: ["100ml"] },
-  { name: "FAKHAR ROSE", brand: "Lattafa", price: "R$ 240,00", image: fakarRoseImg, category: "Feminino", shortDescription: "Floral, elegante e marcante.", about: "Fakar Rose une delicadeza floral e fundo moderno para uma fragrancia feminina premium.", rating: 5, reviews: 214, sizes: ["100ml"] },
-  { name: "FAKHAR PLATINUM", brand: "Lattafa", price: "R$ 190,00", image: fakharImg, category: "Masculino", shortDescription: "Fresco e sofisticado para uso diario.", about: "Fakar Platinum entrega limpeza, elegancia e uma base amadeirada equilibrada.", rating: 5, reviews: 198, sizes: ["100ml"] },
-  { name: "ATTAR AL WESAL", brand: "Al Wataniah", price: "R$ 180,00", image: attarAlWesalImg, category: "Unissex", shortDescription: "Arabico, envolvente e cheio de personalidade.", about: "Attar Al Wesal traz uma assinatura oriental com doçura equilibrada e ótima presenca.", rating: 5, reviews: 205, sizes: ["100ml"] },
-  { name: "KHAMRAH", brand: "Lattafa", price: "R$ 210,00", image: khamrahImg, category: "Unissex", shortDescription: "Doce, especiado e viciante.", about: "Khamrah combina canela, tâmaras, praline e baunilha em uma experiencia quente e irresistivel.", rating: 5, reviews: 689, sizes: ["100ml"] },
-  { name: "VOUJE PARTY", brand: "Lattafa", price: "R$ 190,00", image: voujePartyImg, category: "Feminino", shortDescription: "Divertido, jovem e chamativo.", about: "Vouje Party e uma fragrancia vibrante, feita para momentos leves, doces e marcantes.", rating: 5, reviews: 177, sizes: ["100ml"] },
-  { name: "EL FURSON", brand: "Lattafa", price: "R$ 180,00", image: elFursonImg, category: "Masculino", shortDescription: "Oriental, potente e cheio de presença.", about: "El Furson combina especiarias e madeiras com uma base densa e masculina.", rating: 5, reviews: 164, sizes: ["100ml"] },
-  { name: "AL NOBLE WAZEER", brand: "Lattafa", price: "R$ 320,00", image: alNobleWazeerImg, category: "Masculino", shortDescription: "Nobre, forte e elegante.", about: "Al Noble Wazeer entrega um perfil oriental sofisticado, com ótimo desempenho e rastro.", rating: 5, reviews: 253, sizes: ["100ml"] },
-  { name: "MEITE", brand: "Maison Alhambra", price: "R$ 200,00", image: meitreImg, category: "Masculino", shortDescription: "Elegancia moderna com assinatura importada.", about: "Meite traz equilíbrio entre frescor, especiarias e madeira em uma composicao refinada.", rating: 5, reviews: 142, sizes: ["100ml"] },
-  { name: "ANEESA", brand: "Lattafa", price: "R$ 200,00", image: aneesaImg, category: "Feminino", shortDescription: "Delicado, feminino e envolvente.", about: "Aneesa combina maciez, flores e fundo confortável para uma assinatura elegante.", rating: 5, reviews: 186, sizes: ["100ml"] },
-  { name: "RAVE AU SOLEIL", brand: "Rave", price: "R$ 220,00", image: raveImg, category: "Masculino", shortDescription: "Solar, moderno e marcante.", about: "Rave Au Soleil tem brilho cítrico, corpo aromático e final limpo com presença.", rating: 5, reviews: 136, sizes: ["100ml"] },
-  { name: "CLUB DE NOIRL INTENSE", brand: "Armaf", price: "R$ 330,00", image: clubIntenseImg, category: "Masculino", shortDescription: "Um clássico masculino intenso, elegante e poderoso.", about: "Club de Noirl Intense combina cítricos, fumaça e madeiras em uma assinatura forte e reconhecida.", rating: 5, reviews: 731, sizes: ["105ml"] },
-  { name: "CLUB DE NUIT F EDP 105ML UAE", brand: "Armaf", price: "R$ 310,00", image: clubWomanImg, category: "Feminino", shortDescription: "Elegante, feminino e sofisticado.", about: "Club de Noirl Women entrega flores, frutas e fundo moderno com muita classe.", rating: 5, reviews: 292, sizes: ["105ml"] },
-  { name: "AVANT PERFUME", brand: "Maison Alhambra", price: "R$ 200,00", image: avantImg, category: "Masculino", shortDescription: "Versatil, moderno e muito usavel.", about: "Avant Perfume traz frescor elegante, corpo aromatico e fundo amadeirado.", rating: 5, reviews: 155, sizes: ["100ml"] },
-  { name: "TORO", brand: "Maison Alhambra", price: "R$ 190,00", image: toroImg, category: "Masculino", shortDescription: "Marcante, quente e masculino.", about: "Toro tem presença forte e assinatura oriental para quem gosta de perfumes encorpados.", rating: 5, reviews: 121, sizes: ["100ml"] },
-  { name: "SABAH AL WARD EDP", brand: "Al Wataniah", price: "R$ 190,00", image: sabahImg, category: "Feminino", shortDescription: "Ambarado, frutado e elegante.", about: "Sabah Al mistura frutas, âmbar e madeiras em uma fragrancia envolvente.", rating: 5, reviews: 174, sizes: ["100ml"] },
-  { name: "VULCAN FEU", brand: "French Avenue", price: "R$ 420,00", image: vulcanImg, category: "Masculino", shortDescription: "Premium, intenso e explosivo.", about: "Vulcan Feu entrega calor, especiarias e uma base sofisticada de alta performance.", rating: 5, reviews: 201, sizes: ["100ml"] },
-  { name: "DURRAT", brand: "Al Wataniah", price: "R$ 190,00", image: durratImg, category: "Feminino", shortDescription: "Doce, macio e elegante.", about: "Durrat combina acordes delicados com fundo confortável e assinatura feminina.", rating: 5, reviews: 149, sizes: ["100ml"] },
-  { name: "ORIENTICA ROYAL AMBER EDP 80ML", brand: "Orientica", price: "R$ 550,00", image: orienticaRoyalAmberImg, category: "Unissex", shortDescription: "Luxuoso, ambarado e profundo.", about: "Royal Amber e uma fragrancia rica, intensa e sofisticada, feita para quem busca exclusividade.", rating: 5, reviews: 118, sizes: ["80ml"] },
+  { name: "YARA ROSE", brand: "Lattafa", price: "R$ 200,00", image: yaraRoseImg, category: "Feminino", shortDescription: "Doce, feminino e luminoso, perfeito para uma assinatura delicada.", about: "Yara Rose une flores cremosas, frutas suaves e almíscar elegante em uma fragrancia facil de amar.", rating: 5, reviews: 384, sizes: sizesWithDecants(["100ml"]) },
+  { name: "YARA TOUS", brand: "Lattafa", price: "R$ 200,00", image: yaraTousImg, category: "Feminino", shortDescription: "Tropical, cremosa e sofisticada, com uma presença alegre e memoravel.", about: "Yara Tous mistura frutas tropicais, flores suaves e fundo cremoso para uma fragrancia feminina e marcante.", rating: 5, reviews: 376, sizes: sizesWithDecants(["100ml"]) },
+  { name: "YARA ELIXIR EDP 100ML", brand: "Lattafa", price: "R$ 320,00", image: yaraElixirImg, category: "Feminino", shortDescription: "Versao mais intensa e luxuosa da linha Yara.", about: "Yara Elixir entrega doçura refinada, corpo floral e uma base aveludada de alta fixacao.", rating: 5, reviews: 332, sizes: sizesWithDecants(["100ml"]) },
+  { name: "LIQUID BRUN EDP 100ML", brand: "French Avenue", price: "R$ 370,00", image: liquidBrunImg, category: "Masculino", shortDescription: "Quente, especiado e extremamente elegante.", about: "Liquid Brun combina canela, cardamomo, baunilha e madeiras em um perfume sofisticado e sedutor.", rating: 5, reviews: 267, sizes: sizesWithDecants(["100ml"]) },
+  { name: "FAKHAR GOLD EXTRAIT EDP 100ML", brand: "Lattafa", price: "R$ 220,00", image: fakarGoldImg, category: "Feminino", shortDescription: "Dourado, moderno e envolvente.", about: "Fakar Gold traz uma aura brilhante, adocicada e elegante para quem busca presenca sem exagero.", rating: 5, reviews: 245, sizes: sizesWithDecants(["100ml"]) },
+  { name: "FAKHAR BLACK", brand: "Lattafa", price: "R$ 240,00", image: fakharBlackImg, category: "Masculino", shortDescription: "Amadeirado, limpo e muito versatil.", about: "Fakhar Black e uma fragrancia masculina de impacto, com frescor, madeira e assinatura sofisticada.", rating: 5, reviews: 412, sizes: sizesWithDecants(["100ml"]) },
+  { name: "FAKHAR ROSE", brand: "Lattafa", price: "R$ 240,00", image: fakarRoseImg, category: "Feminino", shortDescription: "Floral, elegante e marcante.", about: "Fakar Rose une delicadeza floral e fundo moderno para uma fragrancia feminina premium.", rating: 5, reviews: 214, sizes: sizesWithDecants(["100ml"]) },
+  { name: "FAKHAR PLATINUM", brand: "Lattafa", price: "R$ 190,00", image: fakharImg, category: "Masculino", shortDescription: "Fresco e sofisticado para uso diario.", about: "Fakar Platinum entrega limpeza, elegancia e uma base amadeirada equilibrada.", rating: 5, reviews: 198, sizes: sizesWithDecants(["100ml"]) },
+  { name: "ATTAR AL WESAL", brand: "Al Wataniah", price: "R$ 180,00", image: attarAlWesalImg, category: "Unissex", shortDescription: "Arabico, envolvente e cheio de personalidade.", about: "Attar Al Wesal traz uma assinatura oriental com doçura equilibrada e ótima presenca.", rating: 5, reviews: 205, sizes: sizesWithDecants(["100ml"]) },
+  { name: "KHAMRAH", brand: "Lattafa", price: "R$ 210,00", image: khamrahImg, category: "Unissex", shortDescription: "Doce, especiado e viciante.", about: "Khamrah combina canela, tâmaras, praline e baunilha em uma experiencia quente e irresistivel.", rating: 5, reviews: 689, sizes: sizesWithDecants(["100ml"]) },
+  { name: "VOUJE PARTY", brand: "Lattafa", price: "R$ 190,00", image: voujePartyImg, category: "Feminino", shortDescription: "Divertido, jovem e chamativo.", about: "Vouje Party e uma fragrancia vibrante, feita para momentos leves, doces e marcantes.", rating: 5, reviews: 177, sizes: sizesWithDecants(["100ml"]) },
+  { name: "EL FURSON", brand: "Lattafa", price: "R$ 180,00", image: elFursonImg, category: "Masculino", shortDescription: "Oriental, potente e cheio de presença.", about: "El Furson combina especiarias e madeiras com uma base densa e masculina.", rating: 5, reviews: 164, sizes: sizesWithDecants(["100ml"]) },
+  { name: "AL NOBLE WAZEER", brand: "Lattafa", price: "R$ 320,00", image: alNobleWazeerImg, category: "Masculino", shortDescription: "Nobre, forte e elegante.", about: "Al Noble Wazeer entrega um perfil oriental sofisticado, com ótimo desempenho e rastro.", rating: 5, reviews: 253, sizes: sizesWithDecants(["100ml"]) },
+  { name: "MEITE", brand: "Maison Alhambra", price: "R$ 200,00", image: meitreImg, category: "Masculino", shortDescription: "Elegancia moderna com assinatura importada.", about: "Meite traz equilíbrio entre frescor, especiarias e madeira em uma composicao refinada.", rating: 5, reviews: 142, sizes: sizesWithDecants(["100ml"]) },
+  { name: "ANEESA", brand: "Lattafa", price: "R$ 200,00", image: aneesaImg, category: "Feminino", shortDescription: "Delicado, feminino e envolvente.", about: "Aneesa combina maciez, flores e fundo confortável para uma assinatura elegante.", rating: 5, reviews: 186, sizes: sizesWithDecants(["100ml"]) },
+  { name: "RAVE AU SOLEIL", brand: "Rave", price: "R$ 220,00", image: raveImg, category: "Masculino", shortDescription: "Solar, moderno e marcante.", about: "Rave Au Soleil tem brilho cítrico, corpo aromático e final limpo com presença.", rating: 5, reviews: 136, sizes: sizesWithDecants(["100ml"]) },
+  { name: "CLUB DE NOIRL INTENSE", brand: "Armaf", price: "R$ 330,00", image: clubIntenseImg, category: "Masculino", shortDescription: "Um clássico masculino intenso, elegante e poderoso.", about: "Club de Noirl Intense combina cítricos, fumaça e madeiras em uma assinatura forte e reconhecida.", rating: 5, reviews: 731, sizes: sizesWithDecants(["105ml"]) },
+  { name: "CLUB DE NUIT F EDP 105ML UAE", brand: "Armaf", price: "R$ 310,00", image: clubWomanImg, category: "Feminino", shortDescription: "Elegante, feminino e sofisticado.", about: "Club de Noirl Women entrega flores, frutas e fundo moderno com muita classe.", rating: 5, reviews: 292, sizes: sizesWithDecants(["105ml"]) },
+  { name: "AVANT PERFUME", brand: "Maison Alhambra", price: "R$ 200,00", image: avantImg, category: "Masculino", shortDescription: "Versatil, moderno e muito usavel.", about: "Avant Perfume traz frescor elegante, corpo aromatico e fundo amadeirado.", rating: 5, reviews: 155, sizes: sizesWithDecants(["100ml"]) },
+  { name: "TORO", brand: "Maison Alhambra", price: "R$ 190,00", image: toroImg, category: "Masculino", shortDescription: "Marcante, quente e masculino.", about: "Toro tem presença forte e assinatura oriental para quem gosta de perfumes encorpados.", rating: 5, reviews: 121, sizes: sizesWithDecants(["100ml"]) },
+  { name: "SABAH AL WARD EDP", brand: "Al Wataniah", price: "R$ 190,00", image: sabahImg, category: "Feminino", shortDescription: "Ambarado, frutado e elegante.", about: "Sabah Al mistura frutas, âmbar e madeiras em uma fragrancia envolvente.", rating: 5, reviews: 174, sizes: sizesWithDecants(["100ml"]) },
+  { name: "VULCAN FEU", brand: "French Avenue", price: "R$ 420,00", image: vulcanImg, category: "Masculino", shortDescription: "Premium, intenso e explosivo.", about: "Vulcan Feu entrega calor, especiarias e uma base sofisticada de alta performance.", rating: 5, reviews: 201, sizes: sizesWithDecants(["100ml"]) },
+  { name: "DURRAT", brand: "Al Wataniah", price: "R$ 190,00", image: durratImg, category: "Feminino", shortDescription: "Doce, macio e elegante.", about: "Durrat combina acordes delicados com fundo confortável e assinatura feminina.", rating: 5, reviews: 149, sizes: sizesWithDecants(["100ml"]) },
+  { name: "ORIENTICA ROYAL AMBER EDP 80ML", brand: "Orientica", price: "R$ 550,00", image: orienticaRoyalAmberImg, category: "Unissex", shortDescription: "Luxuoso, ambarado e profundo.", about: "Royal Amber e uma fragrancia rica, intensa e sofisticada, feita para quem busca exclusividade.", rating: 5, reviews: 118, sizes: sizesWithDecants(["80ml"]) },
   pendingProduct({ name: "YARA MOI EDP 100ML", brand: "Lattafa", price: "R$ 220,00", category: "Feminino" }),
   pendingProduct({ name: "YARA EDP 100ML", brand: "Lattafa", price: "R$ 250,00", image: yaraEdpImg, category: "Feminino" }),
   pendingProduct({ name: "FAKHAR F EDP 100ML", brand: "Lattafa", price: "R$ 320,00", category: "Feminino" }),
@@ -265,9 +300,11 @@ function ProductPage() {
   const [selectedImage, setSelectedImage] = useState(product.image);
   const [quantity, setQuantity] = useState(1);
   const [favorite, setFavorite] = useState(false);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0] ?? "100ml");
+  const [selectedSize, setSelectedSize] = useState(getSizeLabel(product.sizes[0] ?? "100ml"));
 
-  const priceValue = parsePrice(product.price);
+  const selectedSizeOption = product.sizes.find((size) => isSizeMatch(size, selectedSize));
+  const currentPrice = getSizePrice(selectedSizeOption ?? product.sizes[0]) ?? product.price;
+  const priceValue = parsePrice(currentPrice);
   const oldPrice = formatCurrency(priceValue * 1.28);
   const pixPrice = formatCurrency(priceValue);
   const related = useMemo(
@@ -354,7 +391,7 @@ function ProductPage() {
             <div className="mt-7">
               <p className="text-[15px] text-white/42 line-through">{oldPrice}</p>
               <p className="mt-1 bg-[linear-gradient(180deg,#ffe99d,#d4af37_52%,#99670c)] bg-clip-text text-[44px] font-black leading-none text-transparent">
-                {product.price}
+                {currentPrice}
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <span className="rounded-lg border border-emerald-400/35 bg-emerald-500/10 px-3 py-1.5 text-[12px] font-extrabold text-emerald-400">
@@ -371,20 +408,26 @@ function ProductPage() {
             <div className="mt-7">
               <p className="mb-3 text-[13px] text-white/68">Tamanho:</p>
               <div className="flex gap-3">
-                {product.sizes.map((size) => (
+                {product.sizes.map((size) => {
+                  const sizeLabel = getSizeLabel(size);
+                  const sizePrice = getSizePrice(size);
+
+                  return (
                   <button
-                    key={size}
+                    key={sizeLabel}
                     type="button"
-                    onClick={() => setSelectedSize(size)}
-                    className={`h-11 min-w-20 rounded-lg border px-4 text-[13px] font-semibold transition ${
-                      selectedSize === size
+                    onClick={() => setSelectedSize(sizeLabel)}
+                    className={`min-h-11 min-w-20 rounded-lg border px-4 py-2 text-[13px] font-semibold transition ${
+                      selectedSize === sizeLabel
                         ? "border-amber-300 bg-amber-300/10 text-amber-100"
                         : "border-white/14 bg-black/20 text-white/62 hover:border-amber-300/50"
                     }`}
                   >
-                    {size}
+                    <span className="block leading-tight">{sizeLabel}</span>
+                    {sizePrice && <span className="block text-[11px] leading-tight text-amber-200">{sizePrice}</span>}
                   </button>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
