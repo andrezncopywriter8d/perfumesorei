@@ -32,6 +32,19 @@ import fakarRoseImg from "@/assets/fakar-rose.webp";
 import attarAlWesalImg from "@/assets/attar-al-wesal.webp";
 import khamrahImg from "@/assets/khamrah.webp";
 import voujePartyImg from "@/assets/vouje-party.webp";
+import silverScentImg from "@/assets/silver-scent.webp";
+import vipBlackImg from "@/assets/212-vip-black.webp";
+import vipRoseImg from "@/assets/212-vip-rose.webp";
+import scandalPourHommeImg from "@/assets/scandal-pour-homme.webp";
+import scandalPourHommeIntenseImg from "@/assets/scandal-pour-homme-intense.webp";
+import invictusImg from "@/assets/invictus.webp";
+import oneMillionImg from "@/assets/1-million.webp";
+import oneMillionElixirImg from "@/assets/1-million-elixir.webp";
+import afnan9amImg from "@/assets/afnan-9am.webp";
+import laVieEstBelleImg from "@/assets/la-vie-est-belle.webp";
+import goodGirlImg from "@/assets/good-girl.webp";
+import libreImg from "@/assets/libre.webp";
+import sauvageImg from "@/assets/sauvage.webp";
 
 const ContainerScroll = lazy(() =>
   import("@/components/ui/container-scroll-animation").then((module) => ({
@@ -306,6 +319,19 @@ const productImages: Record<string, string> = {
   "EL FURSON": elFursonImg,
   "AL NOBLE WAZEER": alNobleWazeerImg,
   MEITE: meitreImg,
+  "SILVER SCENT EDT 100ML": silverScentImg,
+  "212 VIP BLACK EDP 100ML": vipBlackImg,
+  "212 VIP ROSE EDP 80ML": vipRoseImg,
+  "SCANDAL POUR HOMME EDT 100ML": scandalPourHommeImg,
+  "SCANDAL POUR HOMME EDP INTENSE 100ML": scandalPourHommeIntenseImg,
+  "INVICTUS EDT 100ML": invictusImg,
+  "1 MILLION EDT 100ML": oneMillionImg,
+  "1 MILLION ELIXIR PARFUM INTENSE 100ML": oneMillionElixirImg,
+  "AFNAN 9AM EDT 100ML": afnan9amImg,
+  "LA VIE EST BELLE EDP 100ML": laVieEstBelleImg,
+  "GOOD GIRL EDP 80ML": goodGirlImg,
+  "LIBRE EDP 90ML": libreImg,
+  "SAUVAGE EDP 100ML": sauvageImg,
 };
 
 type CatalogFilter = "todos" | "masculino" | "feminino" | "mais-vendidos" | "promocoes";

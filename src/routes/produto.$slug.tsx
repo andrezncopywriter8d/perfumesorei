@@ -47,6 +47,19 @@ import fakarRoseImg from "@/assets/fakar-rose.webp";
 import attarAlWesalImg from "@/assets/attar-al-wesal.webp";
 import khamrahImg from "@/assets/khamrah.webp";
 import voujePartyImg from "@/assets/vouje-party.webp";
+import silverScentImg from "@/assets/silver-scent.webp";
+import vipBlackImg from "@/assets/212-vip-black.webp";
+import vipRoseImg from "@/assets/212-vip-rose.webp";
+import scandalPourHommeImg from "@/assets/scandal-pour-homme.webp";
+import scandalPourHommeIntenseImg from "@/assets/scandal-pour-homme-intense.webp";
+import invictusImg from "@/assets/invictus.webp";
+import oneMillionImg from "@/assets/1-million.webp";
+import oneMillionElixirImg from "@/assets/1-million-elixir.webp";
+import afnan9amImg from "@/assets/afnan-9am.webp";
+import laVieEstBelleImg from "@/assets/la-vie-est-belle.webp";
+import goodGirlImg from "@/assets/good-girl.webp";
+import libreImg from "@/assets/libre.webp";
+import sauvageImg from "@/assets/sauvage.webp";
 
 export const Route = createFileRoute("/produto/$slug")({
   component: ProductPage,
@@ -72,12 +85,14 @@ function pendingProduct({
   brand,
   price,
   category,
+  image,
   sizes = ["100ml"],
-}: Pick<Product, "name" | "brand" | "price" | "category"> & { sizes?: string[] }): Product {
+}: Pick<Product, "name" | "brand" | "price" | "category"> & { image?: string; sizes?: string[] }): Product {
   return {
     name,
     brand,
     price,
+    image,
     category,
     shortDescription:
       "Perfume importado disponivel no catalogo O Rei do Importado. Imagem oficial em breve.",
@@ -174,19 +189,19 @@ const products: Product[] = [
   pendingProduct({ name: "SALVO EDP 100ML", brand: "Maison Alhambra", price: "R$ 230,00", category: "Masculino" }),
   pendingProduct({ name: "THARWAH GOLD EDP 100ML", brand: "Lattafa", price: "R$ 410,00", category: "Unissex" }),
   pendingProduct({ name: "VENENO BIANCO EDP 100ML", brand: "French Avenue", price: "R$ 420,00", category: "Unissex" }),
-  pendingProduct({ name: "SILVER SCENT EDT 100ML", brand: "Jacques Bogart", price: "R$ 220,00", category: "Masculino" }),
-  pendingProduct({ name: "212 VIP BLACK EDP 100ML", brand: "Carolina Herrera", price: "R$ 650,00", category: "Masculino" }),
-  pendingProduct({ name: "212 VIP ROSE EDP 80ML", brand: "Carolina Herrera", price: "R$ 650,00", category: "Feminino", sizes: ["80ml"] }),
-  pendingProduct({ name: "SCANDAL POUR HOMME EDT 100ML", brand: "Jean Paul Gaultier", price: "R$ 650,00", category: "Masculino" }),
-  pendingProduct({ name: "SCANDAL POUR HOMME EDP INTENSE 100ML", brand: "Jean Paul Gaultier", price: "R$ 750,00", category: "Masculino" }),
-  pendingProduct({ name: "INVICTUS EDT 100ML", brand: "Paco Rabanne", price: "R$ 550,00", category: "Masculino" }),
-  pendingProduct({ name: "1 MILLION EDT 100ML", brand: "Paco Rabanne", price: "R$ 550,00", category: "Masculino" }),
-  pendingProduct({ name: "1 MILLION ELIXIR PARFUM INTENSE 100ML", brand: "Paco Rabanne", price: "R$ 700,00", category: "Masculino" }),
-  pendingProduct({ name: "AFNAN 9AM EDT 100ML", brand: "Afnan", price: "R$ 250,00", category: "Unissex" }),
-  pendingProduct({ name: "LA VIE EST BELLE EDP 100ML", brand: "Lancome", price: "R$ 700,00", category: "Feminino" }),
-  pendingProduct({ name: "GOOD GIRL EDP 80ML", brand: "Carolina Herrera", price: "R$ 700,00", category: "Feminino", sizes: ["80ml"] }),
-  pendingProduct({ name: "LIBRE EDP 90ML", brand: "Yves Saint Laurent", price: "R$ 900,00", category: "Feminino", sizes: ["90ml"] }),
-  pendingProduct({ name: "SAUVAGE EDP 100ML", brand: "Dior", price: "R$ 850,00", category: "Masculino" }),
+  pendingProduct({ name: "SILVER SCENT EDT 100ML", brand: "Jacques Bogart", price: "R$ 220,00", image: silverScentImg, category: "Masculino" }),
+  pendingProduct({ name: "212 VIP BLACK EDP 100ML", brand: "Carolina Herrera", price: "R$ 650,00", image: vipBlackImg, category: "Masculino" }),
+  pendingProduct({ name: "212 VIP ROSE EDP 80ML", brand: "Carolina Herrera", price: "R$ 650,00", image: vipRoseImg, category: "Feminino", sizes: ["80ml"] }),
+  pendingProduct({ name: "SCANDAL POUR HOMME EDT 100ML", brand: "Jean Paul Gaultier", price: "R$ 650,00", image: scandalPourHommeImg, category: "Masculino" }),
+  pendingProduct({ name: "SCANDAL POUR HOMME EDP INTENSE 100ML", brand: "Jean Paul Gaultier", price: "R$ 750,00", image: scandalPourHommeIntenseImg, category: "Masculino" }),
+  pendingProduct({ name: "INVICTUS EDT 100ML", brand: "Paco Rabanne", price: "R$ 550,00", image: invictusImg, category: "Masculino" }),
+  pendingProduct({ name: "1 MILLION EDT 100ML", brand: "Paco Rabanne", price: "R$ 550,00", image: oneMillionImg, category: "Masculino" }),
+  pendingProduct({ name: "1 MILLION ELIXIR PARFUM INTENSE 100ML", brand: "Paco Rabanne", price: "R$ 700,00", image: oneMillionElixirImg, category: "Masculino" }),
+  pendingProduct({ name: "AFNAN 9AM EDT 100ML", brand: "Afnan", price: "R$ 250,00", image: afnan9amImg, category: "Unissex" }),
+  pendingProduct({ name: "LA VIE EST BELLE EDP 100ML", brand: "Lancome", price: "R$ 700,00", image: laVieEstBelleImg, category: "Feminino" }),
+  pendingProduct({ name: "GOOD GIRL EDP 80ML", brand: "Carolina Herrera", price: "R$ 700,00", image: goodGirlImg, category: "Feminino", sizes: ["80ml"] }),
+  pendingProduct({ name: "LIBRE EDP 90ML", brand: "Yves Saint Laurent", price: "R$ 900,00", image: libreImg, category: "Feminino", sizes: ["90ml"] }),
+  pendingProduct({ name: "SAUVAGE EDP 100ML", brand: "Dior", price: "R$ 850,00", image: sauvageImg, category: "Masculino" }),
 ];
 
 const noteGroups = [
