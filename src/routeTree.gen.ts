@@ -10,12 +10,48 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VirtualRouteImport } from './routes/virtual'
+import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
+import { Route as TermosDeServicoRouteImport } from './routes/termos-de-servico'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as ExclusaoDeDadosRouteImport } from './routes/exclusao-de-dados'
+import { Route as DataDeletionRouteImport } from './routes/data-deletion'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProdutoSlugRouteImport } from './routes/produto.$slug'
 
 const VirtualRoute = VirtualRouteImport.update({
   id: '/virtual',
   path: '/virtual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsOfServiceRoute = TermsOfServiceRouteImport.update({
+  id: '/terms-of-service',
+  path: '/terms-of-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosDeServicoRoute = TermosDeServicoRouteImport.update({
+  id: '/termos-de-servico',
+  path: '/termos-de-servico',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExclusaoDeDadosRoute = ExclusaoDeDadosRouteImport.update({
+  id: '/exclusao-de-dados',
+  path: '/exclusao-de-dados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DataDeletionRoute = DataDeletionRouteImport.update({
+  id: '/data-deletion',
+  path: '/data-deletion',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,30 +67,82 @@ const ProdutoSlugRoute = ProdutoSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/data-deletion': typeof DataDeletionRoute
+  '/exclusao-de-dados': typeof ExclusaoDeDadosRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/termos-de-servico': typeof TermosDeServicoRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
   '/virtual': typeof VirtualRoute
   '/produto/$slug': typeof ProdutoSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/data-deletion': typeof DataDeletionRoute
+  '/exclusao-de-dados': typeof ExclusaoDeDadosRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/termos-de-servico': typeof TermosDeServicoRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
   '/virtual': typeof VirtualRoute
   '/produto/$slug': typeof ProdutoSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/data-deletion': typeof DataDeletionRoute
+  '/exclusao-de-dados': typeof ExclusaoDeDadosRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/termos-de-servico': typeof TermosDeServicoRoute
+  '/terms-of-service': typeof TermsOfServiceRoute
   '/virtual': typeof VirtualRoute
   '/produto/$slug': typeof ProdutoSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/virtual' | '/produto/$slug'
+  fullPaths:
+    | '/'
+    | '/data-deletion'
+    | '/exclusao-de-dados'
+    | '/politica-de-privacidade'
+    | '/privacy-policy'
+    | '/termos-de-servico'
+    | '/terms-of-service'
+    | '/virtual'
+    | '/produto/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/virtual' | '/produto/$slug'
-  id: '__root__' | '/' | '/virtual' | '/produto/$slug'
+  to:
+    | '/'
+    | '/data-deletion'
+    | '/exclusao-de-dados'
+    | '/politica-de-privacidade'
+    | '/privacy-policy'
+    | '/termos-de-servico'
+    | '/terms-of-service'
+    | '/virtual'
+    | '/produto/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/data-deletion'
+    | '/exclusao-de-dados'
+    | '/politica-de-privacidade'
+    | '/privacy-policy'
+    | '/termos-de-servico'
+    | '/terms-of-service'
+    | '/virtual'
+    | '/produto/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DataDeletionRoute: typeof DataDeletionRoute
+  ExclusaoDeDadosRoute: typeof ExclusaoDeDadosRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  TermosDeServicoRoute: typeof TermosDeServicoRoute
+  TermsOfServiceRoute: typeof TermsOfServiceRoute
   VirtualRoute: typeof VirtualRoute
   ProdutoSlugRoute: typeof ProdutoSlugRoute
 }
@@ -66,6 +154,48 @@ declare module '@tanstack/react-router' {
       path: '/virtual'
       fullPath: '/virtual'
       preLoaderRoute: typeof VirtualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-of-service': {
+      id: '/terms-of-service'
+      path: '/terms-of-service'
+      fullPath: '/terms-of-service'
+      preLoaderRoute: typeof TermsOfServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos-de-servico': {
+      id: '/termos-de-servico'
+      path: '/termos-de-servico'
+      fullPath: '/termos-de-servico'
+      preLoaderRoute: typeof TermosDeServicoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exclusao-de-dados': {
+      id: '/exclusao-de-dados'
+      path: '/exclusao-de-dados'
+      fullPath: '/exclusao-de-dados'
+      preLoaderRoute: typeof ExclusaoDeDadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data-deletion': {
+      id: '/data-deletion'
+      path: '/data-deletion'
+      fullPath: '/data-deletion'
+      preLoaderRoute: typeof DataDeletionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,6 +217,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DataDeletionRoute: DataDeletionRoute,
+  ExclusaoDeDadosRoute: ExclusaoDeDadosRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  TermosDeServicoRoute: TermosDeServicoRoute,
+  TermsOfServiceRoute: TermsOfServiceRoute,
   VirtualRoute: VirtualRoute,
   ProdutoSlugRoute: ProdutoSlugRoute,
 }
